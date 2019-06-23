@@ -33,9 +33,10 @@
             this.control = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.HORA = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.Dia = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.HORA = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.txtpass = new System.Windows.Forms.TextBox();
             this.txtuser = new System.Windows.Forms.TextBox();
             this.btnlogin = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.timerHora = new System.Windows.Forms.Timer(this.components);
-            this.Dia = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.control.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -87,19 +87,19 @@
             this.panel1.Location = new System.Drawing.Point(0, 26);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 238);
+            this.panel1.Size = new System.Drawing.Size(213, 238);
             this.panel1.TabIndex = 4;
             // 
-            // HORA
+            // Dia
             // 
-            this.HORA.AutoSize = true;
-            this.HORA.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HORA.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.HORA.Location = new System.Drawing.Point(489, 234);
-            this.HORA.Name = "HORA";
-            this.HORA.Size = new System.Drawing.Size(60, 17);
-            this.HORA.TabIndex = 16;
-            this.HORA.Text = "hh:mm:ss";
+            this.Dia.AutoSize = true;
+            this.Dia.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dia.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.Dia.Location = new System.Drawing.Point(10, 208);
+            this.Dia.Name = "Dia";
+            this.Dia.Size = new System.Drawing.Size(180, 17);
+            this.Dia.TabIndex = 17;
+            this.Dia.Text = "sabado 22 de julio de 2019";
             // 
             // pictureBox2
             // 
@@ -117,11 +117,22 @@
             this.bunifuCustomLabel1.AutoSize = true;
             this.bunifuCustomLabel1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bunifuCustomLabel1.Location = new System.Drawing.Point(3, 0);
+            this.bunifuCustomLabel1.Location = new System.Drawing.Point(38, 0);
             this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
             this.bunifuCustomLabel1.Size = new System.Drawing.Size(125, 20);
             this.bunifuCustomLabel1.TabIndex = 1;
             this.bunifuCustomLabel1.Text = "Inicio de secion";
+            // 
+            // HORA
+            // 
+            this.HORA.AutoSize = true;
+            this.HORA.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HORA.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.HORA.Location = new System.Drawing.Point(489, 234);
+            this.HORA.Name = "HORA";
+            this.HORA.Size = new System.Drawing.Size(60, 17);
+            this.HORA.TabIndex = 16;
+            this.HORA.Text = "hh:mm:ss";
             // 
             // txtpass
             // 
@@ -129,7 +140,7 @@
             this.txtpass.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtpass.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtpass.ForeColor = System.Drawing.Color.Silver;
-            this.txtpass.Location = new System.Drawing.Point(219, 116);
+            this.txtpass.Location = new System.Drawing.Point(240, 122);
             this.txtpass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtpass.Name = "txtpass";
             this.txtpass.Size = new System.Drawing.Size(285, 20);
@@ -145,7 +156,7 @@
             this.txtuser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtuser.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtuser.ForeColor = System.Drawing.Color.Silver;
-            this.txtuser.Location = new System.Drawing.Point(219, 72);
+            this.txtuser.Location = new System.Drawing.Point(240, 76);
             this.txtuser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtuser.Name = "txtuser";
             this.txtuser.Size = new System.Drawing.Size(285, 20);
@@ -163,7 +174,7 @@
             this.btnlogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(118)))), ((int)(((byte)(126)))));
             this.btnlogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnlogin.ForeColor = System.Drawing.Color.LightGray;
-            this.btnlogin.Location = new System.Drawing.Point(219, 189);
+            this.btnlogin.Location = new System.Drawing.Point(236, 189);
             this.btnlogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnlogin.Name = "btnlogin";
             this.btnlogin.Size = new System.Drawing.Size(292, 32);
@@ -188,7 +199,7 @@
             // 
             this.MensajeError.AutoSize = true;
             this.MensajeError.ForeColor = System.Drawing.Color.Silver;
-            this.MensajeError.Location = new System.Drawing.Point(219, 155);
+            this.MensajeError.Location = new System.Drawing.Point(233, 159);
             this.MensajeError.Name = "MensajeError";
             this.MensajeError.Size = new System.Drawing.Size(45, 17);
             this.MensajeError.TabIndex = 14;
@@ -202,8 +213,8 @@
             this.lineShape1.Name = "lineShape1";
             this.lineShape1.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(240)))));
             this.lineShape1.Tag = "0; 150; 240";
-            this.lineShape1.X1 = 219;
-            this.lineShape1.X2 = 501;
+            this.lineShape1.X1 = 236;
+            this.lineShape1.X2 = 518;
             this.lineShape1.Y1 = 98;
             this.lineShape1.Y2 = 98;
             // 
@@ -226,8 +237,8 @@
             this.lineShape2.Name = "lineShape2";
             this.lineShape2.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(240)))));
             this.lineShape2.Tag = "0; 150; 240";
-            this.lineShape2.X1 = 221;
-            this.lineShape2.X2 = 503;
+            this.lineShape2.X1 = 238;
+            this.lineShape2.X2 = 520;
             this.lineShape2.Y1 = 146;
             this.lineShape2.Y2 = 146;
             // 
@@ -235,17 +246,6 @@
             // 
             this.timerHora.Enabled = true;
             this.timerHora.Tick += new System.EventHandler(this.timerHora_Tick);
-            // 
-            // Dia
-            // 
-            this.Dia.AutoSize = true;
-            this.Dia.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dia.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.Dia.Location = new System.Drawing.Point(6, 208);
-            this.Dia.Name = "Dia";
-            this.Dia.Size = new System.Drawing.Size(180, 17);
-            this.Dia.TabIndex = 17;
-            this.Dia.Text = "sabado 22 de julio de 2019";
             // 
             // Loggin
             // 

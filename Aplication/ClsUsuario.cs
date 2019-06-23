@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CapaDatos;
 using System.Configuration;
 
+
 namespace CapaNegocios
 {
     public  class ClsUsuario
@@ -36,5 +37,6 @@ namespace CapaNegocios
                 throw;
             }
         }
+        
     }
 }

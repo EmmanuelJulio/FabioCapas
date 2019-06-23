@@ -95,21 +95,27 @@ namespace UiFabio
 
             }
             else {
-                if (txtpass.Text == "Contraceña")
+                if (txtpass.Text == "Contraseña")
                 {
                     MensajeError.Visible = true;
-                    MensajeError.Text = "Debe ingresar unacontraceña";
+                    MensajeError.Text = "Debe ingresar una contraceña";
                     
                 }
+                else
+                {
+                    if (CapaNegocios.ClsUsuario.loggin(txtuser.Text, txtpass.Text))
+                    {
+                        this.Hide();
+                        Principal Pn = new Principal();
+                        Pn.Show();
+                    }
+                    else
+                    {
+                        MensajePers.message("no se econtro el usuario", MensajePers.TipoMensaje.Error);
+                    }
+                }
             }
-            if(CapaNegocios.ClsUsuario.loggin(txtuser.Text, txtpass.Text))
-            {
-                MensajePers.message("bienvenido " + CapaNegocios.ClsUsuario.UsuarioActual.nombre,MensajePers.TipoMensaje.Acceso);
-            }
-            else
-            {
-                MensajePers.message("no se econtro el usuario", MensajePers.TipoMensaje.Error);
-            }
+           
             
         }
     }

@@ -38,8 +38,10 @@
             this.hide = new System.Windows.Forms.Timer(this.components);
             this.show = new System.Windows.Forms.Timer(this.components);
             this.Botones = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.icon)).BeginInit();
             this.Botones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // bunifuElipse1
@@ -61,10 +63,10 @@
             // 
             // icon
             // 
-            this.icon.Location = new System.Drawing.Point(106, 13);
+            this.icon.Location = new System.Drawing.Point(121, 94);
             this.icon.Margin = new System.Windows.Forms.Padding(4);
             this.icon.Name = "icon";
-            this.icon.Size = new System.Drawing.Size(180, 180);
+            this.icon.Size = new System.Drawing.Size(66, 52);
             this.icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.icon.TabIndex = 0;
             this.icon.TabStop = false;
@@ -76,12 +78,13 @@
             this.bunifuCustomLabel1.AutoSize = true;
             this.bunifuCustomLabel1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuCustomLabel1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.bunifuCustomLabel1.Location = new System.Drawing.Point(159, 197);
+            this.bunifuCustomLabel1.Location = new System.Drawing.Point(117, 150);
             this.bunifuCustomLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
             this.bunifuCustomLabel1.Size = new System.Drawing.Size(75, 21);
             this.bunifuCustomLabel1.TabIndex = 12;
             this.bunifuCustomLabel1.Text = "Mensaje";
+            this.bunifuCustomLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button1
             // 
@@ -92,7 +95,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.button1.Location = new System.Drawing.Point(85, 10);
+            this.button1.Location = new System.Drawing.Point(51, 10);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(223, 37);
@@ -114,17 +117,28 @@
             // 
             this.Botones.Controls.Add(this.button1);
             this.Botones.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Botones.Location = new System.Drawing.Point(0, 240);
+            this.Botones.Location = new System.Drawing.Point(0, 185);
             this.Botones.Name = "Botones";
-            this.Botones.Size = new System.Drawing.Size(400, 60);
+            this.Botones.Size = new System.Drawing.Size(337, 60);
             this.Botones.TabIndex = 14;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(51, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(207, 75);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
             // 
             // MensajePers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(57)))), ((int)(((byte)(80)))));
-            this.ClientSize = new System.Drawing.Size(400, 300);
+            this.ClientSize = new System.Drawing.Size(337, 245);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Botones);
             this.Controls.Add(this.bunifuCustomLabel1);
             this.Controls.Add(this.icon);
@@ -138,6 +152,7 @@
             this.Load += new System.EventHandler(this.MensajePers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.icon)).EndInit();
             this.Botones.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,5 +168,6 @@
         public System.Windows.Forms.Timer hide;
         public System.Windows.Forms.Timer show;
         private System.Windows.Forms.Panel Botones;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
