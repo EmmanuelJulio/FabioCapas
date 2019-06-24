@@ -105,7 +105,7 @@ namespace UiFabio
                     if (CapaNegocios.ClsUsuario.loggin(txtuser.Text, txtpass.Text))
                     {
                         this.Hide();
-                        MetroFormPadre Pn = new MetroFormPadre();
+                        Principal Pn = new Principal();
                         Pn.Show();
                     }
                     else

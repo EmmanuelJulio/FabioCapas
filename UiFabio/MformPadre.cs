@@ -8,13 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UiFabio.Configuraciones.Modulos
+namespace UiFabio
 {
-    public partial class frm_submenus : Form
+    public partial class MformPadre : MetroFramework.Forms.MetroForm
+
     {
-        public frm_submenus()
+        public MformPadre()
         {
             InitializeComponent();
+        }
+
+        private void MformPadre_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

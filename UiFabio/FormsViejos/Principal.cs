@@ -8,45 +8,43 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+ 
 
-namespace UiFabio.MetroForms
+namespace UiFabio
 {
-    public partial class MetroFormPadre : MetroFramework.Forms.MetroForm
+    public partial class Principal : FormPadre
+
+
     {
         string moduloseleccionado;
         string opcionseleccionada;
-        public MetroFormPadre()
-        {
-            InitializeComponent();
-            this.StyleManager = metroStyleManager1;
-            Botones.Width = 240;
-        }
         public void Deslizar(Panel Aesconeder, Panel Amostrar)
         {
             PanelAnimador.HideSync(Aesconeder);
             PanelAnimador.ShowSync(Amostrar);
             Amostrar.Width = 200;
         }
-
-        private void MetroFormPadre_Load(object sender, EventArgs e)
+        public Principal()
         {
-            mboxColor.SelectedIndex = 1;
-            metroComboBox1.SelectedIndex = 0;
-            pnlmodulos.Width = 200;
+            InitializeComponent();
+        }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+            PnlModulos.Width = 200;
             PanelForm.Width = 0;
             PnlSubMenus.Width = 0;
-            txt_usuario.Text = utilidades.FirstCharToUpper(CapaNegocios.ClsUsuario.UsuarioActual.nombre) + " " + utilidades.FirstCharToUpper(CapaNegocios.ClsUsuario.UsuarioActual.apellido);
+            txt_usuario.Text = utilidades.FirstCharToUpper(CapaNegocios.ClsUsuario.UsuarioActual.nombre)+" " + utilidades.FirstCharToUpper(CapaNegocios.ClsUsuario.UsuarioActual.apellido);
             Txt_sector.Text = CapaNegocios.ClsUsuario.UsuarioActual.sector;
             Botones.Width = 200;
-            foreach (CapaDatos.MODULOS Mod in UiFabio.Modulos.OptenerModulos())
-            {
-                pnlmodulos.Controls.Add(boton(Mod.NOMBRE_MOD, Mod.ID_MODULO, Modulos_Click));
+            foreach (CapaDatos.MODULOS Mod in UiFabio.Modulos.OptenerModulos() )
+            { 
+                PnlModulos.Controls.Add(boton(Mod.NOMBRE_MOD,Mod.ID_MODULO, Modulos_Click));
             }
-
         }
-        public MetroFramework.Controls.MetroButton boton(string nombre, int id_mod, EventHandler cosa)
+        public Button boton(string nombre ,int id_mod,EventHandler cosa)
         {
-            MetroFramework.Controls.MetroButton Boton = new MetroFramework.Controls.MetroButton();
+            Button Boton = new Button();
             Boton.Text = nombre;
             Boton.AccessibleName = (id_mod).ToString();
             Boton.Dock = DockStyle.Top;
@@ -62,10 +60,9 @@ namespace UiFabio.MetroForms
             Boton.FlatAppearance.BorderSize = 0;
             return Boton;
         }
-
-        public MetroFramework.Controls.MetroButton boton2(string nombre, string FormNombre, EventHandler cosa)
+        public Button boton2(string nombre, string FormNombre, EventHandler cosa)
         {
-            MetroFramework.Controls.MetroButton Boton = new MetroFramework.Controls.MetroButton();
+            Button Boton = new Button();
             Boton.Text = nombre;
             Boton.AccessibleName = FormNombre;
             Boton.Dock = DockStyle.Top;
@@ -81,47 +78,52 @@ namespace UiFabio.MetroForms
             Boton.FlatAppearance.BorderSize = 0;
             return Boton;
         }
-        private void MetroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void Hora_Tick(object sender, EventArgs e)
         {
-            switch (metroComboBox1.SelectedIndex)
-            {
-                case 0:
-                    metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Dark;
-                    break;
-                case 1:
-                    metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Light;
-                    break;
-            }
+            lblhora.Text = DateTime.Now.ToLongTimeString();
+            Dia.Text = DateTime.Now.ToLongDateString();
         }
 
-        private void MboxColor_SelectedIndexChanged(object sender, EventArgs e)
+        private void PictureBox2_Click(object sender, EventArgs e)
         {
-            metroStyleManager1.Style = (MetroFramework.MetroColorStyle)Convert.ToInt32(mboxColor.SelectedIndex);
+            CapaNegocios.ClsUsuario.UsuarioActual = null;
+            this.Hide();
+            Loggin lg = new Loggin();
+            lg.Show();
+            
+
         }
 
         private void Modulos_Click(object sender, EventArgs e)
         {
-            PnlSubMenus.Controls.Clear();
-
+            foreach(Button bot in PnlSubMenus.Controls)
+            {
+                PnlSubMenus.Controls.Remove(bot);
+            }
+            
             int id = Convert.ToInt32(((Button)sender).AccessibleName);
             foreach (CapaDatos.SUBMODULOS SubMod in UiFabio.SubModulos.OptenerSubModulos(id))
             {
-                PnlSubMenus.Controls.Add(boton(SubMod.NOMBRE_SUBMOD, SubMod.ID_SUBMODULO, Submodulos_Click));
+                PnlSubMenus.Controls.Add(boton(SubMod.NOMBRE_SUBMOD, SubMod.ID_SUBMODULO, SubModulos_Click));
 
             }
             lbl_texto.Text = ((Button)sender).Text;
-            moduloseleccionado = ((Button)sender).Text;
-            Deslizar(pnlmodulos, PnlSubMenus);
+            moduloseleccionado= ((Button)sender).Text;
+            Deslizar(PnlModulos, PnlSubMenus);
             Btn_volvermodulos.Visible = true;
+            
         }
 
-        private void Submodulos_Click(object sender, EventArgs e)
+        private void SubModulos_Click(object sender, EventArgs e)
         {
-            PanelForm.Controls.Clear();
+            foreach (Button bot in PanelForm.Controls)
+            {
+                PanelForm.Controls.Remove(bot);
+            }
             int id = Convert.ToInt32(((Button)sender).AccessibleName);
             foreach (CapaDatos.SUBMENU SubMod in UiFabio.SubMenus.OptenerSubMenus(id))
             {
-                PanelForm.Controls.Add(boton2(SubMod.subMenu_nombre, SubMod.subMenu_Sys, Submenu_Click));
+                PanelForm.Controls.Add(boton2(SubMod.subMenu_nombre, SubMod.subMenu_Sys, SubMenu_Click));
 
             }
             opcionseleccionada = ((Button)sender).Text;
@@ -131,7 +133,7 @@ namespace UiFabio.MetroForms
             Btn_volveropciones.Visible = true;
         }
 
-        private void Submenu_Click(object sender, EventArgs e)
+        private void SubMenu_Click(object sender, EventArgs e)
         {
             try
             {
@@ -153,15 +155,15 @@ namespace UiFabio.MetroForms
             {
 
                 MensajePers.message("No se encontro el form", MensajePers.TipoMensaje.Error);
-
+                
             }
-
         }
+
         private void Btn_volvermodulos_Click(object sender, EventArgs e)
         {
             lbl_texto.Text = "Modulos";
             Btn_volvermodulos.Visible = false;
-            Deslizar(PnlSubMenus, pnlmodulos);
+            Deslizar(PnlSubMenus, PnlModulos);
         }
 
         private void Btn_volveropciones_Click(object sender, EventArgs e)
@@ -171,18 +173,23 @@ namespace UiFabio.MetroForms
             Btn_volvermodulos.Visible = true;
             Deslizar(PanelForm, PnlSubMenus);
         }
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         public void AbrirFormHijo(object formhijo)
         {
-            if (this.Contenedor.Controls.Count > 0)
+            if (this.PanelContenedor.Controls.Count > 0)
             {
-                this.Contenedor.Controls.RemoveAt(0);
+                this.PanelContenedor.Controls.RemoveAt(0);
             }
 
             Form fh = formhijo as Form;
             fh.TopLevel = false;
             fh.Dock = DockStyle.None;
-            this.Contenedor.Controls.Add(fh);
-            this.Contenedor.Tag = fh;
+            this.PanelContenedor.Controls.Add(fh);
+            this.PanelContenedor.Tag = fh;
             fh.Dock = DockStyle.Fill;
             fh.Show();
 

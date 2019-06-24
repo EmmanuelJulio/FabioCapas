@@ -1,6 +1,6 @@
 ﻿namespace UiFabio
 {
-    partial class FormPadre
+    partial class FormPadreMetro
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPadre));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPadreMetro));
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.pnlTodo = new System.Windows.Forms.Panel();
             this.PanelTrabajo = new System.Windows.Forms.Panel();

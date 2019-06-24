@@ -1,6 +1,6 @@
-﻿namespace UiFabio.Configuraciones.Modulos
+﻿namespace UiFabio
 {
-    partial class frm_submenus
+    partial class MformPadre
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // frm_submenus
+            // MformPadre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "frm_submenus";
-            this.Text = "frm_submenus";
+            this.Name = "MformPadre";
+            this.Load += new System.EventHandler(this.MformPadre_Load);
             this.ResumeLayout(false);
 
         }

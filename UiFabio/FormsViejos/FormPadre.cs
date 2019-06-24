@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace UiFabio
 {
-    public partial class FormPadre : Form
+    public partial class FormPadreMetro : Form
     {
         int LX, LY, SW, SH;
-        public FormPadre()
+        public FormPadreMetro()
         {
             InitializeComponent();
         }
