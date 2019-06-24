@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-
+using UiFabio.MetroForms;
 
 namespace UiFabio
 {
@@ -106,7 +105,7 @@ namespace UiFabio
                     if (CapaNegocios.ClsUsuario.loggin(txtuser.Text, txtpass.Text))
                     {
                         this.Hide();
-                        Principal Pn = new Principal();
+                        MetroFormPadre Pn = new MetroFormPadre();
                         Pn.Show();
                     }
                     else

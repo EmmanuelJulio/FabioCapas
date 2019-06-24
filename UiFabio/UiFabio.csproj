@@ -76,10 +76,10 @@
     <Compile Include="Configuraciones\Modulos\frm_submenus.Designer.cs">
       <DependentUpon>frm_submenus.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPadre.cs">
+    <Compile Include="FormsViejos\FormPadre.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPadre.Designer.cs">
+    <Compile Include="FormsViejos\FormPadre.Designer.cs">
       <DependentUpon>FormPadre.cs</DependentUpon>
     </Compile>
     <Compile Include="Loggin.cs">
@@ -94,10 +94,16 @@
     <Compile Include="Mensaje.Designer.cs">
       <DependentUpon>Mensaje.cs</DependentUpon>
     </Compile>
-    <Compile Include="PadreFormularios.cs">
+    <Compile Include="MetroFormPadre.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PadreFormularios.Designer.cs">
+    <Compile Include="MetroFormPadre.Designer.cs">
+      <DependentUpon>MetroFormPadre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsViejos\PadreFormularios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsViejos\PadreFormularios.Designer.cs">
       <DependentUpon>PadreFormularios.cs</DependentUpon>
     </Compile>
     <Compile Include="Principal.cs">
@@ -112,7 +118,7 @@
     <EmbeddedResource Include="Configuraciones\Modulos\frm_submenus.resx">
       <DependentUpon>frm_submenus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPadre.resx">
+    <EmbeddedResource Include="FormsViejos\FormPadre.resx">
       <DependentUpon>FormPadre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Loggin.resx">
@@ -121,7 +127,10 @@
     <EmbeddedResource Include="Mensaje.resx">
       <DependentUpon>Mensaje.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PadreFormularios.resx">
+    <EmbeddedResource Include="MetroFormPadre.resx">
+      <DependentUpon>MetroFormPadre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsViejos\PadreFormularios.resx">
       <DependentUpon>PadreFormularios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
@@ -167,6 +176,7 @@
   <ItemGroup>
     <Folder Include="Configuraciones\UserConfig\" />
     <Folder Include="Fabio\" />
+    <Folder Include="MetroForms\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

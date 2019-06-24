@@ -28,8 +28,7 @@ namespace UiFabio.Configuraciones.Modulos
         }
 
         private void Btn_agregarmodulo_Click(object sender, EventArgs e)
-        {
-            CapaNegocios.
+        {//CapaNegocios.
         }
     }
 }
