@@ -52,10 +52,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CapaComun\CapaComun.csproj">
-      <Project>{c20f1849-6ee3-4ed3-8987-19ba66ea463b}</Project>
-      <Name>CapaComun</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
       <Project>{4a713d86-d1d9-4022-9c4d-3e8739ae089d}</Project>
       <Name>CapaDatos</Name>

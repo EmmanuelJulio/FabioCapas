@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="bulonera2Model.MODULO_USUARIO" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="bulonera2Model.MODULOS" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="bulonera2Model.SUBMENU" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="bulonera2Model.SUBMODULOS" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model.SUBMODULOS" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="bulonera2Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bulonera2Model.USUARIOS" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
         <AssociationConnector Association="bulonera2Model.FK_MODULO_USUARIO_MODULOS" ManuallyRouted="false" />

@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            BunifuAnimatorNS.Animation animation2 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.BarraBaja = new MetroFramework.Controls.MetroPanel();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
+            this.Cerrar = new MetroFramework.Controls.MetroLink();
             this.Hora = new MetroFramework.Controls.MetroLabel();
             this.Dia = new MetroFramework.Controls.MetroLabel();
             this.mboxColor = new MetroFramework.Controls.MetroComboBox();
@@ -84,7 +85,7 @@
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.PanelAnimador = new BunifuAnimatorNS.Animator(this.components);
             this.Reloj = new System.Windows.Forms.Timer(this.components);
-            this.Cerrar = new MetroFramework.Controls.MetroLink();
+            this.CerrarAp = new MetroFramework.Controls.MetroLabel();
             this.BarraBaja.SuspendLayout();
             this.metroPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -104,6 +105,7 @@
             // 
             // BarraBaja
             // 
+            this.BarraBaja.Controls.Add(this.CerrarAp);
             this.BarraBaja.Controls.Add(this.metroPanel2);
             this.BarraBaja.Controls.Add(this.Txt_sector);
             this.BarraBaja.Controls.Add(this.txt_usuario);
@@ -113,10 +115,10 @@
             this.BarraBaja.HorizontalScrollbarBarColor = true;
             this.BarraBaja.HorizontalScrollbarHighlightOnWheel = false;
             this.BarraBaja.HorizontalScrollbarSize = 13;
-            this.BarraBaja.Location = new System.Drawing.Point(23, 764);
+            this.BarraBaja.Location = new System.Drawing.Point(23, 622);
             this.BarraBaja.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BarraBaja.Name = "BarraBaja";
-            this.BarraBaja.Size = new System.Drawing.Size(1139, 67);
+            this.BarraBaja.Size = new System.Drawing.Size(865, 67);
             this.BarraBaja.TabIndex = 0;
             this.BarraBaja.VerticalScrollbarBarColor = true;
             this.BarraBaja.VerticalScrollbarHighlightOnWheel = false;
@@ -136,13 +138,26 @@
             this.metroPanel2.HorizontalScrollbarBarColor = true;
             this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(741, 0);
+            this.metroPanel2.Location = new System.Drawing.Point(467, 0);
             this.metroPanel2.Name = "metroPanel2";
             this.metroPanel2.Size = new System.Drawing.Size(398, 67);
             this.metroPanel2.TabIndex = 10;
             this.metroPanel2.VerticalScrollbarBarColor = true;
             this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel2.VerticalScrollbarSize = 10;
+            // 
+            // Cerrar
+            // 
+            this.Cerrar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Cerrar.BackgroundImage")));
+            this.Cerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PanelAnimador.SetDecoration(this.Cerrar, BunifuAnimatorNS.DecorationType.None);
+            this.Cerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Cerrar.Location = new System.Drawing.Point(362, 6);
+            this.Cerrar.Name = "Cerrar";
+            this.Cerrar.Size = new System.Drawing.Size(33, 33);
+            this.Cerrar.TabIndex = 13;
+            this.Cerrar.UseSelectable = true;
+            this.Cerrar.Click += new System.EventHandler(this.Cerrar_Click);
             // 
             // Hora
             // 
@@ -280,10 +295,10 @@
             this.Botones.HorizontalScrollbarBarColor = true;
             this.Botones.HorizontalScrollbarHighlightOnWheel = false;
             this.Botones.HorizontalScrollbarSize = 13;
-            this.Botones.Location = new System.Drawing.Point(23, 78);
+            this.Botones.Location = new System.Drawing.Point(23, 48);
             this.Botones.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Botones.Name = "Botones";
-            this.Botones.Size = new System.Drawing.Size(214, 686);
+            this.Botones.Size = new System.Drawing.Size(214, 574);
             this.Botones.TabIndex = 1;
             this.Botones.VerticalScrollbarBarColor = true;
             this.Botones.VerticalScrollbarHighlightOnWheel = false;
@@ -300,7 +315,7 @@
             this.PanelForm.Location = new System.Drawing.Point(389, 109);
             this.PanelForm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PanelForm.Name = "PanelForm";
-            this.PanelForm.Size = new System.Drawing.Size(233, 577);
+            this.PanelForm.Size = new System.Drawing.Size(233, 465);
             this.PanelForm.TabIndex = 5;
             this.PanelForm.VerticalScrollbarBarColor = true;
             this.PanelForm.VerticalScrollbarHighlightOnWheel = false;
@@ -329,7 +344,7 @@
             this.PnlSubMenus.Location = new System.Drawing.Point(233, 109);
             this.PnlSubMenus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PnlSubMenus.Name = "PnlSubMenus";
-            this.PnlSubMenus.Size = new System.Drawing.Size(156, 577);
+            this.PnlSubMenus.Size = new System.Drawing.Size(156, 465);
             this.PnlSubMenus.TabIndex = 4;
             this.PnlSubMenus.VerticalScrollbarBarColor = true;
             this.PnlSubMenus.VerticalScrollbarHighlightOnWheel = false;
@@ -355,7 +370,7 @@
             this.pnlmodulos.Location = new System.Drawing.Point(0, 109);
             this.pnlmodulos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlmodulos.Name = "pnlmodulos";
-            this.pnlmodulos.Size = new System.Drawing.Size(233, 577);
+            this.pnlmodulos.Size = new System.Drawing.Size(233, 465);
             this.pnlmodulos.TabIndex = 3;
             // 
             // Modulos
@@ -386,6 +401,7 @@
             this.Logo.Name = "Logo";
             this.Logo.Size = new System.Drawing.Size(214, 109);
             this.Logo.TabIndex = 2;
+            this.Logo.UseStyleColors = true;
             this.Logo.VerticalScrollbarBarColor = true;
             this.Logo.VerticalScrollbarHighlightOnWheel = false;
             this.Logo.VerticalScrollbarSize = 12;
@@ -442,9 +458,9 @@
             this.Contenedor.Controls.Add(this.metroTabControl1);
             this.PanelAnimador.SetDecoration(this.Contenedor, BunifuAnimatorNS.DecorationType.None);
             this.Contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Contenedor.Location = new System.Drawing.Point(237, 78);
+            this.Contenedor.Location = new System.Drawing.Point(237, 48);
             this.Contenedor.Name = "Contenedor";
-            this.Contenedor.Size = new System.Drawing.Size(925, 686);
+            this.Contenedor.Size = new System.Drawing.Size(651, 574);
             this.Contenedor.TabIndex = 2;
             // 
             // metroTabControl1
@@ -456,11 +472,10 @@
             this.PanelAnimador.SetDecoration(this.metroTabControl1, BunifuAnimatorNS.DecorationType.None);
             this.metroTabControl1.Location = new System.Drawing.Point(20, 26);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(860, 567);
+            this.metroTabControl1.SelectedIndex = 3;
+            this.metroTabControl1.Size = new System.Drawing.Size(595, 473);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
-            this.metroTabControl1.Visible = false;
             // 
             // metroTabPage1
             // 
@@ -470,15 +485,15 @@
             this.PanelAnimador.SetDecoration(this.metroTabPage1, BunifuAnimatorNS.DecorationType.None);
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
             this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.HorizontalScrollbarSize = 4;
+            this.metroTabPage1.HorizontalScrollbarSize = 3;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(852, 525);
+            this.metroTabPage1.Size = new System.Drawing.Size(587, 431);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "metroTabPage1";
             this.metroTabPage1.VerticalScrollbarBarColor = true;
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.VerticalScrollbarSize = 6;
+            this.metroTabPage1.VerticalScrollbarSize = 5;
             // 
             // metroButton1
             // 
@@ -508,14 +523,14 @@
             this.metroGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.metroGrid1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.metroGrid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.metroGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.metroGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.metroGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.metroGrid1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -523,28 +538,28 @@
             this.Column3,
             this.Column4});
             this.PanelAnimador.SetDecoration(this.metroGrid1, BunifuAnimatorNS.DecorationType.None);
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.metroGrid1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.metroGrid1.DefaultCellStyle = dataGridViewCellStyle5;
             this.metroGrid1.EnableHeadersVisualStyles = false;
             this.metroGrid1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.metroGrid1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.metroGrid1.Location = new System.Drawing.Point(102, 37);
+            this.metroGrid1.Location = new System.Drawing.Point(94, 45);
             this.metroGrid1.Name = "metroGrid1";
             this.metroGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.metroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.metroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.metroGrid1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.metroGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.metroGrid1.Size = new System.Drawing.Size(446, 279);
@@ -586,15 +601,15 @@
             this.PanelAnimador.SetDecoration(this.metroTabPage2, BunifuAnimatorNS.DecorationType.None);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
             this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage2.HorizontalScrollbarSize = 4;
+            this.metroTabPage2.HorizontalScrollbarSize = 3;
             this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(852, 525);
+            this.metroTabPage2.Size = new System.Drawing.Size(587, 431);
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "metroTabPage2";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage2.VerticalScrollbarSize = 6;
+            this.metroTabPage2.VerticalScrollbarSize = 5;
             // 
             // metroTile11
             // 
@@ -722,30 +737,30 @@
             this.PanelAnimador.SetDecoration(this.metroTabPage3, BunifuAnimatorNS.DecorationType.None);
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.HorizontalScrollbarSize = 4;
+            this.metroTabPage3.HorizontalScrollbarSize = 3;
             this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(852, 525);
+            this.metroTabPage3.Size = new System.Drawing.Size(587, 431);
             this.metroTabPage3.TabIndex = 2;
             this.metroTabPage3.Text = "metroTabPage3";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.VerticalScrollbarSize = 6;
+            this.metroTabPage3.VerticalScrollbarSize = 5;
             // 
             // metroTabPage4
             // 
             this.PanelAnimador.SetDecoration(this.metroTabPage4, BunifuAnimatorNS.DecorationType.None);
             this.metroTabPage4.HorizontalScrollbarBarColor = true;
             this.metroTabPage4.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage4.HorizontalScrollbarSize = 4;
+            this.metroTabPage4.HorizontalScrollbarSize = 3;
             this.metroTabPage4.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage4.Name = "metroTabPage4";
-            this.metroTabPage4.Size = new System.Drawing.Size(852, 525);
+            this.metroTabPage4.Size = new System.Drawing.Size(587, 431);
             this.metroTabPage4.TabIndex = 3;
             this.metroTabPage4.Text = "metroTabPage4";
             this.metroTabPage4.VerticalScrollbarBarColor = true;
             this.metroTabPage4.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage4.VerticalScrollbarSize = 6;
+            this.metroTabPage4.VerticalScrollbarSize = 5;
             // 
             // metroStyleManager1
             // 
@@ -755,57 +770,61 @@
             // 
             this.PanelAnimador.AnimationType = BunifuAnimatorNS.AnimationType.HorizSlide;
             this.PanelAnimador.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
-            animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            this.PanelAnimador.DefaultAnimation = animation1;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
+            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
+            animation2.MosaicSize = 0;
+            animation2.Padding = new System.Windows.Forms.Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
+            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            this.PanelAnimador.DefaultAnimation = animation2;
             // 
             // Reloj
             // 
             this.Reloj.Enabled = true;
             this.Reloj.Tick += new System.EventHandler(this.Reloj_Tick);
             // 
-            // Cerrar
+            // CerrarAp
             // 
-            this.Cerrar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Cerrar.BackgroundImage")));
-            this.Cerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PanelAnimador.SetDecoration(this.Cerrar, BunifuAnimatorNS.DecorationType.None);
-            this.Cerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Cerrar.Location = new System.Drawing.Point(362, 6);
-            this.Cerrar.Name = "Cerrar";
-            this.Cerrar.Size = new System.Drawing.Size(33, 33);
-            this.Cerrar.TabIndex = 13;
-            this.Cerrar.UseSelectable = true;
-            this.Cerrar.Click += new System.EventHandler(this.Cerrar_Click);
+            this.CerrarAp.AutoSize = true;
+            this.PanelAnimador.SetDecoration(this.CerrarAp, BunifuAnimatorNS.DecorationType.None);
+            this.CerrarAp.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.CerrarAp.Location = new System.Drawing.Point(320, 29);
+            this.CerrarAp.Name = "CerrarAp";
+            this.CerrarAp.Size = new System.Drawing.Size(106, 25);
+            this.CerrarAp.TabIndex = 11;
+            this.CerrarAp.Text = "metroLabel2";
+            this.CerrarAp.Click += new System.EventHandler(this.MetroLabel1_Click);
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.CancelButton = this.Cerrar;
-            this.ClientSize = new System.Drawing.Size(1185, 857);
+            this.ClientSize = new System.Drawing.Size(911, 715);
+            this.ControlBox = false;
             this.Controls.Add(this.Contenedor);
             this.Controls.Add(this.Botones);
             this.Controls.Add(this.BarraBaja);
             this.PanelAnimador.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
+            this.DisplayHeader = false;
             this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Principal";
-            this.Padding = new System.Windows.Forms.Padding(23, 78, 23, 26);
+            this.Padding = new System.Windows.Forms.Padding(23, 48, 23, 26);
             this.Text = "Fabio";
+            this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.Load += new System.EventHandler(this.MetroFormPadre_Load);
             this.BarraBaja.ResumeLayout(false);
             this.BarraBaja.PerformLayout();
@@ -882,5 +901,6 @@
         private System.Windows.Forms.Timer Reloj;
         private MetroFramework.Controls.MetroLabel Hora;
         private MetroFramework.Controls.MetroLink Cerrar;
+        private MetroFramework.Controls.MetroLabel CerrarAp;
     }
 }

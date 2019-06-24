@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using MetroFramework;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Reflection;
-using MetroFramework;
-using MetroFramework.Forms;
+using System.Windows.Forms;
 
 namespace UiFabio.MetroForms
 {
     public partial class Principal : MetroFramework.Forms.MetroForm
     {
+        public static MetroFramework.MetroThemeStyle Estilo;
+        public static MetroFramework.MetroColorStyle ColorEstilo;
         string moduloseleccionado;
         string opcionseleccionada;
         public Principal()
@@ -50,7 +45,7 @@ namespace UiFabio.MetroForms
         private void MetroFormPadre_Load(object sender, EventArgs e)
         {
             mboxColor.SelectedIndex = 1;
-            metroComboBox1.SelectedIndex = 1;
+            metroComboBox1.SelectedIndex = 0;
             pnlmodulos.Width = 200;
             PanelForm.Width = 0;
             PnlSubMenus.Width = 0;
@@ -75,8 +70,8 @@ namespace UiFabio.MetroForms
             Boton.ForeColor = Color.FromArgb(45, 45, 48);
             Boton.Click += new EventHandler(cosa);
             Boton.BackColor = Color.FromArgb(18, 134, 219);
-            Boton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            Boton.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+
             Boton.ForeColor = Color.Silver;
             Boton.FlatAppearance.BorderSize = 0;
             return Boton;
@@ -106,9 +101,11 @@ namespace UiFabio.MetroForms
             {
                 case 0:
                     metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Dark;
+                    Estilo = MetroFramework.MetroThemeStyle.Dark;
                     break;
                 case 1:
                     metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Light;
+                    Estilo = MetroFramework.MetroThemeStyle.Light;
                     break;
             }
         }
@@ -116,6 +113,7 @@ namespace UiFabio.MetroForms
         private void MboxColor_SelectedIndexChanged(object sender, EventArgs e)
         {
             metroStyleManager1.Style = (MetroFramework.MetroColorStyle)Convert.ToInt32(mboxColor.SelectedIndex);
+            ColorEstilo = (MetroFramework.MetroColorStyle)Convert.ToInt32(mboxColor.SelectedIndex);
         }
 
         private void Modulos_Click(object sender, EventArgs e)
@@ -168,13 +166,28 @@ namespace UiFabio.MetroForms
 
                 AbrirFormHijo(f);
             }
-            catch (Exception)
+            catch (Exception error)
             {
-
-                MensajePers.message("No se encontro el form", MensajePers.TipoMensaje.Error);
+                MessageBox.Show(error.Message);
+                MensajePers.message("No se encontro el form " + error.Message, MensajePers.TipoMensaje.Error);
 
             }
 
+        }
+        public void AbrirFormHijo(object formhijo)
+        {
+            if (this.Contenedor.Controls.Count > 0)
+            {
+                this.Contenedor.Controls.RemoveAt(0);
+            }
+
+            Form fh = formhijo as Form;
+            fh.TopLevel = false;
+
+            this.Contenedor.Controls.Add(fh);
+            this.Contenedor.Tag = fh;
+            fh.Dock = DockStyle.Fill;
+            fh.Show();
         }
         private void Btn_volvermodulos_Click(object sender, EventArgs e)
         {
@@ -190,23 +203,7 @@ namespace UiFabio.MetroForms
             Btn_volvermodulos.Visible = true;
             Deslizar(PanelForm, PnlSubMenus);
         }
-        public void AbrirFormHijo(object formhijo)
-        {
-            if (this.Contenedor.Controls.Count > 0)
-            {
-                this.Contenedor.Controls.RemoveAt(0);
-            }
 
-            Form fh = formhijo as Form;
-            fh.TopLevel = false;
-            fh.Dock = DockStyle.None;
-            this.Contenedor.Controls.Add(fh);
-            this.Contenedor.Tag = fh;
-            fh.Dock = DockStyle.Fill;
-            fh.Show();
-
-
-        }
 
         private void Reloj_Tick(object sender, EventArgs e)
         {
@@ -214,7 +211,7 @@ namespace UiFabio.MetroForms
             Hora.Text = DateTime.Now.ToLongTimeString();
         }
 
-        
+
 
         private void Cerrar_Click(object sender, EventArgs e)
         {
@@ -226,6 +223,11 @@ namespace UiFabio.MetroForms
                 Loggin lg = new Loggin();
                 lg.Show();
             }
+        }
+
+        private void MetroLabel1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

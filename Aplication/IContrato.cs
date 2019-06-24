@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication
+namespace CapaNegocios
 {
     public interface IContrato
     {
          bool agragar(object ob);
         bool eliminar(object ob);
-       List<Object> traerTodos(object ob);
+       List<CapaDatos.bulonera2Entities1> traerTodos(object ob);
         bool MOdificar(int id);
 
     }

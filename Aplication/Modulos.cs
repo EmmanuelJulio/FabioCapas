@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CapaDatos;
 
-namespace Aplication
+namespace CapaNegocios
 {
     public class Modulos : IContrato
     {
@@ -63,9 +64,10 @@ namespace Aplication
             throw new NotImplementedException();
         }
 
-        public List<object> traerTodos(object ob)
+        public List<bulonera2Entities1> traerTodos(object ob)
         {
             throw new NotImplementedException();
         }
     }
+    
 }

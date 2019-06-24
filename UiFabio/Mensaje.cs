@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UiFabio
 {
     public partial class MensajePers : Form
     {
-        public MensajePers(string sms ,TipoMensaje type)
+        public MensajePers(string sms, TipoMensaje type)
         {
             InitializeComponent();
             show.Start();
@@ -36,11 +29,11 @@ namespace UiFabio
                     break;
             }
         }
-        
+
         public static void message(string _sms, TipoMensaje _type)
         {
             new MensajePers(_sms, _type).ShowDialog();
-            
+
         }
         public enum TipoMensaje
         {
@@ -79,9 +72,9 @@ namespace UiFabio
 
         private void MensajePers_Load(object sender, EventArgs e)
         {
-            
+
             this.Opacity = 0.1;
-            
+
         }
 
         private void Icon_Click(object sender, EventArgs e)

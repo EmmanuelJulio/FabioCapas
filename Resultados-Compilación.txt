@@ -1,0 +1,4 @@
+﻿1>------ Operación Compilar iniciada: proyecto: UiFabio, configuración: Debug Any CPU ------
+1>C:\Users\emmanueljulio\source\repos\EmmanuelJulio\FabioCapas\UiFabio\Configuraciones\Modulos\frm_submenus.Designer.cs(149,13,149,42): warning CS0618: 'MetroTextBox.PromptText' está obsoleto: 'Use watermark'
+1>C:\Users\emmanueljulio\source\repos\EmmanuelJulio\FabioCapas\UiFabio\Configuraciones\Modulos\frm_submenus.Designer.cs(242,13,242,42): warning CS0618: 'MetroTextBox.PromptText' está obsoleto: 'Use watermark'
+1>C:\Users\emmanueljulio\source\repos\EmmanuelJulio\FabioCapas\UiFabio\MformPadre.Designer.cs(216,13,216,42): warning CS0618: 'MetroTextBox.PromptText' está obsoleto: 'Use watermark'

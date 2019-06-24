@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.4">
-      <HintPath>D:\Bunifu_UI_v1.4.dll</HintPath>
+      <HintPath>D:\Users\Emanuel Julio\Desktop\bonifu\Bunifu_UI_v1.4.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -76,6 +76,18 @@
     <Compile Include="Configuraciones\Modulos\frm_submenus.Designer.cs">
       <DependentUpon>frm_submenus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Configuraciones\Modulos\Pruebas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuraciones\Modulos\Pruebas.Designer.cs">
+      <DependentUpon>Pruebas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPadre2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPadre2.Designer.cs">
+      <DependentUpon>FormPadre2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Loggin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +117,9 @@
     <Compile Include="utilidades.cs" />
     <EmbeddedResource Include="Configuraciones\Modulos\frm_submenus.resx">
       <DependentUpon>frm_submenus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPadre2.resx">
+      <DependentUpon>FormPadre2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Loggin.resx">
       <DependentUpon>Loggin.cs</DependentUpon>
@@ -142,24 +157,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aplication\CapaNegocios.csproj">
-      <Project>{77842b5a-937c-44de-ab9d-26ca8d2fad31}</Project>
-      <Name>CapaNegocios</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CapaComun\CapaComun.csproj">
-      <Project>{c20f1849-6ee3-4ed3-8987-19ba66ea463b}</Project>
-      <Name>CapaComun</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
-      <Project>{4a713d86-d1d9-4022-9c4d-3e8739ae089d}</Project>
-      <Name>CapaDatos</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Configuraciones\UserConfig\" />
     <Folder Include="Fabio\" />
     <Folder Include="FormsViejos\" />
     <Folder Include="MetroForms\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aplication\CapaNegocios.csproj">
+      <Project>{77842b5a-937c-44de-ab9d-26ca8d2fad31}</Project>
+      <Name>CapaNegocios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
+      <Project>{4A713D86-D1D9-4022-9C4D-3E8739AE089D}</Project>
+      <Name>CapaDatos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

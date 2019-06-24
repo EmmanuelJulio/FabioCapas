@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UiFabio.MetroForms;
 
@@ -68,7 +62,7 @@ namespace UiFabio
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
-
+            this.Close();
             Application.Exit();
         }
 
@@ -78,10 +72,10 @@ namespace UiFabio
             Dia.Text = DateTime.Now.ToLongDateString();
             if (this.Opacity != 1)
             {
-                this.Opacity +=  0.15;
+                this.Opacity += 0.15;
             }
-            
-           
+
+
         }
 
         private void Btnlogin_Click(object sender, EventArgs e)
@@ -93,12 +87,13 @@ namespace UiFabio
                 MensajeError.Text = "Debe ingresar un usuario";
 
             }
-            else {
+            else
+            {
                 if (txtpass.Text == "Contraseña")
                 {
                     MensajeError.Visible = true;
                     MensajeError.Text = "Debe ingresar una contraceña";
-                    
+
                 }
                 else
                 {
@@ -114,8 +109,8 @@ namespace UiFabio
                     }
                 }
             }
-           
-            
+
+
         }
     }
 }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UiFabio
@@ -16,7 +13,9 @@ namespace UiFabio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Configuraciones.Modulos.frm_submenus fr = new Configuraciones.Modulos.frm_submenus();
             Application.Run(new Loggin());
+           // Application.Run(fr);
         }
     }
 }

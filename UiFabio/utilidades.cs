@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UiFabio
 {
@@ -17,7 +15,7 @@ namespace UiFabio
                 default: return input.First().ToString().ToUpper() + input.Substring(1);
             }
         }
-        
+
     }
     public class Modulos
     {
@@ -46,7 +44,7 @@ namespace UiFabio
             {
                 using (CapaDatos.bulonera2Entities1 db = new CapaDatos.bulonera2Entities1())
                 {
-                    List<CapaDatos.SUBMODULOS> mod = (from x in db.SUBMODULOS where x.ID_MODULO==id_modulo select x).ToList() ;
+                    List<CapaDatos.SUBMODULOS> mod = (from x in db.SUBMODULOS where x.ID_MODULO == id_modulo select x).ToList();
                     return mod;
                 }
             }
@@ -77,7 +75,7 @@ namespace UiFabio
         }
 
     }
-    
+
 
 
 }
