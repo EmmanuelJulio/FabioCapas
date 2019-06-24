@@ -1,14 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapaNegocios
+namespace CNegocio
 {
     public class ClsModulos : IContrato
     {
         public static List<string> ModulosUsuario;
+
+
+        public List<CapaDatos.MODULOS> OptenerModulos(string Text)
+        {
+            try
+            {
+                using (CapaDatos.bulonera2Entities1 db = new CapaDatos.bulonera2Entities1())
+                {
+                    List<CapaDatos.MODULOS> mod = (from x in db.MODULOS where x.NOMBRE_MOD.Contains(Text) select x).ToList();
+                    return mod;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public override bool agragar(object ob)
         {
             using (CapaDatos.bulonera2Entities1 db = new CapaDatos.bulonera2Entities1())
@@ -52,6 +72,8 @@ namespace CapaNegocios
                 }
             }
         }
+
+       
 
         public override bool MOdificar(int id)
         {

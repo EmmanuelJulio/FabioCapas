@@ -32,8 +32,8 @@ namespace UiFabio
             PnlModulos.Width = 200;
             PanelForm.Width = 0;
             PnlSubMenus.Width = 0;
-            txt_usuario.Text = utilidades.FirstCharToUpper(CapaNegocios.ClsUsuario.UsuarioActual.nombre)+" " + utilidades.FirstCharToUpper(CapaNegocios.ClsUsuario.UsuarioActual.apellido);
-            Txt_sector.Text = CapaNegocios.ClsUsuario.UsuarioActual.sector;
+            txt_usuario.Text = utilidades.FirstCharToUpper(CNegocio.ClsUsuario.UsuarioActual.nombre)+" " + utilidades.FirstCharToUpper(CNegocio.ClsUsuario.UsuarioActual.apellido);
+            Txt_sector.Text = CNegocio.ClsUsuario.UsuarioActual.sector;
             Botones.Width = 200;
             foreach (CapaDatos.MODULOS Mod in UiFabio.Modulos.OptenerModulos() )
             { 
@@ -84,7 +84,7 @@ namespace UiFabio
 
         private void PictureBox2_Click(object sender, EventArgs e)
         {
-            CapaNegocios.ClsUsuario.UsuarioActual = null;
+            CNegocio.ClsUsuario.UsuarioActual = null;
             this.Hide();
             Loggin lg = new Loggin();
             lg.Show();

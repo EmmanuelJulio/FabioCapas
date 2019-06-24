@@ -27,7 +27,7 @@ namespace UiFabio
             {
                 using (CapaDatos.bulonera2Entities1 db = new CapaDatos.bulonera2Entities1())
                 {
-                    List<CapaDatos.MODULOS> mod = (from x in db.MODULOS join a in db.MODULO_USUARIO on x.ID_MODULO equals a.ID_MODULO where a.ID_USUARIO == CapaNegocios.ClsUsuario.UsuarioActual.id_usuario select x).ToList();
+                    List<CapaDatos.MODULOS> mod = (from x in db.MODULOS join a in db.MODULO_USUARIO on x.ID_MODULO equals a.ID_MODULO where a.ID_USUARIO == CNegocio.ClsUsuario.UsuarioActual.id_usuario select x).ToList();
                     return mod;
                 }
             }

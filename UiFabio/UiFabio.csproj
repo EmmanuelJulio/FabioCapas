@@ -151,10 +151,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aplication\CapaNegocios.csproj">
-      <Project>{77842b5a-937c-44de-ab9d-26ca8d2fad31}</Project>
-      <Name>CapaNegocios</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CapaComun\CapaComun.csproj">
       <Project>{c20f1849-6ee3-4ed3-8987-19ba66ea463b}</Project>
       <Name>CapaComun</Name>
@@ -162,6 +158,10 @@
     <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
       <Project>{4a713d86-d1d9-4022-9c4d-3e8739ae089d}</Project>
       <Name>CapaDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CNegocio\CNegocio.csproj">
+      <Project>{b8cc60b9-adbe-42c1-ba60-63079d0b26df}</Project>
+      <Name>CNegocio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

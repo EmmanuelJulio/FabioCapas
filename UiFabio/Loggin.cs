@@ -103,7 +103,7 @@ namespace UiFabio
                 }
                 else
                 {
-                    if (CapaNegocios.ClsUsuario.loggin(txtuser.Text, txtpass.Text))
+                    if (CNegocio.ClsUsuario.loggin(txtuser.Text, txtpass.Text))
                     {
                         this.Hide();
                         Principal Pn = new Principal();
