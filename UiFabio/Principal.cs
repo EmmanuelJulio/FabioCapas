@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+using MetroFramework;
+using MetroFramework.Forms;
 
 namespace UiFabio.MetroForms
 {
@@ -21,6 +23,23 @@ namespace UiFabio.MetroForms
             this.StyleManager = metroStyleManager1;
             Botones.Width = 240;
         }
+        //protected override CreateParams CreateParams
+
+        //{
+
+        //    get
+
+        //    {
+
+        //        CreateParams mdiCp = base.CreateParams;
+
+        //        mdiCp.ClassStyle = mdiCp.ClassStyle | CP_NOCLOSE_BUTTON;
+
+        //        return mdiCp;
+
+        //    }
+
+        //}
         public void Deslizar(Panel Aesconeder, Panel Amostrar)
         {
             PanelAnimador.HideSync(Aesconeder);
@@ -31,7 +50,7 @@ namespace UiFabio.MetroForms
         private void MetroFormPadre_Load(object sender, EventArgs e)
         {
             mboxColor.SelectedIndex = 1;
-            metroComboBox1.SelectedIndex = 0;
+            metroComboBox1.SelectedIndex = 1;
             pnlmodulos.Width = 200;
             PanelForm.Width = 0;
             PnlSubMenus.Width = 0;
@@ -193,6 +212,20 @@ namespace UiFabio.MetroForms
         {
             Dia.Text = DateTime.Now.ToLongDateString();
             Hora.Text = DateTime.Now.ToLongTimeString();
+        }
+
+        
+
+        private void Cerrar_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MetroMessageBox.Show(this, "Esta a punto de cerrar secion ,Decea hacerlo?", "Modulo Principal | Cierre de seccion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                this.Close();
+                CapaNegocios.ClsUsuario.UsuarioActual = null;
+                Loggin lg = new Loggin();
+                lg.Show();
+            }
         }
     }
 }
