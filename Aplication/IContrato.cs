@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Aplication
 {
-    public interface IContrato
+    public abstract class IContrato
     {
-         bool agragar(object ob);
-        bool eliminar(object ob);
-       List<Object> traerTodos(object ob);
-        bool MOdificar(int id);
+        public abstract bool agragar(object ob);
+        public abstract bool eliminar(object ob);
+        public abstract List<Object> traerTodos(object ob);
+        public abstract bool MOdificar(int id);
+        public abstract int OptenerId(string Text);
 
     }
 }
