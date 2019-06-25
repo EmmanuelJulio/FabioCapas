@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace CNegocio
         /// </summary>
         public static USUARIOS UsuarioActual = null;
         public static bool ExisteSecion;
-        private CapaDatos.USUARIOS Dbus;
+        
         /// <summary>
         /// Definicion de contructor
         /// </summary>
@@ -46,8 +47,47 @@ namespace CNegocio
 
                 throw;
             }
+            
         }
 
+
+    }
+    public class ClsPermisosUsuario : IContrato2
+    {
+        public override bool agragar(object ob)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool eliminar(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object GetObjet(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool MOdificar(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int OptenerId(string Text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<object> TraerTodos(string Text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override DataSet TraerTodos()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

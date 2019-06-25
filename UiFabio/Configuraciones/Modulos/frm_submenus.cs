@@ -21,6 +21,7 @@ namespace UiFabio.Configuraciones.Modulos
         string NombreModuloSeleccionado;
         int IdSubModSeleccionado;
         string NombreSubModSeleccionado;
+        
         public frm_submenus()
         {
             InitializeComponent();
@@ -42,28 +43,7 @@ namespace UiFabio.Configuraciones.Modulos
 
         private void Btn_agregarmodulo_Click(object sender, EventArgs e)
         {
-            if (txtmodulo.Text!="")
-            {
-                try
-                {
-                    CapaDatos.MODULOS NuevoMod = new CapaDatos.MODULOS();
-                    NuevoMod.NOMBRE_MOD = txtmodulo.Text;
-                    NuevoMod.COD_MOD = "Btn" + txtmodulo.Text;
-                    OModulo.agragar(NuevoMod);
-                    listBoxModulos1.Items.Add(txtmodulo.Text);
-                    MensajePers.message("Se Cargo", MensajePers.TipoMensaje.Hecho);
-                    
-                }
-                catch (Exception)
-                {
-
-                    MensajePers.message("Algo paso", MensajePers.TipoMensaje.Error);
-                }
-            }
-            else
-            {
-                MensajePers.message("El Campo nombre esta bacio ", MensajePers.TipoMensaje.Informacion);
-            }
+           
         }
 
         private void MetroTabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -125,6 +105,7 @@ namespace UiFabio.Configuraciones.Modulos
                 OSubMod.agragar(subMod);
                 listBoxSubModulos1.Items.Add(metroTextBox1.Text);
                 MensajePers.message("Se Agrego el modulo", MensajePers.TipoMensaje.Hecho);
+                metroTextBox1.Text = "";
             }
             catch (Exception)
             {
@@ -137,6 +118,7 @@ namespace UiFabio.Configuraciones.Modulos
 
         private void ListBoxModulos3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            listBoxSubForms.Items.Clear();
             NombreModuloSeleccionado = ((ListBox)sender).SelectedItem.ToString();
             if (listBoxModulos3.SelectedItem != null)
             {
@@ -184,14 +166,14 @@ namespace UiFabio.Configuraciones.Modulos
             {
                 SUBMENU Smenu = new SUBMENU();
                 Smenu.ID_SUBMODULO = IdSubModSeleccionado;
-                foreach (SUBMODULOS subm in OSubMod.TraerTodos(""))
-                {
-                    if(subm.ID_SUBMODULO == IdSubModSeleccionado)
-                    {
+                //foreach (SUBMODULOS subm in OSubMod.TraerTodos(""))
+                //{
+                //    if(subm.ID_SUBMODULO == IdSubModSeleccionado)
+                //    {
 
-                        Smenu.SUBMODULOS = subm;
-                    }
-                }
+                //        Smenu.SUBMODULOS = subm;
+                //    }
+                //}
                 
                 
                 Smenu.subMenu_Sys = TextNombreSysForm.Text;
@@ -199,14 +181,90 @@ namespace UiFabio.Configuraciones.Modulos
 
                if(OSubMenu.agragar(Smenu))
                 {
+                    listBoxSubForms.Items.Add(TextNombreForm.Text);
                     MensajePers.message("Se creo", MensajePers.TipoMensaje.Hecho);
+                    TextNombreForm.Text = "";
+                    TextNombreSysForm.Text = "";
                 }
                 else
                 {
                     MensajePers.message("Algo paso", MensajePers.TipoMensaje.Error);
                 }
-               
+              
             }
+        }
+
+        private void MetroTabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+        private void Btn_agregarMod_Click(object sender, EventArgs e)
+        {
+            if (txtmodulo.Text != "")
+            {
+                try
+                {
+                    CapaDatos.MODULOS NuevoMod = new CapaDatos.MODULOS();
+                    NuevoMod.NOMBRE_MOD = txtmodulo.Text;
+                    NuevoMod.COD_MOD = "Btn" + txtmodulo.Text;
+                    OModulo.agragar(NuevoMod);
+                    listBoxModulos1.Items.Add(txtmodulo.Text);
+                    MensajePers.message("Se Cargo", MensajePers.TipoMensaje.Hecho);
+
+
+
+                }
+                catch (Exception)
+                {
+
+                    MensajePers.message("Algo paso", MensajePers.TipoMensaje.Error);
+                }
+            }
+            else
+            {
+                MensajePers.message("El Campo nombre esta bacio ", MensajePers.TipoMensaje.Informacion);
+            }
+        }
+
+        private void Btn_EliminarMod_Click(object sender, EventArgs e)
+        {
+            if (listBoxModulos1.SelectionMode!=SelectionMode.None)
+            {
+                if (NombreModuloSeleccionado == "")
+                {
+                    MensajePers.message("Debe seleccionar un modulo para elminar primero", MensajePers.TipoMensaje.Error);
+                }
+                else
+                {
+
+                    if (OModulo.eliminar(OModulo.OptenerId(NombreModuloSeleccionado)))
+                    {
+                        MensajePers.message("Se elimino", MensajePers.TipoMensaje.Hecho);
+                    }
+                    else
+                    {
+                        MensajePers.message("Algo paso", MensajePers.TipoMensaje.Error);
+                    }
+                }
+            }
+            else
+            {
+                MensajePers.message("Ahora seleccione un modulo para eliminar", MensajePers.TipoMensaje.Informacion);
+                listBoxModulos1.SelectionMode = SelectionMode.One;
+                listBoxModulos1.BackColor = Color.White;
+            }
+
+        }
+
+        private void ListBoxModulos1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string modulo="";
+            modulo = listBoxModulos1.SelectedItems.ToString();
+            NombreModuloSeleccionado = modulo;
+
         }
     }
 }

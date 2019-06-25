@@ -105,10 +105,11 @@ namespace CNegocio
                 {
                     try
                     {
-                        db.SUBMENU.Add(((SUBMENU)ob));
+                        db.SUBMENU.Add(((CapaDatos.SUBMENU)ob));
                         db.SaveChanges();
-                        Transaction.Dispose();
                         Transaction.Commit();
+                        Transaction.Dispose();
+                        
                         return true;
                     }
                     catch (Exception error)

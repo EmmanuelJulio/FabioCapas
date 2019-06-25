@@ -31,15 +31,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            BunifuAnimatorNS.Animation animation2 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_submenus));
             this.animator1 = new BunifuAnimatorNS.Animator(this.components);
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.Btn_EliminarMod = new System.Windows.Forms.Button();
+            this.Btn_agregarMod = new System.Windows.Forms.Button();
             this.listBoxModulos1 = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbl_texto = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.btn_agregarmodulo = new MetroFramework.Controls.MetroButton();
             this.txtmodulo = new MetroFramework.Controls.MetroTextBox();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
             this.BtnEliminar = new System.Windows.Forms.Button();
@@ -131,22 +132,22 @@
             // 
             this.animator1.AnimationType = BunifuAnimatorNS.AnimationType.VertSlide;
             this.animator1.Cursor = null;
-            animation2.AnimateOnlyDifferences = true;
-            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
-            animation2.LeafCoeff = 0F;
-            animation2.MaxTime = 1F;
-            animation2.MinTime = 0F;
-            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
-            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
-            animation2.MosaicSize = 0;
-            animation2.Padding = new System.Windows.Forms.Padding(0);
-            animation2.RotateCoeff = 0F;
-            animation2.RotateLimit = 0F;
-            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
-            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
-            animation2.TimeCoeff = 0F;
-            animation2.TransparencyCoeff = 0F;
-            this.animator1.DefaultAnimation = animation2;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
+            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicSize = 0;
+            animation1.Padding = new System.Windows.Forms.Padding(0);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
+            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            this.animator1.DefaultAnimation = animation1;
             // 
             // metroTabControl1
             // 
@@ -157,17 +158,19 @@
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(1067, 534);
-            this.metroTabControl1.TabIndex = 1;
+            this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
             this.metroTabControl1.SelectedIndexChanged += new System.EventHandler(this.MetroTabControl1_SelectedIndexChanged);
             // 
             // metroTabPage1
             // 
+            this.metroTabPage1.Controls.Add(this.Btn_EliminarMod);
+            this.metroTabPage1.Controls.Add(this.Btn_agregarMod);
             this.metroTabPage1.Controls.Add(this.listBoxModulos1);
             this.metroTabPage1.Controls.Add(this.panel2);
-            this.metroTabPage1.Controls.Add(this.btn_agregarmodulo);
             this.metroTabPage1.Controls.Add(this.txtmodulo);
             this.animator1.SetDecoration(this.metroTabPage1, BunifuAnimatorNS.DecorationType.None);
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
@@ -181,6 +184,43 @@
             this.metroTabPage1.VerticalScrollbarBarColor = true;
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.VerticalScrollbarSize = 10;
+            this.metroTabPage1.Click += new System.EventHandler(this.MetroTabPage1_Click);
+            // 
+            // Btn_EliminarMod
+            // 
+            this.Btn_EliminarMod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(82)))), ((int)(((byte)(70)))));
+            this.animator1.SetDecoration(this.Btn_EliminarMod, BunifuAnimatorNS.DecorationType.None);
+            this.Btn_EliminarMod.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(82)))), ((int)(((byte)(70)))));
+            this.Btn_EliminarMod.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Btn_EliminarMod.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(82)))), ((int)(((byte)(70)))));
+            this.Btn_EliminarMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_EliminarMod.ForeColor = System.Drawing.Color.LightGray;
+            this.Btn_EliminarMod.Location = new System.Drawing.Point(178, 102);
+            this.Btn_EliminarMod.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Btn_EliminarMod.Name = "Btn_EliminarMod";
+            this.Btn_EliminarMod.Size = new System.Drawing.Size(196, 28);
+            this.Btn_EliminarMod.TabIndex = 13;
+            this.Btn_EliminarMod.Text = "Eliminar";
+            this.Btn_EliminarMod.UseVisualStyleBackColor = false;
+            this.Btn_EliminarMod.Click += new System.EventHandler(this.Btn_EliminarMod_Click);
+            // 
+            // Btn_agregarMod
+            // 
+            this.Btn_agregarMod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(112)))), ((int)(((byte)(183)))));
+            this.animator1.SetDecoration(this.Btn_agregarMod, BunifuAnimatorNS.DecorationType.None);
+            this.Btn_agregarMod.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(159)))), ((int)(((byte)(127)))));
+            this.Btn_agregarMod.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.Btn_agregarMod.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(118)))), ((int)(((byte)(126)))));
+            this.Btn_agregarMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_agregarMod.ForeColor = System.Drawing.Color.LightGray;
+            this.Btn_agregarMod.Location = new System.Drawing.Point(178, 66);
+            this.Btn_agregarMod.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Btn_agregarMod.Name = "Btn_agregarMod";
+            this.Btn_agregarMod.Size = new System.Drawing.Size(196, 28);
+            this.Btn_agregarMod.TabIndex = 12;
+            this.Btn_agregarMod.Text = "Agregar";
+            this.Btn_agregarMod.UseVisualStyleBackColor = false;
+            this.Btn_agregarMod.Click += new System.EventHandler(this.Btn_agregarMod_Click);
             // 
             // listBoxModulos1
             // 
@@ -195,6 +235,7 @@
             this.listBoxModulos1.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.listBoxModulos1.Size = new System.Drawing.Size(172, 462);
             this.listBoxModulos1.TabIndex = 5;
+            this.listBoxModulos1.SelectedIndexChanged += new System.EventHandler(this.ListBoxModulos1_SelectedIndexChanged);
             // 
             // panel2
             // 
@@ -220,17 +261,6 @@
             this.lbl_texto.TabIndex = 6;
             this.lbl_texto.Text = "Modulos";
             this.lbl_texto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btn_agregarmodulo
-            // 
-            this.animator1.SetDecoration(this.btn_agregarmodulo, BunifuAnimatorNS.DecorationType.None);
-            this.btn_agregarmodulo.Location = new System.Drawing.Point(178, 65);
-            this.btn_agregarmodulo.Name = "btn_agregarmodulo";
-            this.btn_agregarmodulo.Size = new System.Drawing.Size(196, 23);
-            this.btn_agregarmodulo.TabIndex = 3;
-            this.btn_agregarmodulo.Text = "Agregar";
-            this.btn_agregarmodulo.UseSelectable = true;
-            this.btn_agregarmodulo.Click += new System.EventHandler(this.Btn_agregarmodulo_Click);
             // 
             // txtmodulo
             // 
@@ -283,6 +313,7 @@
             this.metroTabPage2.Size = new System.Drawing.Size(1059, 492);
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "Agregar Sub Menu";
+            this.metroTabPage2.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
@@ -309,7 +340,7 @@
             this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(112)))), ((int)(((byte)(183)))));
             this.animator1.SetDecoration(this.btnAgregar, BunifuAnimatorNS.DecorationType.None);
             this.btnAgregar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(159)))), ((int)(((byte)(127)))));
-            this.btnAgregar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnAgregar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnAgregar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(118)))), ((int)(((byte)(126)))));
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.ForeColor = System.Drawing.Color.LightGray;
@@ -338,6 +369,7 @@
             // 
             // listBoxModulos2
             // 
+            this.listBoxModulos2.BackColor = System.Drawing.SystemColors.Control;
             this.listBoxModulos2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.animator1.SetDecoration(this.listBoxModulos2, BunifuAnimatorNS.DecorationType.None);
             this.listBoxModulos2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -442,6 +474,7 @@
             this.metroTabPage3.Size = new System.Drawing.Size(1059, 492);
             this.metroTabPage3.TabIndex = 2;
             this.metroTabPage3.Text = "Agregar Form";
+            this.metroTabPage3.Theme = MetroFramework.MetroThemeStyle.Light;
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.VerticalScrollbarSize = 10;
@@ -502,7 +535,7 @@
             this.BtnAgregarForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(112)))), ((int)(((byte)(183)))));
             this.animator1.SetDecoration(this.BtnAgregarForm, BunifuAnimatorNS.DecorationType.None);
             this.BtnAgregarForm.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(159)))), ((int)(((byte)(127)))));
-            this.BtnAgregarForm.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.BtnAgregarForm.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.BtnAgregarForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(118)))), ((int)(((byte)(126)))));
             this.BtnAgregarForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAgregarForm.ForeColor = System.Drawing.Color.LightGray;
@@ -565,7 +598,7 @@
             // 
             // listBoxSubModulos2
             // 
-            this.listBoxSubModulos2.BackColor = System.Drawing.SystemColors.Window;
+            this.listBoxSubModulos2.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.listBoxSubModulos2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.animator1.SetDecoration(this.listBoxSubModulos2, BunifuAnimatorNS.DecorationType.None);
             this.listBoxSubModulos2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -579,6 +612,7 @@
             // 
             // listBoxModulos3
             // 
+            this.listBoxModulos3.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.listBoxModulos3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.animator1.SetDecoration(this.listBoxModulos3, BunifuAnimatorNS.DecorationType.None);
             this.listBoxModulos3.Dock = System.Windows.Forms.DockStyle.Left;
@@ -682,7 +716,6 @@
         private MetroFramework.Controls.MetroTabPage metroTabPage1;
         private MetroFramework.Controls.MetroTabPage metroTabPage2;
         private MetroFramework.Controls.MetroTabPage metroTabPage3;
-        private MetroFramework.Controls.MetroButton btn_agregarmodulo;
         private MetroFramework.Controls.MetroTextBox txtmodulo;
         private System.Windows.Forms.ListBox listBoxModulos1;
         private System.Windows.Forms.Panel panel2;
@@ -706,5 +739,7 @@
         public Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel5;
         public Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel3;
         public Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel4;
+        private System.Windows.Forms.Button Btn_EliminarMod;
+        private System.Windows.Forms.Button Btn_agregarMod;
     }
 }

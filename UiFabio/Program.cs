@@ -16,7 +16,9 @@ namespace UiFabio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Application.Run(new Loggin());
+            //Application.Run(new Configuraciones.Modulos.frm_submenus());
         }
     }
 }
