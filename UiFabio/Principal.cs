@@ -94,11 +94,9 @@ namespace UiFabio
 
         private void Modulos_Click(object sender, EventArgs e)
         {
-            foreach(Button bot in PnlSubMenus.Controls)
-            {
-                PnlSubMenus.Controls.Remove(bot);
-            }
-            
+            PnlSubMenus.Controls.Clear();
+
+
             int id = Convert.ToInt32(((Button)sender).AccessibleName);
             foreach (CapaDatos.SUBMODULOS SubMod in UiFabio.SubModulos.OptenerSubModulos(id))
             {
@@ -114,10 +112,7 @@ namespace UiFabio
 
         private void SubModulos_Click(object sender, EventArgs e)
         {
-            foreach (Button bot in PanelForm.Controls)
-            {
-                PanelForm.Controls.Remove(bot);
-            }
+            PanelForm.Controls.Clear();
             int id = Convert.ToInt32(((Button)sender).AccessibleName);
             foreach (CapaDatos.SUBMENU SubMod in UiFabio.SubMenus.OptenerSubMenus(id))
             {

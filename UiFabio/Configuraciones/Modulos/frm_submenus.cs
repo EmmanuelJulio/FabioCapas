@@ -7,12 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CNegocio;
+using CapaDatos;
 
 namespace UiFabio.Configuraciones.Modulos
 {
     public partial class frm_submenus : PadreFormularios
     {
         CNegocio.ClsModulos OModulo = new CNegocio.ClsModulos();
+        ClsSubModulo OSubMod = new ClsSubModulo();
+        ClsSubMenu OSubMenu = new ClsSubMenu();
+        int IdModuloSeleccionado;
+        string NombreModuloSeleccionado;
+        int IdSubModSeleccionado;
+        string NombreSubModSeleccionado;
         public frm_submenus()
         {
             InitializeComponent();
@@ -60,8 +68,145 @@ namespace UiFabio.Configuraciones.Modulos
 
         private void MetroTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //switch(metroTabControl1.SelectedIndex):
-            //case
+            switch (Convert.ToInt32(metroTabControl1.SelectedIndex))
+            {
+                case 1:
+                    listBoxModulos2.Items.Clear();
+                    foreach(CapaDatos.MODULOS mod in OModulo.OptenerModulos(""))
+                    {
+                        listBoxModulos2.Items.Add(mod.NOMBRE_MOD);
+                    }
+                    
+                    break;
+                case 2:
+                    listBoxModulos3.Items.Clear();
+                    listBoxSubModulos2.Items.Clear();
+                    foreach (CapaDatos.MODULOS mod in OModulo.OptenerModulos(""))
+                    {
+                        listBoxModulos3.Items.Add(mod.NOMBRE_MOD);
+                    }
+                   
+
+                    break;
+            }
+            
+        }
+
+        private void ListBoxModulos2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NombreModuloSeleccionado = ((ListBox)sender).SelectedItem.ToString();
+            if (listBoxModulos2.SelectedItem != null)
+            {
+                listBoxSubModulos1.Items.Clear();
+                IdModuloSeleccionado = OModulo.OptenerId(NombreModuloSeleccionado);
+                
+                foreach (SUBMODULOS Sub in OSubMod.OptenerModulos(IdModuloSeleccionado))
+                {
+                    listBoxSubModulos1.Items.Add(Sub.NOMBRE_SUBMOD);
+                } 
+            }
+            else
+            {
+                MensajePers.message("No Selecciono nada", MensajePers.TipoMensaje.Error);
+            }
+
+
+        }
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SUBMODULOS subMod = new SUBMODULOS();
+                subMod.ID_MODULO = IdModuloSeleccionado;
+                subMod.NOMBRE_SUBMOD = metroTextBox1.Text;
+                subMod.SYS_NOM = NombreModuloSeleccionado;
+
+                OSubMod.agragar(subMod);
+                listBoxSubModulos1.Items.Add(metroTextBox1.Text);
+                MensajePers.message("Se Agrego el modulo", MensajePers.TipoMensaje.Hecho);
+            }
+            catch (Exception)
+            {
+
+                MensajePers.message("Algo Paso", MensajePers.TipoMensaje.Error);
+            }
+        }
+
+       
+
+        private void ListBoxModulos3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NombreModuloSeleccionado = ((ListBox)sender).SelectedItem.ToString();
+            if (listBoxModulos3.SelectedItem != null)
+            {
+                listBoxSubModulos2.Items.Clear();
+                IdModuloSeleccionado = OModulo.OptenerId(NombreModuloSeleccionado);
+
+                foreach (SUBMODULOS Sub in OSubMod.OptenerModulos(IdModuloSeleccionado))
+                {
+                    listBoxSubModulos2.Items.Add(Sub.NOMBRE_SUBMOD);
+                }
+            }
+            else
+            {
+                MensajePers.message("No Selecciono nada", MensajePers.TipoMensaje.Error);
+            }
+        }
+
+        private void ListBoxSubModulos2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NombreModuloSeleccionado = ((ListBox)sender).SelectedItem.ToString();
+            if (listBoxSubModulos2.SelectedItem != null)
+            {
+                listBoxSubForms.Items.Clear();
+                 IdSubModSeleccionado= OSubMod.OptenerId(NombreModuloSeleccionado);
+
+                foreach (SUBMENU Sub in OSubMenu.TraerSubmenus(IdSubModSeleccionado))
+                {
+                    listBoxSubForms.Items.Add(Sub.subMenu_nombre);
+                }
+            }
+            else
+            {
+                MensajePers.message("No Selecciono nada", MensajePers.TipoMensaje.Error);
+            }
+        }
+
+        private void BtnAgregarForm_Click(object sender, EventArgs e)
+        {
+            if (TextNombreForm.Text=="" || TextNombreSysForm.Text=="")
+            {
+                MensajePers.message("Debe completar los campos", MensajePers.TipoMensaje.Informacion);
+
+            }
+            else
+            {
+                SUBMENU Smenu = new SUBMENU();
+                Smenu.ID_SUBMODULO = IdSubModSeleccionado;
+                foreach (SUBMODULOS subm in OSubMod.TraerTodos(""))
+                {
+                    if(subm.ID_SUBMODULO == IdSubModSeleccionado)
+                    {
+
+                        Smenu.SUBMODULOS = subm;
+                    }
+                }
+                
+                
+                Smenu.subMenu_Sys = TextNombreSysForm.Text;
+                Smenu.subMenu_nombre = TextNombreForm.Text;
+
+               if(OSubMenu.agragar(Smenu))
+                {
+                    MensajePers.message("Se creo", MensajePers.TipoMensaje.Hecho);
+                }
+                else
+                {
+                    MensajePers.message("Algo paso", MensajePers.TipoMensaje.Error);
+                }
+               
+            }
         }
     }
 }
