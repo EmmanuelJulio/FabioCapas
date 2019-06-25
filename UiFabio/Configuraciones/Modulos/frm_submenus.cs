@@ -239,10 +239,11 @@ namespace UiFabio.Configuraciones.Modulos
                 }
                 else
                 {
-
-                    if (OModulo.eliminar(OModulo.OptenerId(NombreModuloSeleccionado)))
+                    int IDmOD = OModulo.OptenerId(NombreModuloSeleccionado);
+                    if (OModulo.eliminar(IDmOD))
                     {
                         MensajePers.message("Se elimino", MensajePers.TipoMensaje.Hecho);
+                        listBoxModulos1.Items.Remove(NombreModuloSeleccionado);
                     }
                     else
                     {
@@ -261,9 +262,12 @@ namespace UiFabio.Configuraciones.Modulos
 
         private void ListBoxModulos1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string modulo="";
-            modulo = listBoxModulos1.SelectedItems.ToString();
-            NombreModuloSeleccionado = modulo;
+            if (listBoxModulos1.SelectedItem!=null)
+            {
+                string modulo = "";
+                modulo = listBoxModulos1.SelectedItem.ToString();
+                NombreModuloSeleccionado = modulo; 
+            }
 
         }
     }
