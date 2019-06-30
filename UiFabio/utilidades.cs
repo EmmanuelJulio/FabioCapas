@@ -25,7 +25,7 @@ namespace UiFabio
         {
             try
             {
-                using (CapaDatos.bulonera2Entities1 db = new CapaDatos.bulonera2Entities1())
+                using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
                 {
                     List<CapaDatos.MODULOS> mod = (from x in db.MODULOS join a in db.MODULO_USUARIO on x.ID_MODULO equals a.ID_MODULO where a.ID_USUARIO == CNegocio.ClsUsuario.UsuarioActual.id_usuario select x).ToList();
                     return mod;
@@ -44,7 +44,7 @@ namespace UiFabio
         {
             try
             {
-                using (CapaDatos.bulonera2Entities1 db = new CapaDatos.bulonera2Entities1())
+                using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
                 {
                     List<CapaDatos.SUBMODULOS> mod = (from x in db.SUBMODULOS where x.ID_MODULO==id_modulo select x).ToList() ;
                     return mod;
@@ -63,7 +63,7 @@ namespace UiFabio
         {
             try
             {
-                using (CapaDatos.bulonera2Entities1 db = new CapaDatos.bulonera2Entities1())
+                using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
                 {
                     List<CapaDatos.SUBMENU> Submod = (from x in db.SUBMENU where x.ID_SUBMODULO == id_SubMod select x).ToList();
                     return Submod;

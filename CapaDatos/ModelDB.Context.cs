@@ -15,10 +15,10 @@ namespace CapaDatos
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class bulonera2Entities1 : DbContext
+    public partial class bulonera2Entities2 : DbContext
     {
-        public bulonera2Entities1()
-            : base("name=bulonera2Entities1")
+        public bulonera2Entities2()
+            : base("name=bulonera2Entities2")
         {
         }
     

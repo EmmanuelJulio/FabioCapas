@@ -81,9 +81,7 @@ advertencia 6013: La tabla o vista 'bulonera2.dbo.prueba' no tiene definida una 
           <Property Name="acceso" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_MODULO/USUARIO_MODULOS">
-          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1" />
           <End Role="MODULO/USUARIO" Type="Self.MODULO/USUARIO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODULOS">
@@ -121,9 +119,7 @@ advertencia 6013: La tabla o vista 'bulonera2.dbo.prueba' no tiene definida una 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SUBMODULOS_MODULOS">
-          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="0..1" />
           <End Role="SUBMODULOS" Type="Self.SUBMODULOS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODULOS">
@@ -280,9 +276,7 @@ advertencia 6013: La tabla o vista 'bulonera2.dbo.prueba' no tiene definida una 
           <NavigationProperty Name="MODULO_USUARIO" Relationship="Self.FK_MODULO_USUARIO_USUARIOS" FromRole="USUARIOS" ToRole="MODULO_USUARIO" />
         </EntityType>
         <Association Name="FK_MODULO_USUARIO_MODULOS">
-          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1" />
           <End Role="MODULO_USUARIO" Type="Self.MODULO_USUARIO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODULOS">
@@ -306,9 +300,7 @@ advertencia 6013: La tabla o vista 'bulonera2.dbo.prueba' no tiene definida una 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SUBMODULOS_MODULOS">
-          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="0..1" />
           <End Role="SUBMODULOS" Type="Self.SUBMODULOS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODULOS">
@@ -333,7 +325,7 @@ advertencia 6013: La tabla o vista 'bulonera2.dbo.prueba' no tiene definida una 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bulonera2Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="bulonera2Entities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="DICCIONARIO_FAB" EntityType="Self.DICCIONARIO_FAB" />
           <EntitySet Name="MODULO_USUARIO" EntityType="Self.MODULO_USUARIO" />
           <EntitySet Name="MODULOS" EntityType="Self.MODULOS" />
@@ -425,7 +417,7 @@ advertencia 6013: La tabla o vista 'bulonera2.dbo.prueba' no tiene definida una 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="bulonera2ModelStoreContainer" CdmEntityContainer="bulonera2Entities1">
+        <EntityContainerMapping StorageEntityContainer="bulonera2ModelStoreContainer" CdmEntityContainer="bulonera2Entities2">
           <EntitySetMapping Name="DICCIONARIO_FAB">
             <EntityTypeMapping TypeName="bulonera2Model.DICCIONARIO_FAB">
               <MappingFragment StoreEntitySet="DICCIONARIO_FAB">
