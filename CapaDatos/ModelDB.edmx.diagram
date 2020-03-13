@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="86753656201f4d609c0acbacd9433be9" Name="Diagram1" ZoomLevel="101">
-        <EntityTypeShape EntityType="bulonera2Model.DICCIONARIO_FAB" Width="1.75" PointX="5.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="86753656201f4d609c0acbacd9433be9" Name="Diagram1" ZoomLevel="108">
+        <EntityTypeShape EntityType="bulonera2Model.DICCIONARIO_FAB" Width="1.75" PointX="6.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="bulonera2Model.MODULO_USUARIO" Width="1.5" PointX="3.125" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bulonera2Model.MODULOS" Width="1.5" PointX="0.5" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="bulonera2Model.SUBMENU" Width="1.5" PointX="3.625" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bulonera2Model.SUBMODULOS" Width="1.5" PointX="0.875" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="bulonera2Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model.MODULOS" Width="1.5" PointX="1.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model.SUBMENU" Width="1.5" PointX="4.375" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model.SUBMODULOS" Width="1.5" PointX="1.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model.sysdiagrams" Width="1.5" PointX="8.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="bulonera2Model.USUARIOS" Width="1.5" PointX="6.875" PointY="5.625" IsExpanded="true" />
         <AssociationConnector Association="bulonera2Model.FK_MODULO_USUARIO_MODULOS" ManuallyRouted="false" />
         <AssociationConnector Association="bulonera2Model.FK_MODULO_USUARIO_USUARIOS" ManuallyRouted="false" />

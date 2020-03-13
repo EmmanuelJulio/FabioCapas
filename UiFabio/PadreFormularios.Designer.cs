@@ -33,7 +33,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PadreFormularios));
             this.btnDesAcoplar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txt_modulo = new Bunifu.Framework.UI.BunifuCustomLabel();
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnNormal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximize)).BeginInit();
@@ -41,7 +40,6 @@
             this.pnlTodo.SuspendLayout();
             this.PanelTrabajo.SuspendLayout();
             this.PanenlControl.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelTrabajo
@@ -78,27 +76,11 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.txt_modulo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 528);
+            this.panel1.Location = new System.Drawing.Point(0, 547);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1067, 30);
+            this.panel1.Size = new System.Drawing.Size(1067, 11);
             this.panel1.TabIndex = 0;
-            // 
-            // txt_modulo
-            // 
-            this.txt_modulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txt_modulo.AutoSize = true;
-            this.txt_modulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_modulo.ForeColor = System.Drawing.Color.Silver;
-            this.txt_modulo.Location = new System.Drawing.Point(3, 5);
-            this.txt_modulo.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.txt_modulo.Name = "txt_modulo";
-            this.txt_modulo.Size = new System.Drawing.Size(114, 18);
-            this.txt_modulo.TabIndex = 7;
-            this.txt_modulo.Text = "Emmanuel Julio";
-            this.txt_modulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PadreFormularios
             // 
@@ -117,8 +99,6 @@
             this.pnlTodo.ResumeLayout(false);
             this.PanelTrabajo.ResumeLayout(false);
             this.PanenlControl.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -127,6 +107,5 @@
 
         private System.Windows.Forms.Button btnDesAcoplar;
         private System.Windows.Forms.Panel panel1;
-        public Bunifu.Framework.UI.BunifuCustomLabel txt_modulo;
     }
 }

@@ -10,6 +10,14 @@ namespace CNegocio
 {
     public class ClsModulos : IContrato
     {
+        public List<MODULOS> OptenerTodosLosModulos()
+        {
+            using (CapaDatos.bulonera2Entities1 db = new bulonera2Entities1())
+            {
+                var mod = (from x in db.MODULOS select x).ToList();
+                return mod;
+            }
+        }
         public static List<string> ModulosUsuario;
 
 

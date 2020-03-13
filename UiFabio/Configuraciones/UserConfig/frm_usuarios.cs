@@ -17,11 +17,25 @@ namespace UiFabio.Configuraciones.UserConfig
         }
         private void frm_usuarios_Load(object sender, EventArgs e)
         {
+            ClsModulos mod = new ClsModulos();
+            foreach (CapaDatos.MODULOS _mod in mod.OptenerTodosLosModulos())
+            {
+                CHK_Modulos.Items.Add(_mod.NOMBRE_MOD);
+
+            }
+            metroTabControl1.SelectedTab = metroTabControl1.TabPages[0];
             ClsDiccionarios cl = new ClsDiccionarios();
             foreach(CapaDatos.DICCIONARIO_FAB fb in cl.TraerDicFab(28))
             {
                 ComboSectores.Items.Add(fb.dic_des.ToString());
             }
+            ClsUsuario usu = new ClsUsuario();
+            foreach(CapaDatos.USUARIOS usuar in usu.TraerUsuarios())
+            {
+                listUsu.Items.Add(usuar.nombre);
+                listusuarios2.Items.Add(usuar.nombre);
+            }
+
         }
 
         private void PanelTrabajo_Paint(object sender, PaintEventArgs e)
@@ -46,10 +60,9 @@ namespace UiFabio.Configuraciones.UserConfig
                     NewUser.contraseña = txbContraceña.Text;
                     NewUser.acceso = "";
                     NewUser.sector = ComboSectores.Text;
+                    NewUser.nombre_usuario = txbUsuario.Text;
                     if (ClsUsuario.agragar(NewUser))
                     {
-
-
                         MensajePers.message("Se cargo el usuario"+ txbUsuario.Text, MensajePers.TipoMensaje.Hecho);
                         txbApellido.Clear();
                         txbContraceña.Clear();
@@ -57,10 +70,6 @@ namespace UiFabio.Configuraciones.UserConfig
                         txbContraceña2.Clear();
                         txbNombre.Clear();
                         ComboSectores.Text = "";
-                        
-
-                      
-
                     }
                else
                     {
@@ -81,5 +90,36 @@ namespace UiFabio.Configuraciones.UserConfig
 
         }
 
+        private void Btn_EliminarMod_Click(object sender, EventArgs e)
+        {
+            if(listUsu.SelectedItem != null)
+            {
+                try
+                {
+                    ClsUsuario cs = new ClsUsuario();
+                    if (cs.EliminarUsuario(listUsu.SelectedItem.ToString()))
+                    {
+                        MetroFramework.MetroMessageBox.Show(this, "se elimino el usuario " + listUsu.SelectedItem.ToString());
+                        listUsu.Items.Clear();
+                        ClsUsuario usu = new ClsUsuario();
+                        foreach (CapaDatos.USUARIOS usuar in usu.TraerUsuarios())
+                        {
+                            listUsu.Items.Add(usuar.nombre);
+                        }
+
+                    }   
+
+                }
+                catch (Exception)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "No se elimino el usuario " + listUsu.SelectedItem.ToString());
+                }
+            }
+        }
+
+        private void metroTabPage3_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

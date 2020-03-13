@@ -32,12 +32,12 @@ namespace CNegocio
                 return usuarios;
             } 
         }
-         public USUARIOS OptenerUsuario(int id)
+         public int OptenerUsuario(string nombre)
         {
             using (bulonera2Entities1 db = new bulonera2Entities1())
             {
-                var usuarios = (from x in db.USUARIOS where x.id_usuario == id select x).FirstOrDefault();
-                return usuarios;
+                var usuarios = (from x in db.USUARIOS where x.nombre == nombre select x).FirstOrDefault();
+                return usuarios.id_usuario;
             }
         }
 
@@ -45,11 +45,15 @@ namespace CNegocio
         {
             using (bulonera2Entities1 db = new bulonera2Entities1())
             {
+
                 using (var Transaction = db.Database.BeginTransaction())
                 {
                     try
                     {
-                        db.USUARIOS.Remove(((USUARIOS)ob));
+                        var usua = (from x in db.USUARIOS where x.nombre == ob.ToString() select x).FirstOrDefault();
+                        
+
+                        db.USUARIOS.Remove(usua);
                         db.SaveChanges();
                         Transaction.Commit();
                         Transaction.Dispose();
@@ -119,9 +123,9 @@ namespace CNegocio
 
 
     }
-    public class ClsPermisosUsuario : IContrato2
+    public class ClsPermisosUsuario 
     {
-        public override bool agragar(object ob)
+        public  bool agragar(object ob)
         {
             using (bulonera2Entities1 db = new bulonera2Entities1())
             {
@@ -146,35 +150,7 @@ namespace CNegocio
             }
         }
 
-        public override bool eliminar(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public override object GetObjet(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool MOdificar(object id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override int OptenerId(string Text)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<object> TraerTodos(string Text)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override DataSet TraerTodos()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

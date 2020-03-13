@@ -17,8 +17,8 @@ namespace UiFabio
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new Loggin());
-            Application.Run(new Configuraciones.UserConfig.frm_usuarios());
+           // Application.Run(new Loggin());
+           Application.Run(new Configuraciones.UserConfig.frm_usuarios());
         }
     }
 }

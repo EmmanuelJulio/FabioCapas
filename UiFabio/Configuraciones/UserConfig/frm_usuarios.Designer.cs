@@ -41,7 +41,8 @@
             this.Btn_EliminarMod = new System.Windows.Forms.Button();
             this.listUsu = new System.Windows.Forms.ListBox();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listusuarios2 = new System.Windows.Forms.ListBox();
+            this.CHK_Modulos = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnNormal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximize)).BeginInit();
@@ -73,8 +74,8 @@
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(1067, 528);
+            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.Size = new System.Drawing.Size(1067, 547);
             this.metroTabControl1.TabIndex = 1;
             this.metroTabControl1.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroTabControl1.UseSelectable = true;
@@ -93,7 +94,7 @@
             this.metroTabPage1.HorizontalScrollbarSize = 10;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(1059, 486);
+            this.metroTabPage1.Size = new System.Drawing.Size(1059, 505);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "Crear Usuarios";
             this.metroTabPage1.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -304,7 +305,7 @@
             this.metroTabPage2.HorizontalScrollbarSize = 10;
             this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(1059, 486);
+            this.metroTabPage2.Size = new System.Drawing.Size(1059, 505);
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "Eliminar usuarios";
             this.metroTabPage2.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -327,6 +328,7 @@
             this.Btn_EliminarMod.TabIndex = 14;
             this.Btn_EliminarMod.Text = "Eliminar";
             this.Btn_EliminarMod.UseVisualStyleBackColor = false;
+            this.Btn_EliminarMod.Click += new System.EventHandler(this.Btn_EliminarMod_Click);
             // 
             // listUsu
             // 
@@ -337,44 +339,55 @@
             this.listUsu.ItemHeight = 17;
             this.listUsu.Location = new System.Drawing.Point(0, 0);
             this.listUsu.Name = "listUsu";
-            this.listUsu.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.listUsu.Size = new System.Drawing.Size(172, 486);
+            this.listUsu.Size = new System.Drawing.Size(172, 505);
             this.listUsu.TabIndex = 6;
             // 
             // metroTabPage3
             // 
-            this.metroTabPage3.Controls.Add(this.listBox1);
+            this.metroTabPage3.Controls.Add(this.CHK_Modulos);
+            this.metroTabPage3.Controls.Add(this.listusuarios2);
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.HorizontalScrollbarSize = 10;
             this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(1059, 486);
+            this.metroTabPage3.Size = new System.Drawing.Size(1059, 505);
             this.metroTabPage3.TabIndex = 2;
             this.metroTabPage3.Text = "Asignar permisos";
             this.metroTabPage3.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.VerticalScrollbarSize = 10;
+            this.metroTabPage3.Click += new System.EventHandler(this.metroTabPage3_Click);
             // 
-            // listBox1
+            // listusuarios2
             // 
-            this.listBox1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 17;
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.listBox1.Size = new System.Drawing.Size(172, 486);
-            this.listBox1.TabIndex = 7;
+            this.listusuarios2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.listusuarios2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listusuarios2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listusuarios2.FormattingEnabled = true;
+            this.listusuarios2.ItemHeight = 17;
+            this.listusuarios2.Location = new System.Drawing.Point(0, 0);
+            this.listusuarios2.Name = "listusuarios2";
+            this.listusuarios2.Size = new System.Drawing.Size(172, 505);
+            this.listusuarios2.TabIndex = 7;
+            // 
+            // CHK_Modulos
+            // 
+            this.CHK_Modulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(205)))), ((int)(((byte)(219)))));
+            this.CHK_Modulos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CHK_Modulos.FormattingEnabled = true;
+            this.CHK_Modulos.Location = new System.Drawing.Point(178, 4);
+            this.CHK_Modulos.Name = "CHK_Modulos";
+            this.CHK_Modulos.Size = new System.Drawing.Size(172, 504);
+            this.CHK_Modulos.TabIndex = 8;
             // 
             // frm_usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.ClientSize = new System.Drawing.Size(1067, 588);
             this.Name = "frm_usuarios";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm_usuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnNormal)).EndInit();
@@ -405,7 +418,8 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.ListBox listUsu;
         private System.Windows.Forms.Button Btn_EliminarMod;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listusuarios2;
         private MetroFramework.Controls.MetroComboBox ComboSectores;
+        private System.Windows.Forms.CheckedListBox CHK_Modulos;
     }
 }

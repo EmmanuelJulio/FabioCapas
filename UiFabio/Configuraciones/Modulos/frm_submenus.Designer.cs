@@ -81,9 +81,9 @@
             // 
             // txt_modulo
             // 
-            this.animator1.SetDecoration(this.txt_modulo, BunifuAnimatorNS.DecorationType.None);
-            this.txt_modulo.Size = new System.Drawing.Size(108, 18);
-            this.txt_modulo.Text = "Agregar Menus";
+            //this.animator1.SetDecoration(this.txt_modulo, BunifuAnimatorNS.DecorationType.None);
+            //this.txt_modulo.Size = new System.Drawing.Size(108, 18);
+            //this.txt_modulo.Text = "Agregar Menus";
             // 
             // BtnMinimize
             // 
