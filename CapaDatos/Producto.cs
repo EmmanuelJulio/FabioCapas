@@ -12,26 +12,27 @@ namespace CapaDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class USUARIOS
+    public partial class Producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public USUARIOS()
+        public Producto()
         {
-            this.MODULO_USUARIO = new HashSet<MODULO_USUARIO>();
-            this.ODF = new HashSet<ODF>();
+            this.Cotas = new HashSet<Cotas>();
+            this.Lote = new HashSet<Lote>();
+            this.UnidadesOdf = new HashSet<UnidadesOdf>();
         }
     
-        public int id_usuario { get; set; }
-        public string nombre_usuario { get; set; }
-        public string contraseña { get; set; }
-        public string apellido { get; set; }
-        public string nombre { get; set; }
-        public string sector { get; set; }
-        public string acceso { get; set; }
+        public int id_producto { get; set; }
+        public string Nombre { get; set; }
+        public string Codigo { get; set; }
+        public Nullable<int> fk_linea { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MODULO_USUARIO> MODULO_USUARIO { get; set; }
+        public virtual ICollection<Cotas> Cotas { get; set; }
+        public virtual Lineas Lineas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ODF> ODF { get; set; }
+        public virtual ICollection<Lote> Lote { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UnidadesOdf> UnidadesOdf { get; set; }
     }
 }

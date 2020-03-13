@@ -29,6 +29,8 @@ namespace UiFabio
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            this.Width = 1300;
+            this.Height = 700;
             PnlModulos.Width = 200;
             PanelForm.Width = 0;
             PnlSubMenus.Width = 0;
@@ -128,8 +130,22 @@ namespace UiFabio
 
         private void SubMenu_Click(object sender, EventArgs e)
         {
+            if (Botones.Width >= 60)
+            {
+                LogoFabio.Visible = false;
+                Fabiogif.Visible = true;
+                Botones.Width = 60;
+                lbl_texto.Visible = false;
+            }
+            else
+            {
+                LogoFabio.Visible = true;
+                Fabiogif.Visible = false;
+                Botones.Width = 200;
+            }
             try
             {
+                
                 lbl_texto.Text = ((Button)sender).Text;
                 string NameSpace = "UiFabio" + "." + moduloseleccionado + "." + opcionseleccionada;
                 string NombreForm = ((Button)sender).AccessibleName;
@@ -154,17 +170,32 @@ namespace UiFabio
 
         private void Btn_volvermodulos_Click(object sender, EventArgs e)
         {
-            lbl_texto.Text = "Modulos";
-            Btn_volvermodulos.Visible = false;
-            Deslizar(PnlSubMenus, PnlModulos);
+            
+           
+                lbl_texto.Text = "Modulos";
+                Btn_volvermodulos.Visible = false;
+                Deslizar(PnlSubMenus, PnlModulos);
+            
+      
+           
         }
 
         private void Btn_volveropciones_Click(object sender, EventArgs e)
+        {
+            if (Botones.Width == 60)
+            {
+                LogoFabio.Visible = true;
+                Fabiogif.Visible = false;
+                Botones.Width = 200;
+                lbl_texto.Visible = true;
+        }
+        else
         {
             lbl_texto.Text = moduloseleccionado;
             Btn_volveropciones.Visible = false;
             Btn_volvermodulos.Visible = true;
             Deslizar(PanelForm, PnlSubMenus);
+        }
         }
 
         private void BtnCerrar_Click(object sender, EventArgs e)
@@ -186,6 +217,11 @@ namespace UiFabio
             fh.Dock = DockStyle.Fill;
             fh.Show();
 
+
+        }
+
+        private void PanelContenedor_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

@@ -2,10 +2,6 @@
 {
     partial class FormPadre
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        public System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -71,6 +67,7 @@
             this.PanelTrabajo.Name = "PanelTrabajo";
             this.PanelTrabajo.Size = new System.Drawing.Size(1067, 558);
             this.PanelTrabajo.TabIndex = 1;
+            this.PanelTrabajo.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelTrabajo_Paint);
             // 
             // PanenlControl
             // 
@@ -172,5 +169,6 @@
         public System.Windows.Forms.Panel PanenlControl;
         public Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         public Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
+        private System.ComponentModel.IContainer components;
     }
 }

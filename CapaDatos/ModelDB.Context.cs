@@ -34,6 +34,15 @@ namespace CapaDatos
         public virtual DbSet<SUBMODULOS> SUBMODULOS { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<USUARIOS> USUARIOS { get; set; }
+        public virtual DbSet<Cotas> Cotas { get; set; }
+        public virtual DbSet<DiccionarioDeFabricacion> DiccionarioDeFabricacion { get; set; }
+        public virtual DbSet<Imagenes> Imagenes { get; set; }
+        public virtual DbSet<Lineas> Lineas { get; set; }
+        public virtual DbSet<Lote> Lote { get; set; }
+        public virtual DbSet<ODF> ODF { get; set; }
+        public virtual DbSet<Producto> Producto { get; set; }
+        public virtual DbSet<Productos> Productos { get; set; }
+        public virtual DbSet<UnidadesOdf> UnidadesOdf { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

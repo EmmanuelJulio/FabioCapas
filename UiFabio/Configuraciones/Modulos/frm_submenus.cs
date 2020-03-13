@@ -20,7 +20,7 @@ namespace UiFabio.Configuraciones.Modulos
         int IdModuloSeleccionado;
         string NombreModuloSeleccionado;
         int IdSubModSeleccionado;
-        string NombreSubModSeleccionado;
+      
         
         public frm_submenus()
         {

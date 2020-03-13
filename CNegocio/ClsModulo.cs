@@ -112,7 +112,7 @@ namespace CNegocio
                         
                         return true;
                     }
-                    catch (Exception error)
+                    catch (Exception )
                     {
                         
                         Transaction.Rollback();

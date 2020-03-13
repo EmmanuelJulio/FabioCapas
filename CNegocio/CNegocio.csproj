@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClsDiccionarios.cs" />
     <Compile Include="ClsModulo.cs" />
     <Compile Include="ClsUsuario.cs" />
     <Compile Include="Icontrato.cs" />

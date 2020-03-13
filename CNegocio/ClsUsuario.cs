@@ -23,6 +23,49 @@ namespace CNegocio
         /// <param name="Usuario"></param>
         /// <param name="Contraceña"></param>
         /// <returns></returns>
+        /// 
+        public List<USUARIOS> TraerUsuarios()
+        {
+            using(bulonera2Entities1 db = new bulonera2Entities1())
+            {
+                var usuarios = (from x in db.USUARIOS select x).ToList();
+                return usuarios;
+            } 
+        }
+         public USUARIOS OptenerUsuario(int id)
+        {
+            using (bulonera2Entities1 db = new bulonera2Entities1())
+            {
+                var usuarios = (from x in db.USUARIOS where x.id_usuario == id select x).FirstOrDefault();
+                return usuarios;
+            }
+        }
+
+        public bool EliminarUsuario(object ob)
+        {
+            using (bulonera2Entities1 db = new bulonera2Entities1())
+            {
+                using (var Transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        db.USUARIOS.Remove(((USUARIOS)ob));
+                        db.SaveChanges();
+                        Transaction.Commit();
+                        Transaction.Dispose();
+
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+
+                        Transaction.Rollback();
+                        return false;
+                    }
+                }
+            }
+
+        }
 
         public static bool loggin(string Usuario, string Contraceña)
         {
@@ -49,6 +92,30 @@ namespace CNegocio
             }
             
         }
+        public static bool agragar(object ob)
+        {
+            using (bulonera2Entities1 db = new bulonera2Entities1())
+            {
+                using (var Transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        db.USUARIOS.Add(((USUARIOS)ob));
+                        db.SaveChanges();
+                        Transaction.Commit();
+                        Transaction.Dispose();
+
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+
+                        Transaction.Rollback();
+                        return false;
+                    }
+                }
+            }
+        }
 
 
     }
@@ -56,7 +123,27 @@ namespace CNegocio
     {
         public override bool agragar(object ob)
         {
-            throw new NotImplementedException();
+            using (bulonera2Entities1 db = new bulonera2Entities1())
+            {
+                using (var Transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        db.USUARIOS.Add(((USUARIOS)ob));
+                        db.SaveChanges();
+                        Transaction.Commit();
+                        Transaction.Dispose();
+
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+
+                        Transaction.Rollback();
+                        return false;
+                    }
+                }
+            }
         }
 
         public override bool eliminar(int id)

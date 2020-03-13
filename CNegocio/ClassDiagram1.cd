@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CNegocio.ClsModulos" Collapsed="true">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCAAAAAAAAAAAAAkAAAAAAAAAQAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>ClsModulo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CNegocio.ClsSubMenu" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCAAAAAAAAAAAAAEAAAAAAAAAQAACAAQAAAAAAACAAA=</HashCode>
+      <FileName>ClsModulo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CNegocio.ClsSubModulo" Collapsed="true">
+    <Position X="1.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCAAAAAAAAAAAAAEAAAAAAAAAQAAAAAAQAAAAAAiAAA=</HashCode>
+      <FileName>ClsModulo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

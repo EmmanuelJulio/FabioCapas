@@ -25,9 +25,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation9 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
-            BunifuAnimatorNS.Animation animation2 = new BunifuAnimatorNS.Animation();
+            BunifuAnimatorNS.Animation animation10 = new BunifuAnimatorNS.Animation();
             this.Panelbot = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblhora = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -51,6 +51,7 @@
             this.PanelContenedor = new System.Windows.Forms.Panel();
             this.PanelAnimador = new BunifuAnimatorNS.Animator(this.components);
             this.animator1 = new BunifuAnimatorNS.Animator(this.components);
+            this.Fabiogif = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnNormal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximize)).BeginInit();
@@ -69,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Btn_volveropciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Btn_volvermodulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LogoFabio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Fabiogif)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnMinimize
@@ -226,7 +228,7 @@
             this.Botones.Dock = System.Windows.Forms.DockStyle.Left;
             this.Botones.Location = new System.Drawing.Point(0, 0);
             this.Botones.Name = "Botones";
-            this.Botones.Size = new System.Drawing.Size(515, 478);
+            this.Botones.Size = new System.Drawing.Size(462, 478);
             this.Botones.TabIndex = 1;
             // 
             // PanelForm
@@ -304,6 +306,7 @@
             // 
             // pnlLogo
             // 
+            this.pnlLogo.Controls.Add(this.Fabiogif);
             this.pnlLogo.Controls.Add(this.Btn_volveropciones);
             this.pnlLogo.Controls.Add(this.Btn_volvermodulos);
             this.pnlLogo.Controls.Add(this.lbl_texto);
@@ -313,7 +316,7 @@
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(515, 98);
+            this.pnlLogo.Size = new System.Drawing.Size(462, 98);
             this.pnlLogo.TabIndex = 0;
             // 
             // Btn_volveropciones
@@ -383,52 +386,66 @@
             this.animator1.SetDecoration(this.PanelContenedor, BunifuAnimatorNS.DecorationType.None);
             this.PanelAnimador.SetDecoration(this.PanelContenedor, BunifuAnimatorNS.DecorationType.None);
             this.PanelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelContenedor.Location = new System.Drawing.Point(515, 0);
+            this.PanelContenedor.Location = new System.Drawing.Point(462, 0);
             this.PanelContenedor.Name = "PanelContenedor";
-            this.PanelContenedor.Size = new System.Drawing.Size(552, 478);
+            this.PanelContenedor.Size = new System.Drawing.Size(605, 478);
             this.PanelContenedor.TabIndex = 2;
+            this.PanelContenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelContenedor_Paint);
             // 
             // PanelAnimador
             // 
             this.PanelAnimador.AnimationType = BunifuAnimatorNS.AnimationType.HorizSlide;
             this.PanelAnimador.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
-            animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            this.PanelAnimador.DefaultAnimation = animation1;
+            animation9.AnimateOnlyDifferences = true;
+            animation9.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.BlindCoeff")));
+            animation9.LeafCoeff = 0F;
+            animation9.MaxTime = 1F;
+            animation9.MinTime = 0F;
+            animation9.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.MosaicCoeff")));
+            animation9.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation9.MosaicShift")));
+            animation9.MosaicSize = 0;
+            animation9.Padding = new System.Windows.Forms.Padding(0);
+            animation9.RotateCoeff = 0F;
+            animation9.RotateLimit = 0F;
+            animation9.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.ScaleCoeff")));
+            animation9.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation9.SlideCoeff")));
+            animation9.TimeCoeff = 0F;
+            animation9.TransparencyCoeff = 0F;
+            this.PanelAnimador.DefaultAnimation = animation9;
             // 
             // animator1
             // 
             this.animator1.AnimationType = BunifuAnimatorNS.AnimationType.VertSlide;
             this.animator1.Cursor = null;
-            animation2.AnimateOnlyDifferences = true;
-            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
-            animation2.LeafCoeff = 0F;
-            animation2.MaxTime = 1F;
-            animation2.MinTime = 0F;
-            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
-            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
-            animation2.MosaicSize = 0;
-            animation2.Padding = new System.Windows.Forms.Padding(0);
-            animation2.RotateCoeff = 0F;
-            animation2.RotateLimit = 0F;
-            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
-            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
-            animation2.TimeCoeff = 0F;
-            animation2.TransparencyCoeff = 0F;
-            this.animator1.DefaultAnimation = animation2;
+            animation10.AnimateOnlyDifferences = true;
+            animation10.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation10.BlindCoeff")));
+            animation10.LeafCoeff = 0F;
+            animation10.MaxTime = 1F;
+            animation10.MinTime = 0F;
+            animation10.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation10.MosaicCoeff")));
+            animation10.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation10.MosaicShift")));
+            animation10.MosaicSize = 0;
+            animation10.Padding = new System.Windows.Forms.Padding(0);
+            animation10.RotateCoeff = 0F;
+            animation10.RotateLimit = 0F;
+            animation10.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation10.ScaleCoeff")));
+            animation10.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation10.SlideCoeff")));
+            animation10.TimeCoeff = 0F;
+            animation10.TransparencyCoeff = 0F;
+            this.animator1.DefaultAnimation = animation10;
+            // 
+            // Fabiogif
+            // 
+            this.PanelAnimador.SetDecoration(this.Fabiogif, BunifuAnimatorNS.DecorationType.None);
+            this.animator1.SetDecoration(this.Fabiogif, BunifuAnimatorNS.DecorationType.None);
+            this.Fabiogif.Image = global::UiFabio.Properties.Resources.NUEVO_GIF;
+            this.Fabiogif.Location = new System.Drawing.Point(0, 6);
+            this.Fabiogif.Name = "Fabiogif";
+            this.Fabiogif.Size = new System.Drawing.Size(55, 55);
+            this.Fabiogif.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Fabiogif.TabIndex = 8;
+            this.Fabiogif.TabStop = false;
+            this.Fabiogif.Visible = false;
             // 
             // Principal
             // 
@@ -437,8 +454,10 @@
             this.ClientSize = new System.Drawing.Size(1067, 588);
             this.animator1.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.PanelAnimador.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Principal";
             this.Load += new System.EventHandler(this.Principal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimize)).EndInit();
@@ -461,6 +480,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Btn_volveropciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Btn_volvermodulos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LogoFabio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Fabiogif)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -493,5 +513,6 @@
         private System.Windows.Forms.Panel PanelContenedor;
         private BunifuAnimatorNS.Animator PanelAnimador;
         private BunifuAnimatorNS.Animator animator1;
+        private System.Windows.Forms.PictureBox Fabiogif;
     }
 }

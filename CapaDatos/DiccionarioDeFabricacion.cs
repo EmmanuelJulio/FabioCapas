@@ -12,26 +12,23 @@ namespace CapaDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class USUARIOS
+    public partial class DiccionarioDeFabricacion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public USUARIOS()
+        public DiccionarioDeFabricacion()
         {
-            this.MODULO_USUARIO = new HashSet<MODULO_USUARIO>();
-            this.ODF = new HashSet<ODF>();
+            this.Cotas = new HashSet<Cotas>();
+            this.Lineas = new HashSet<Lineas>();
         }
     
-        public int id_usuario { get; set; }
-        public string nombre_usuario { get; set; }
-        public string contraseña { get; set; }
-        public string apellido { get; set; }
-        public string nombre { get; set; }
-        public string sector { get; set; }
-        public string acceso { get; set; }
+        public int id_dic { get; set; }
+        public int dic_cab { get; set; }
+        public int dic_cod { get; set; }
+        public string dic_abr { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MODULO_USUARIO> MODULO_USUARIO { get; set; }
+        public virtual ICollection<Cotas> Cotas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ODF> ODF { get; set; }
+        public virtual ICollection<Lineas> Lineas { get; set; }
     }
 }

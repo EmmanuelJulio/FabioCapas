@@ -53,6 +53,12 @@ namespace UiFabio
         private const int HTBOTTOMRIGHT = 17;
         private Rectangle sizeGripRectangle;
 
+        private void PanelTrabajo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+       
+
         protected override void WndProc(ref Message m)
         {
             switch (m.Msg)
