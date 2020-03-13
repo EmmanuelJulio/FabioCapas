@@ -561,9 +561,7 @@
           <NavigationProperty Name="ODF" Relationship="bulonera2Model.FK_ODF_USUARIOS" FromRole="USUARIOS" ToRole="ODF" />
         </EntityType>
         <Association Name="FK_MODULO_USUARIO_MODULOS">
-          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1" />
           <End Role="MODULO_USUARIO" Type="Self.MODULO_USUARIO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODULOS">
@@ -587,9 +585,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SUBMODULOS_MODULOS">
-          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="0..1" />
           <End Role="SUBMODULOS" Type="Self.SUBMODULOS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODULOS">
@@ -614,7 +610,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bulonera2Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="bulonera2Entities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="DICCIONARIO_FAB" EntityType="Self.DICCIONARIO_FAB" />
           <EntitySet Name="MODULO_USUARIO" EntityType="Self.MODULO_USUARIO" />
           <EntitySet Name="MODULOS" EntityType="Self.MODULOS" />
@@ -1022,7 +1018,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="bulonera2ModelStoreContainer" CdmEntityContainer="bulonera2Entities1">
+        <EntityContainerMapping StorageEntityContainer="bulonera2ModelStoreContainer" CdmEntityContainer="bulonera2Entities2">
           <EntitySetMapping Name="DICCIONARIO_FAB">
             <EntityTypeMapping TypeName="bulonera2Model.DICCIONARIO_FAB">
               <MappingFragment StoreEntitySet="DICCIONARIO_FAB">

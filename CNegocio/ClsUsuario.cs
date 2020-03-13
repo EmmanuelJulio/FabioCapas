@@ -75,7 +75,7 @@ namespace CNegocio
         {
             try
             {
-                using (CapaDatos.bulonera2Entities1 db = new CapaDatos.bulonera2Entities1())
+                using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
                 {
                     UsuarioActual = (from x in db.USUARIOS where x.nombre_usuario == Usuario && x.contraseña == Contraceña select x).FirstOrDefault();
                     if (UsuarioActual != null)
