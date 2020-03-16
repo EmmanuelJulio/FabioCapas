@@ -19,7 +19,105 @@ namespace CNegocio
             }
         }
         public static List<string> ModulosUsuario;
+        public bool ArgregarPermiso(int id_usu, int id_modu)
+        
+        {
+            MODULO_USUARIO accesoNew = new MODULO_USUARIO();
+            accesoNew.ID_USUARIO = id_usu;
+            accesoNew.ID_MODULO = id_modu;
+            using (bulonera2Entities2 db = new bulonera2Entities2())
+            {
+                using (var Transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var ExisteModulo = ((from x in db.MODULO_USUARIO where x.ID_USUARIO == id_usu & x.ID_MODULO == id_modu select x).ToList());
+                        if (ExisteModulo.Any())
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            db.MODULO_USUARIO.Add(((MODULO_USUARIO)accesoNew));
+                            db.SaveChanges();
+                            Transaction.Commit();
+                            Transaction.Dispose();
+                            return true;
+                        }
 
+                        
+                    }
+                    catch (Exception)
+                    {
+
+                        Transaction.Rollback();
+                        return false;
+
+                    }
+
+                } 
+            }
+        }
+        public bool QuitarPermiso(int Idpermiso)
+        {
+
+            using (bulonera2Entities2 db = new bulonera2Entities2())
+            {
+               
+                using (var Transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var Permiso = (from x in db.MODULO_USUARIO where x.ID_PERMISO == Idpermiso select x).ToList();
+                        if (Permiso.Any())
+                        {
+                            db.MODULO_USUARIO.Remove((from x in db.MODULO_USUARIO where x.ID_PERMISO == Idpermiso select x).FirstOrDefault());
+                            db.SaveChanges();
+                            Transaction.Commit();
+                            Transaction.Dispose();
+                            return true;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+
+                        Transaction.Rollback();
+                        return false;
+
+                    }
+
+                }
+            }
+        }
+        public int Idpermiso(int usuario, int modulo)
+        {
+            using (bulonera2Entities2 db = new bulonera2Entities2())
+            {
+                var Permiso = (from x in db.MODULO_USUARIO where x.ID_USUARIO == usuario & x.ID_MODULO == modulo select x).ToList();
+                if (Permiso.Any())
+                {
+                    return Permiso[0].ID_PERMISO;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public int opteneridmodulo(string nombre)
+        {
+            using (bulonera2Entities2 db = new bulonera2Entities2())
+            {
+                var idmod = (from x in db.MODULOS where x.NOMBRE_MOD == nombre select x).FirstOrDefault();
+                return idmod.ID_MODULO;
+            }
+        }
 
         public List<CapaDatos.MODULOS> OptenerModulos(string Text)
         {
@@ -51,33 +149,42 @@ namespace CNegocio
                         db.SaveChanges();
                         Transaction.Commit();
                         Transaction.Dispose();
+                        return true;
                     }
                     catch (Exception)
                     {
 
                         Transaction.Rollback();
+                        return false;
+
                     }
 
                 }
             }
-            return true;
+            
         }
 
         public override bool eliminar(int Id)
         {
             using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
             {
-                try
+                using (var Transaction = db.Database.BeginTransaction())
                 {
-                    CapaDatos.MODULOS ModuloBorrar = (from x in db.MODULOS where x.ID_MODULO == Id select x).FirstOrDefault();
-                    db.MODULOS.Remove(ModuloBorrar);
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
-
-                    return false;
+                    try
+                    {
+                        CapaDatos.MODULOS ModuloBorrar = (from x in db.MODULOS where x.ID_MODULO == Id select x).FirstOrDefault();
+                        db.MODULOS.Remove(ModuloBorrar);
+                        db.SaveChanges();
+                        Transaction.Commit();
+                        Transaction.Dispose();
+                        return true;
+                    }
+                    catch (Exception err)
+                    {
+                        
+                        Transaction.Rollback();
+                        return false;
+                    } 
                 }
             }
         }

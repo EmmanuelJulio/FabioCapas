@@ -79,12 +79,6 @@
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txt_modulo
-            // 
-            //this.animator1.SetDecoration(this.txt_modulo, BunifuAnimatorNS.DecorationType.None);
-            //this.txt_modulo.Size = new System.Drawing.Size(108, 18);
-            //this.txt_modulo.Text = "Agregar Menus";
-            // 
             // BtnMinimize
             // 
             this.animator1.SetDecoration(this.BtnMinimize, BunifuAnimatorNS.DecorationType.None);
@@ -159,9 +153,10 @@
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
             this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(1067, 534);
+            this.metroTabControl1.Size = new System.Drawing.Size(1067, 553);
             this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTabControl1.TabIndex = 0;
+            this.metroTabControl1.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroTabControl1.UseSelectable = true;
             this.metroTabControl1.SelectedIndexChanged += new System.EventHandler(this.MetroTabControl1_SelectedIndexChanged);
             // 
@@ -178,9 +173,10 @@
             this.metroTabPage1.HorizontalScrollbarSize = 10;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(1059, 492);
+            this.metroTabPage1.Size = new System.Drawing.Size(1059, 511);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "Agregar Menu";
+            this.metroTabPage1.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroTabPage1.VerticalScrollbarBarColor = true;
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.VerticalScrollbarSize = 10;
@@ -224,16 +220,17 @@
             // 
             // listBoxModulos1
             // 
-            this.listBoxModulos1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.listBoxModulos1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.listBoxModulos1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.animator1.SetDecoration(this.listBoxModulos1, BunifuAnimatorNS.DecorationType.None);
             this.listBoxModulos1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listBoxModulos1.ForeColor = System.Drawing.Color.DarkGray;
             this.listBoxModulos1.FormattingEnabled = true;
             this.listBoxModulos1.ItemHeight = 17;
             this.listBoxModulos1.Location = new System.Drawing.Point(0, 30);
             this.listBoxModulos1.Name = "listBoxModulos1";
             this.listBoxModulos1.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.listBoxModulos1.Size = new System.Drawing.Size(172, 462);
+            this.listBoxModulos1.Size = new System.Drawing.Size(172, 481);
             this.listBoxModulos1.TabIndex = 5;
             this.listBoxModulos1.SelectedIndexChanged += new System.EventHandler(this.ListBoxModulos1_SelectedIndexChanged);
             // 
@@ -283,7 +280,7 @@
             this.txtmodulo.MaxLength = 32767;
             this.txtmodulo.Name = "txtmodulo";
             this.txtmodulo.PasswordChar = '\0';
-            this.txtmodulo.WaterMark = "Nombre del modulo";
+            this.txtmodulo.PromptText = "Nombre del modulo";
             this.txtmodulo.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtmodulo.SelectedText = "";
             this.txtmodulo.SelectionLength = 0;
@@ -310,10 +307,10 @@
             this.metroTabPage2.HorizontalScrollbarSize = 10;
             this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(1059, 492);
+            this.metroTabPage2.Size = new System.Drawing.Size(1059, 511);
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "Agregar Sub Menu";
-            this.metroTabPage2.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroTabPage2.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
@@ -355,29 +352,31 @@
             // 
             // listBoxSubModulos1
             // 
-            this.listBoxSubModulos1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.listBoxSubModulos1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.listBoxSubModulos1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.animator1.SetDecoration(this.listBoxSubModulos1, BunifuAnimatorNS.DecorationType.None);
             this.listBoxSubModulos1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listBoxSubModulos1.ForeColor = System.Drawing.Color.DarkGray;
             this.listBoxSubModulos1.FormattingEnabled = true;
             this.listBoxSubModulos1.ItemHeight = 17;
             this.listBoxSubModulos1.Location = new System.Drawing.Point(172, 30);
             this.listBoxSubModulos1.Name = "listBoxSubModulos1";
             this.listBoxSubModulos1.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.listBoxSubModulos1.Size = new System.Drawing.Size(172, 462);
+            this.listBoxSubModulos1.Size = new System.Drawing.Size(172, 481);
             this.listBoxSubModulos1.TabIndex = 9;
             // 
             // listBoxModulos2
             // 
-            this.listBoxModulos2.BackColor = System.Drawing.SystemColors.Control;
+            this.listBoxModulos2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.listBoxModulos2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.animator1.SetDecoration(this.listBoxModulos2, BunifuAnimatorNS.DecorationType.None);
             this.listBoxModulos2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listBoxModulos2.ForeColor = System.Drawing.Color.DarkGray;
             this.listBoxModulos2.FormattingEnabled = true;
             this.listBoxModulos2.ItemHeight = 17;
             this.listBoxModulos2.Location = new System.Drawing.Point(0, 30);
             this.listBoxModulos2.Name = "listBoxModulos2";
-            this.listBoxModulos2.Size = new System.Drawing.Size(172, 462);
+            this.listBoxModulos2.Size = new System.Drawing.Size(172, 481);
             this.listBoxModulos2.TabIndex = 8;
             this.listBoxModulos2.SelectedIndexChanged += new System.EventHandler(this.ListBoxModulos2_SelectedIndexChanged);
             // 
@@ -402,7 +401,7 @@
             this.metroTextBox1.MaxLength = 32767;
             this.metroTextBox1.Name = "metroTextBox1";
             this.metroTextBox1.PasswordChar = '\0';
-            this.metroTextBox1.WaterMark = "Nombre del modulo";
+            this.metroTextBox1.PromptText = "Nombre del modulo";
             this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.metroTextBox1.SelectedText = "";
             this.metroTextBox1.SelectionLength = 0;
@@ -471,10 +470,10 @@
             this.metroTabPage3.HorizontalScrollbarSize = 10;
             this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(1059, 492);
+            this.metroTabPage3.Size = new System.Drawing.Size(1059, 511);
             this.metroTabPage3.TabIndex = 2;
             this.metroTabPage3.Text = "Agregar Form";
-            this.metroTabPage3.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroTabPage3.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.VerticalScrollbarSize = 10;
@@ -500,7 +499,7 @@
             this.TextNombreSysForm.MaxLength = 32767;
             this.TextNombreSysForm.Name = "TextNombreSysForm";
             this.TextNombreSysForm.PasswordChar = '\0';
-            this.TextNombreSysForm.WaterMark = "Nombre del Formulario";
+            this.TextNombreSysForm.PromptText = "Nombre del Formulario";
             this.TextNombreSysForm.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.TextNombreSysForm.SelectedText = "";
             this.TextNombreSysForm.SelectionLength = 0;
@@ -529,6 +528,7 @@
             this.BtnEliminarForm.TabIndex = 16;
             this.BtnEliminarForm.Text = "Eliminar";
             this.BtnEliminarForm.UseVisualStyleBackColor = false;
+            this.BtnEliminarForm.Click += new System.EventHandler(this.BtnEliminarForm_Click);
             // 
             // BtnAgregarForm
             // 
@@ -569,7 +569,7 @@
             this.TextNombreForm.MaxLength = 32767;
             this.TextNombreForm.Name = "TextNombreForm";
             this.TextNombreForm.PasswordChar = '\0';
-            this.TextNombreForm.WaterMark = "Nombre del modulo";
+            this.TextNombreForm.PromptText = "Nombre del modulo";
             this.TextNombreForm.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.TextNombreForm.SelectedText = "";
             this.TextNombreForm.SelectionLength = 0;
@@ -584,43 +584,46 @@
             // 
             // listBoxSubForms
             // 
-            this.listBoxSubForms.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.listBoxSubForms.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.listBoxSubForms.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.animator1.SetDecoration(this.listBoxSubForms, BunifuAnimatorNS.DecorationType.None);
             this.listBoxSubForms.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listBoxSubForms.ForeColor = System.Drawing.Color.DarkGray;
             this.listBoxSubForms.FormattingEnabled = true;
             this.listBoxSubForms.ItemHeight = 17;
             this.listBoxSubForms.Location = new System.Drawing.Point(344, 30);
             this.listBoxSubForms.Name = "listBoxSubForms";
             this.listBoxSubForms.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.listBoxSubForms.Size = new System.Drawing.Size(172, 462);
+            this.listBoxSubForms.Size = new System.Drawing.Size(172, 481);
             this.listBoxSubForms.TabIndex = 12;
             // 
             // listBoxSubModulos2
             // 
-            this.listBoxSubModulos2.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.listBoxSubModulos2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.listBoxSubModulos2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.animator1.SetDecoration(this.listBoxSubModulos2, BunifuAnimatorNS.DecorationType.None);
             this.listBoxSubModulos2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listBoxSubModulos2.ForeColor = System.Drawing.Color.DarkGray;
             this.listBoxSubModulos2.FormattingEnabled = true;
             this.listBoxSubModulos2.ItemHeight = 17;
             this.listBoxSubModulos2.Location = new System.Drawing.Point(172, 30);
             this.listBoxSubModulos2.Name = "listBoxSubModulos2";
-            this.listBoxSubModulos2.Size = new System.Drawing.Size(172, 462);
+            this.listBoxSubModulos2.Size = new System.Drawing.Size(172, 481);
             this.listBoxSubModulos2.TabIndex = 11;
             this.listBoxSubModulos2.SelectedIndexChanged += new System.EventHandler(this.ListBoxSubModulos2_SelectedIndexChanged);
             // 
             // listBoxModulos3
             // 
-            this.listBoxModulos3.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.listBoxModulos3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.listBoxModulos3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.animator1.SetDecoration(this.listBoxModulos3, BunifuAnimatorNS.DecorationType.None);
             this.listBoxModulos3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listBoxModulos3.ForeColor = System.Drawing.Color.DarkGray;
             this.listBoxModulos3.FormattingEnabled = true;
             this.listBoxModulos3.ItemHeight = 17;
             this.listBoxModulos3.Location = new System.Drawing.Point(0, 30);
             this.listBoxModulos3.Name = "listBoxModulos3";
-            this.listBoxModulos3.Size = new System.Drawing.Size(172, 462);
+            this.listBoxModulos3.Size = new System.Drawing.Size(172, 481);
             this.listBoxModulos3.TabIndex = 10;
             this.listBoxModulos3.SelectedIndexChanged += new System.EventHandler(this.ListBoxModulos3_SelectedIndexChanged);
             // 

@@ -239,8 +239,8 @@ namespace UiFabio.Configuraciones.Modulos
                 }
                 else
                 {
-                    int IDmOD = OModulo.OptenerId(NombreModuloSeleccionado);
-                    if (OModulo.eliminar(IDmOD))
+                    
+                    if (OModulo.eliminar(OModulo.OptenerId(NombreModuloSeleccionado)))
                     {
                         MensajePers.message("Se elimino", MensajePers.TipoMensaje.Hecho);
                         listBoxModulos1.Items.Remove(NombreModuloSeleccionado);
@@ -255,7 +255,7 @@ namespace UiFabio.Configuraciones.Modulos
             {
                 MensajePers.message("Ahora seleccione un modulo para eliminar", MensajePers.TipoMensaje.Informacion);
                 listBoxModulos1.SelectionMode = SelectionMode.One;
-                listBoxModulos1.BackColor = Color.White;
+                
             }
 
         }
@@ -268,6 +268,12 @@ namespace UiFabio.Configuraciones.Modulos
                 modulo = listBoxModulos1.SelectedItem.ToString();
                 NombreModuloSeleccionado = modulo; 
             }
+
+        }
+
+        private void BtnEliminarForm_Click(object sender, EventArgs e)
+        {
+          
 
         }
     }

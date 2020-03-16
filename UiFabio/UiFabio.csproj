@@ -104,6 +104,12 @@
     <Compile Include="Mensaje.Designer.cs">
       <DependentUpon>Mensaje.cs</DependentUpon>
     </Compile>
+    <Compile Include="Of tecnica\Orden de Fabricacion\Frm_OrdenFabOfTecnica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Of tecnica\Orden de Fabricacion\Frm_OrdenFabOfTecnica.Designer.cs">
+      <DependentUpon>Frm_OrdenFabOfTecnica.cs</DependentUpon>
+    </Compile>
     <Compile Include="PadreFormularios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mensaje.resx">
       <DependentUpon>Mensaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Of tecnica\Orden de Fabricacion\Frm_OrdenFabOfTecnica.resx">
+      <DependentUpon>Frm_OrdenFabOfTecnica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PadreFormularios.resx">
       <DependentUpon>PadreFormularios.cs</DependentUpon>

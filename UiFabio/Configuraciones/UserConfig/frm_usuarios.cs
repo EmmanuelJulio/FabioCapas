@@ -11,31 +11,49 @@ namespace UiFabio.Configuraciones.UserConfig
 {
     public partial class frm_usuarios : PadreFormularios
     {
+       
         public frm_usuarios()
         {
             InitializeComponent();
         }
         private void frm_usuarios_Load(object sender, EventArgs e)
         {
+            metroTabControl1.SelectedTab = metroTabControl1.TabPages[0];
+            Actualizar();
+
+        }
+        public void Actualizar()
+        {
             ClsModulos mod = new ClsModulos();
+            for (int i = 0; i < CHK_Modulos.Items.Count; i++)
+            {
+                CHK_Modulos.Items.Remove(i); 
+            }
             foreach (CapaDatos.MODULOS _mod in mod.OptenerTodosLosModulos())
             {
                 CHK_Modulos.Items.Add(_mod.NOMBRE_MOD);
 
             }
-            metroTabControl1.SelectedTab = metroTabControl1.TabPages[0];
+
             ClsDiccionarios cl = new ClsDiccionarios();
-            foreach(CapaDatos.DICCIONARIO_FAB fb in cl.TraerDicFab(28))
+            for (int i = 0; i < ComboSectores.Items.Count; i++)
+            {
+                ComboSectores.Items.Remove(i); 
+            }
+            foreach (CapaDatos.DICCIONARIO_FAB fb in cl.TraerDicFab(28))
             {
                 ComboSectores.Items.Add(fb.dic_des.ToString());
             }
             ClsUsuario usu = new ClsUsuario();
-            foreach(CapaDatos.USUARIOS usuar in usu.TraerUsuarios())
+            for (int i = 0; i < listUsu.Items.Count; i++)
+            {
+                listUsu.Items.RemoveAt(i); 
+            }
+            foreach (CapaDatos.USUARIOS usuar in usu.TraerUsuarios())
             {
                 listUsu.Items.Add(usuar.nombre);
                 listusuarios2.Items.Add(usuar.nombre);
-            }
-
+            }      
         }
 
         private void PanelTrabajo_Paint(object sender, PaintEventArgs e)
@@ -63,6 +81,7 @@ namespace UiFabio.Configuraciones.UserConfig
                     NewUser.nombre_usuario = txbUsuario.Text;
                     if (ClsUsuario.agragar(NewUser))
                     {
+                        Actualizar();
                         MensajePers.message("Se cargo el usuario"+ txbUsuario.Text, MensajePers.TipoMensaje.Hecho);
                         txbApellido.Clear();
                         txbContraceña.Clear();
@@ -87,11 +106,12 @@ namespace UiFabio.Configuraciones.UserConfig
 
         private void metroTabPage1_Click(object sender, EventArgs e)
         {
-
+            Actualizar();
         }
 
         private void Btn_EliminarMod_Click(object sender, EventArgs e)
         {
+            
             if(listUsu.SelectedItem != null)
             {
                 try
@@ -106,6 +126,7 @@ namespace UiFabio.Configuraciones.UserConfig
                         {
                             listUsu.Items.Add(usuar.nombre);
                         }
+                        Actualizar();
 
                     }   
 
@@ -124,24 +145,58 @@ namespace UiFabio.Configuraciones.UserConfig
 
         private void Listusuarios2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i=0; i == CHK_Modulos.Items.Count; i++)
+            for (int i=0; i < CHK_Modulos.Items.Count; i++)
             {
-                if (listusuarios2.GetSelected(i))
-                {
-                    listusuarios2.Items[i] = false;                                                                                           
-                }
+                CHK_Modulos.SetItemChecked(i, false);
             }
             ClsUsuario cmod = new ClsUsuario();
 
-            foreach(CapaDatos.MODULOS mod in cmod.TraerAccesosActuales(cmod.OptenerUsuario(listusuarios2.SelectedItem.ToString())))
+            if (listusuarios2.SelectedItem != null)
             {
-                
-                for (int i = 0; i < CHK_Modulos.Items.Count; i++)
+                foreach (CapaDatos.MODULOS mod in cmod.TraerAccesosActuales(cmod.OptenerUsuario(listusuarios2.SelectedItem.ToString())))
                 {
-                    if (CHK_Modulos.Items[i].ToString() == mod.NOMBRE_MOD)
+
+                    for (int i = 0; i < CHK_Modulos.Items.Count; i++)
                     {
-                        CHK_Modulos.Items[i] = true;
+                        if (CHK_Modulos.Items[i].ToString() == mod.NOMBRE_MOD)
+                        {
+                            CHK_Modulos.SetItemChecked(i, true);
+                        }
                     }
+                } 
+            }
+            else
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Seleccione un usuario valido");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ClsUsuario _usuario = new ClsUsuario();
+            ClsModulos _mod = new ClsModulos();
+            int Idusu = _usuario.OptenerUsuario(listusuarios2.SelectedItem.ToString());
+           
+            for (int i = 0; i < CHK_Modulos.Items.Count; i++)
+            {
+                if (CHK_Modulos.GetItemChecked(i))
+                {
+                    _mod.ArgregarPermiso(Idusu, _mod.opteneridmodulo(CHK_Modulos.Items[i].ToString())); 
+                }
+                else
+                {
+                    if (_mod.Idpermiso(Idusu, _mod.opteneridmodulo(CHK_Modulos.Items[i].ToString())) != 0)
+                    {
+                        int idPermiso = _mod.Idpermiso(Idusu, _mod.opteneridmodulo(CHK_Modulos.Items[i].ToString()));
+                        _mod.QuitarPermiso(idPermiso);
+                    }
+                    else
+                    {
+                        //MetroFramework.MetroMessageBox.Show(this, "No se puede esto");
+                    }
+                    
+
+                    
                 }
             }
         }

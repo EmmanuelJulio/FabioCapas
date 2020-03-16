@@ -35,6 +35,15 @@ namespace CNegocio
         /// <param name="Contraceña"></param>
         /// <returns></returns>
         /// 
+        public static bool Activo (string usuario)
+        {
+            using (bulonera2Entities2 db = new bulonera2Entities2())
+            {
+                var acceso = (from x in db.USUARIOS where x.nombre_usuario == usuario select x.Activo);
+
+                return Convert.ToBoolean(acceso);
+            }
+        }
         public List<MODULOS> TraerAccesosActuales(int id)
         {
             using (bulonera2Entities2 db = new bulonera2Entities2())
@@ -95,6 +104,7 @@ namespace CNegocio
         }
 
         public static bool loggin(string Usuario, string Contraceña)
+        
         {
             try
             {
@@ -175,5 +185,7 @@ namespace CNegocio
 
 
     }
+
+    
 }
 

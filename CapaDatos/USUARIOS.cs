@@ -28,6 +28,7 @@ namespace CapaDatos
         public string nombre { get; set; }
         public string sector { get; set; }
         public string acceso { get; set; }
+        public Nullable<bool> Activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MODULO_USUARIO> MODULO_USUARIO { get; set; }

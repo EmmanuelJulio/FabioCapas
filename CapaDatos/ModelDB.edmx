@@ -163,6 +163,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="sector" Type="varchar" MaxLength="50" />
           <Property Name="acceso" Type="varchar" MaxLength="50" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <Association Name="FK_Cotas_DiccionarioDeFabricacion">
           <End Role="DiccionarioDeFabricacion" Type="Self.DiccionarioDeFabricacion" Multiplicity="1" />
@@ -559,6 +560,7 @@
           <Property Name="acceso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MODULO_USUARIO" Relationship="Self.FK_MODULO_USUARIO_USUARIOS" FromRole="USUARIOS" ToRole="MODULO_USUARIO" />
           <NavigationProperty Name="ODF" Relationship="bulonera2Model.FK_ODF_USUARIOS" FromRole="USUARIOS" ToRole="ODF" />
+          <Property Name="Activo" Type="Boolean" />
         </EntityType>
         <Association Name="FK_MODULO_USUARIO_MODULOS">
           <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1" />
@@ -1083,6 +1085,7 @@
           <EntitySetMapping Name="USUARIOS">
             <EntityTypeMapping TypeName="bulonera2Model.USUARIOS">
               <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
                 <ScalarProperty Name="contraseña" ColumnName="contraseña" />

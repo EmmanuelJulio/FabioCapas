@@ -41,6 +41,7 @@
             this.Btn_EliminarMod = new System.Windows.Forms.Button();
             this.listUsu = new System.Windows.Forms.ListBox();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.CHK_Modulos = new System.Windows.Forms.CheckedListBox();
             this.listusuarios2 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimize)).BeginInit();
@@ -74,7 +75,7 @@
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.SelectedIndex = 1;
             this.metroTabControl1.Size = new System.Drawing.Size(1067, 547);
             this.metroTabControl1.TabIndex = 1;
             this.metroTabControl1.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -151,7 +152,7 @@
             this.txbContraceña2.MaxLength = 32767;
             this.txbContraceña2.Name = "txbContraceña2";
             this.txbContraceña2.PasswordChar = '\0';
-            this.txbContraceña2.PromptText = "Repita contraceña";
+            this.txbContraceña2.WaterMark = "Repita contraceña";
             this.txbContraceña2.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txbContraceña2.SelectedText = "";
             this.txbContraceña2.SelectionLength = 0;
@@ -184,7 +185,7 @@
             this.txbApellido.MaxLength = 32767;
             this.txbApellido.Name = "txbApellido";
             this.txbApellido.PasswordChar = '\0';
-            this.txbApellido.PromptText = "Apellido";
+            this.txbApellido.WaterMark = "Apellido";
             this.txbApellido.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txbApellido.SelectedText = "";
             this.txbApellido.SelectionLength = 0;
@@ -217,7 +218,7 @@
             this.txbUsuario.MaxLength = 32767;
             this.txbUsuario.Name = "txbUsuario";
             this.txbUsuario.PasswordChar = '\0';
-            this.txbUsuario.PromptText = "Nombre usuario";
+            this.txbUsuario.WaterMark = "Nombre usuario";
             this.txbUsuario.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txbUsuario.SelectedText = "";
             this.txbUsuario.SelectionLength = 0;
@@ -250,7 +251,7 @@
             this.txbContraceña.MaxLength = 32767;
             this.txbContraceña.Name = "txbContraceña";
             this.txbContraceña.PasswordChar = '\0';
-            this.txbContraceña.PromptText = "Contraceña";
+            this.txbContraceña.WaterMark = "Contraceña";
             this.txbContraceña.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txbContraceña.SelectedText = "";
             this.txbContraceña.SelectionLength = 0;
@@ -283,7 +284,7 @@
             this.txbNombre.MaxLength = 32767;
             this.txbNombre.Name = "txbNombre";
             this.txbNombre.PasswordChar = '\0';
-            this.txbNombre.PromptText = "Nombre";
+            this.txbNombre.WaterMark = "Nombre";
             this.txbNombre.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txbNombre.SelectedText = "";
             this.txbNombre.SelectionLength = 0;
@@ -332,9 +333,10 @@
             // 
             // listUsu
             // 
-            this.listUsu.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.listUsu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.listUsu.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listUsu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listUsu.ForeColor = System.Drawing.Color.DarkGray;
             this.listUsu.FormattingEnabled = true;
             this.listUsu.ItemHeight = 17;
             this.listUsu.Location = new System.Drawing.Point(0, 0);
@@ -344,6 +346,7 @@
             // 
             // metroTabPage3
             // 
+            this.metroTabPage3.Controls.Add(this.button1);
             this.metroTabPage3.Controls.Add(this.CHK_Modulos);
             this.metroTabPage3.Controls.Add(this.listusuarios2);
             this.metroTabPage3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
@@ -361,10 +364,28 @@
             this.metroTabPage3.VerticalScrollbarSize = 10;
             this.metroTabPage3.Click += new System.EventHandler(this.metroTabPage3_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(112)))), ((int)(((byte)(183)))));
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(159)))), ((int)(((byte)(127)))));
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(118)))), ((int)(((byte)(126)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.LightGray;
+            this.button1.Location = new System.Drawing.Point(350, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(196, 54);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Conceder/Remover permisos";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // CHK_Modulos
             // 
             this.CHK_Modulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.CHK_Modulos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CHK_Modulos.CheckOnClick = true;
             this.CHK_Modulos.Dock = System.Windows.Forms.DockStyle.Left;
             this.CHK_Modulos.ForeColor = System.Drawing.Color.LightGray;
             this.CHK_Modulos.FormattingEnabled = true;
@@ -425,5 +446,6 @@
         private System.Windows.Forms.ListBox listusuarios2;
         private MetroFramework.Controls.MetroComboBox ComboSectores;
         private System.Windows.Forms.CheckedListBox CHK_Modulos;
+        private System.Windows.Forms.Button button1;
     }
 }
