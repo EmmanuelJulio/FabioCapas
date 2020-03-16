@@ -45,7 +45,7 @@
             // PanelTrabajo
             // 
             this.PanelTrabajo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PanelTrabajo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(57)))), ((int)(((byte)(90)))));
+            this.PanelTrabajo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(57)))), ((int)(((byte)(80)))));
             this.PanelTrabajo.Controls.Add(this.panel1);
             this.PanelTrabajo.Dock = System.Windows.Forms.DockStyle.None;
             // 
@@ -91,6 +91,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "PadreFormularios";
             this.Text = "PadreFormularios";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PadreFormularios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnNormal)).EndInit();

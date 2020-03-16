@@ -19,6 +19,7 @@ namespace UiFabio
 
            Application.Run(new Loggin());
            //Application.Run(new Configuraciones.Modulos.frm_submenus());
+           
         }
     }
 }

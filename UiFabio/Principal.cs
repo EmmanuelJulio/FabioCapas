@@ -149,10 +149,7 @@ namespace UiFabio
                 lbl_texto.Text = ((Button)sender).Text;
                 string NameSpace = "UiFabio" + "." + moduloseleccionado + "." + opcionseleccionada;
                 string NombreForm = ((Button)sender).AccessibleName;
-                while (NameSpace.Contains(" "))
-                {
-                    NameSpace.Remove(8, 1);
-                }
+                NameSpace = NameSpace.Replace(" ", "_");
                 Assembly asm = Assembly.GetEntryAssembly();
                 Type formtype = asm.GetType(string.Format("{0}.{1}", NameSpace, NombreForm));
 
@@ -210,8 +207,10 @@ namespace UiFabio
             }
 
             Form fh = formhijo as Form;
+            fh.Width = this.PanelContenedor.Width;
+            fh.Height = this.PanelContenedor.Height;
             fh.TopLevel = false;
-            fh.Dock = DockStyle.None;
+         //   fh.Dock = DockStyle.None;
             this.PanelContenedor.Controls.Add(fh);
             this.PanelContenedor.Tag = fh;
             fh.Dock = DockStyle.Fill;
