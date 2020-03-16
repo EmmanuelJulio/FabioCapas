@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="bulonera2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="bulonera2Model2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cotas">
           <Key>
             <PropertyRef Name="id_cot" />
@@ -398,7 +398,7 @@
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="bulonera2ModelStoreContainer">
+        <EntityContainer Name="bulonera2Model2StoreContainer">
           <EntitySet Name="Cotas" EntityType="Self.Cotas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DICCIONARIO_FAB" EntityType="Self.DICCIONARIO_FAB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiccionarioDeFabricacion" EntityType="Self.DiccionarioDeFabricacion" Schema="dbo" store:Type="Tables" />
@@ -480,10 +480,25 @@
             <End Role="UnidadesOdf" EntitySet="UnidadesOdf" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="bulonera2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="bulonera2Model2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cotas">
+          <Key>
+            <PropertyRef Name="id_cot" />
+          </Key>
+          <Property Name="id_cot" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fk_Nombre_Cot" Type="Int32" Nullable="false" />
+          <Property Name="id_prod" Type="Int32" Nullable="false" />
+          <Property Name="max_cot" Type="Double" />
+          <Property Name="min_cot" Type="Double" />
+          <Property Name="x_pos" Type="Int32" Nullable="false" />
+          <Property Name="y_pos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DiccionarioDeFabricacion" Relationship="Self.FK_Cotas_DiccionarioDeFabricacion" FromRole="Cotas" ToRole="DiccionarioDeFabricacion" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_Cotas_Producto" FromRole="Cotas" ToRole="Producto" />
+        </EntityType>
         <EntityType Name="DICCIONARIO_FAB">
           <Key>
             <PropertyRef Name="id" />
@@ -493,6 +508,54 @@
           <Property Name="dic_cod" Type="Int32" Nullable="false" />
           <Property Name="dic_des" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="dic_abr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiccionarioDeFabricacion">
+          <Key>
+            <PropertyRef Name="id_dic" />
+          </Key>
+          <Property Name="id_dic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dic_cab" Type="Int32" Nullable="false" />
+          <Property Name="dic_cod" Type="Int32" Nullable="false" />
+          <Property Name="dic_abr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cotas" Relationship="Self.FK_Cotas_DiccionarioDeFabricacion" FromRole="DiccionarioDeFabricacion" ToRole="Cotas" />
+          <NavigationProperty Name="Lineas" Relationship="Self.FK_Lineas_DiccionarioDeFabricacion" FromRole="DiccionarioDeFabricacion" ToRole="Lineas" />
+        </EntityType>
+        <EntityType Name="Imagenes">
+          <Key>
+            <PropertyRef Name="id_imagen" />
+          </Key>
+          <Property Name="id_imagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="Int32" Nullable="false" />
+          <Property Name="patch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imag" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Lineas" Relationship="Self.FK_Lineas_Imagenes" FromRole="Imagenes" ToRole="Lineas" />
+        </EntityType>
+        <EntityType Name="Lineas">
+          <Key>
+            <PropertyRef Name="id_linea" />
+          </Key>
+          <Property Name="id_linea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoLinea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fk_Norma" Type="Int32" />
+          <Property Name="fk_Imagen" Type="Int32" />
+          <NavigationProperty Name="DiccionarioDeFabricacion" Relationship="Self.FK_Lineas_DiccionarioDeFabricacion" FromRole="Lineas" ToRole="DiccionarioDeFabricacion" />
+          <NavigationProperty Name="Imagenes" Relationship="Self.FK_Lineas_Imagenes" FromRole="Lineas" ToRole="Imagenes" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_Lineas" FromRole="Lineas" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Lote">
+          <Key>
+            <PropertyRef Name="id_lote" />
+          </Key>
+          <Property Name="id_lote" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_odf" Type="Int32" Nullable="false" />
+          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Producto" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Unidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ODF" Relationship="Self.FK_Lote_ODF" FromRole="Lote" ToRole="ODF" />
+          <NavigationProperty Name="Producto1" Relationship="Self.FK_Lote_Producto" FromRole="Lote" ToRole="Producto" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Lote_Productos" FromRole="Lote" ToRole="Productos" />
+          <NavigationProperty Name="UnidadesOdf" Relationship="Self.FK_Lote_UnidadesOdf" FromRole="Lote" ToRole="UnidadesOdf" />
         </EntityType>
         <EntityType Name="MODULO_USUARIO">
           <Key>
@@ -514,6 +577,46 @@
           <Property Name="SECTOR_MOD" Type="Int32" Nullable="false" />
           <NavigationProperty Name="MODULO_USUARIO" Relationship="Self.FK_MODULO_USUARIO_MODULOS" FromRole="MODULOS" ToRole="MODULO_USUARIO" />
           <NavigationProperty Name="SUBMODULOS" Relationship="Self.FK_SUBMODULOS_MODULOS" FromRole="MODULOS" ToRole="SUBMODULOS" />
+        </EntityType>
+        <EntityType Name="ODF">
+          <Key>
+            <PropertyRef Name="id_odf" />
+          </Key>
+          <Property Name="id_odf" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaFinalizacion" Type="DateTime" Precision="0" />
+          <Property Name="Estado" Type="Int32" />
+          <Property Name="Observaciones" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Sector" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Lote" Relationship="Self.FK_Lote_ODF" FromRole="ODF" ToRole="Lote" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_ODF_USUARIOS" FromRole="ODF" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fk_linea" Type="Int32" />
+          <NavigationProperty Name="Cotas" Relationship="Self.FK_Cotas_Producto" FromRole="Producto" ToRole="Cotas" />
+          <NavigationProperty Name="Lineas" Relationship="Self.FK_Producto_Lineas" FromRole="Producto" ToRole="Lineas" />
+          <NavigationProperty Name="Lote" Relationship="Self.FK_Lote_Producto" FromRole="Producto" ToRole="Lote" />
+          <NavigationProperty Name="UnidadesOdf" Relationship="Self.FK_UnidadesOdf_Producto" FromRole="Producto" ToRole="UnidadesOdf" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="Id_productos" />
+          </Key>
+          <Property Name="Id_productos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="norma" Type="Int32" Nullable="false" />
+          <Property Name="PesoUnidad" Type="Double" />
+          <Property Name="PesoLote" Type="Double" />
+          <NavigationProperty Name="Lote" Relationship="Self.FK_Lote_Productos" FromRole="Productos" ToRole="Lote" />
+          <NavigationProperty Name="UnidadesOdf" Relationship="Self.FK_UnidadesOdf_Productos" FromRole="Productos" ToRole="UnidadesOdf" />
         </EntityType>
         <EntityType Name="SUBMENU">
           <Key>
@@ -546,6 +649,19 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="UnidadesOdf">
+          <Key>
+            <PropertyRef Name="Id_unidad" />
+          </Key>
+          <Property Name="Id_unidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_lote" Type="Int32" />
+          <Property Name="Nombre" Type="Int32" />
+          <Property Name="Producto" Type="Int32" />
+          <Property Name="PesoUnidad" Type="Double" />
+          <NavigationProperty Name="Lote" Relationship="Self.FK_Lote_UnidadesOdf" FromRole="UnidadesOdf" ToRole="Lote" />
+          <NavigationProperty Name="Producto1" Relationship="Self.FK_UnidadesOdf_Producto" FromRole="UnidadesOdf" ToRole="Producto" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_UnidadesOdf_Productos" FromRole="UnidadesOdf" ToRole="Productos" />
+        </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
             <PropertyRef Name="id_usuario" />
@@ -558,8 +674,116 @@
           <Property Name="sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="acceso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MODULO_USUARIO" Relationship="Self.FK_MODULO_USUARIO_USUARIOS" FromRole="USUARIOS" ToRole="MODULO_USUARIO" />
-          <NavigationProperty Name="ODF" Relationship="bulonera2Model.FK_ODF_USUARIOS" FromRole="USUARIOS" ToRole="ODF" />
+          <NavigationProperty Name="ODF" Relationship="Self.FK_ODF_USUARIOS" FromRole="USUARIOS" ToRole="ODF" />
         </EntityType>
+        <Association Name="FK_Cotas_DiccionarioDeFabricacion">
+          <End Role="DiccionarioDeFabricacion" Type="Self.DiccionarioDeFabricacion" Multiplicity="1" />
+          <End Role="Cotas" Type="Self.Cotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiccionarioDeFabricacion">
+              <PropertyRef Name="id_dic" />
+            </Principal>
+            <Dependent Role="Cotas">
+              <PropertyRef Name="fk_Nombre_Cot" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cotas_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Cotas" Type="Self.Cotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="Cotas">
+              <PropertyRef Name="id_prod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lineas_DiccionarioDeFabricacion">
+          <End Role="DiccionarioDeFabricacion" Type="Self.DiccionarioDeFabricacion" Multiplicity="0..1" />
+          <End Role="Lineas" Type="Self.Lineas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiccionarioDeFabricacion">
+              <PropertyRef Name="id_dic" />
+            </Principal>
+            <Dependent Role="Lineas">
+              <PropertyRef Name="fk_Norma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lineas_Imagenes">
+          <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="0..1" />
+          <End Role="Lineas" Type="Self.Lineas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imagenes">
+              <PropertyRef Name="id_imagen" />
+            </Principal>
+            <Dependent Role="Lineas">
+              <PropertyRef Name="fk_Imagen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Lineas">
+          <End Role="Lineas" Type="Self.Lineas" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lineas">
+              <PropertyRef Name="id_linea" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="fk_linea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lote_ODF">
+          <End Role="ODF" Type="Self.ODF" Multiplicity="1" />
+          <End Role="Lote" Type="Self.Lote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ODF">
+              <PropertyRef Name="id_odf" />
+            </Principal>
+            <Dependent Role="Lote">
+              <PropertyRef Name="id_odf" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lote_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Lote" Type="Self.Lote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="Lote">
+              <PropertyRef Name="Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lote_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="Lote" Type="Self.Lote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="Id_productos" />
+            </Principal>
+            <Dependent Role="Lote">
+              <PropertyRef Name="Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lote_UnidadesOdf">
+          <End Role="UnidadesOdf" Type="Self.UnidadesOdf" Multiplicity="1" />
+          <End Role="Lote" Type="Self.Lote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadesOdf">
+              <PropertyRef Name="Id_unidad" />
+            </Principal>
+            <Dependent Role="Lote">
+              <PropertyRef Name="Unidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MODULO_USUARIO_MODULOS">
           <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1" />
           <End Role="MODULO_USUARIO" Type="Self.MODULO_USUARIO" Multiplicity="*" />
@@ -596,6 +820,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ODF_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="ODF" Type="Self.ODF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="ODF">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UnidadesOdf_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="UnidadesOdf" Type="Self.UnidadesOdf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="UnidadesOdf">
+              <PropertyRef Name="Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UnidadesOdf_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="UnidadesOdf" Type="Self.UnidadesOdf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="Id_productos" />
+            </Principal>
+            <Dependent Role="UnidadesOdf">
+              <PropertyRef Name="Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SUBMENU_SUBMODULOS">
           <End Role="SUBMODULOS" Type="Self.SUBMODULOS" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -610,14 +870,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bulonera2Entities22" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="bulonera2Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cotas" EntityType="Self.Cotas" />
           <EntitySet Name="DICCIONARIO_FAB" EntityType="Self.DICCIONARIO_FAB" />
+          <EntitySet Name="DiccionarioDeFabricacion" EntityType="Self.DiccionarioDeFabricacion" />
+          <EntitySet Name="Imagenes" EntityType="Self.Imagenes" />
+          <EntitySet Name="Lineas" EntityType="Self.Lineas" />
+          <EntitySet Name="Lote" EntityType="Self.Lote" />
           <EntitySet Name="MODULO_USUARIO" EntityType="Self.MODULO_USUARIO" />
           <EntitySet Name="MODULOS" EntityType="Self.MODULOS" />
+          <EntitySet Name="ODF" EntityType="Self.ODF" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
           <EntitySet Name="SUBMENU" EntityType="Self.SUBMENU" />
           <EntitySet Name="SUBMODULOS" EntityType="Self.SUBMODULOS" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="UnidadesOdf" EntityType="Self.UnidadesOdf" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <AssociationSet Name="FK_Cotas_DiccionarioDeFabricacion" Association="Self.FK_Cotas_DiccionarioDeFabricacion">
+            <End Role="DiccionarioDeFabricacion" EntitySet="DiccionarioDeFabricacion" />
+            <End Role="Cotas" EntitySet="Cotas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cotas_Producto" Association="Self.FK_Cotas_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Cotas" EntitySet="Cotas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lineas_DiccionarioDeFabricacion" Association="Self.FK_Lineas_DiccionarioDeFabricacion">
+            <End Role="DiccionarioDeFabricacion" EntitySet="DiccionarioDeFabricacion" />
+            <End Role="Lineas" EntitySet="Lineas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lineas_Imagenes" Association="Self.FK_Lineas_Imagenes">
+            <End Role="Imagenes" EntitySet="Imagenes" />
+            <End Role="Lineas" EntitySet="Lineas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Lineas" Association="Self.FK_Producto_Lineas">
+            <End Role="Lineas" EntitySet="Lineas" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lote_ODF" Association="Self.FK_Lote_ODF">
+            <End Role="ODF" EntitySet="ODF" />
+            <End Role="Lote" EntitySet="Lote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lote_Producto" Association="Self.FK_Lote_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Lote" EntitySet="Lote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lote_Productos" Association="Self.FK_Lote_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Lote" EntitySet="Lote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lote_UnidadesOdf" Association="Self.FK_Lote_UnidadesOdf">
+            <End Role="UnidadesOdf" EntitySet="UnidadesOdf" />
+            <End Role="Lote" EntitySet="Lote" />
+          </AssociationSet>
           <AssociationSet Name="FK_MODULO_USUARIO_MODULOS" Association="Self.FK_MODULO_USUARIO_MODULOS">
             <End Role="MODULOS" EntitySet="MODULOS" />
             <End Role="MODULO_USUARIO" EntitySet="MODULO_USUARIO" />
@@ -629,6 +934,18 @@
           <AssociationSet Name="FK_SUBMODULOS_MODULOS" Association="Self.FK_SUBMODULOS_MODULOS">
             <End Role="MODULOS" EntitySet="MODULOS" />
             <End Role="SUBMODULOS" EntitySet="SUBMODULOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ODF_USUARIOS" Association="Self.FK_ODF_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="ODF" EntitySet="ODF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnidadesOdf_Producto" Association="Self.FK_UnidadesOdf_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="UnidadesOdf" EntitySet="UnidadesOdf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnidadesOdf_Productos" Association="Self.FK_UnidadesOdf_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="UnidadesOdf" EntitySet="UnidadesOdf" />
           </AssociationSet>
           <AssociationSet Name="FK_SUBMENU_SUBMODULOS" Association="Self.FK_SUBMENU_SUBMODULOS">
             <End Role="SUBMODULOS" EntitySet="SUBMODULOS" />
@@ -650,86 +967,29 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(bulonera2Model.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(bulonera2Model2.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(bulonera2Model.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(bulonera2Model2.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_modulospermitidos" ReturnType="Collection(bulonera2Model.sp_modulospermitidos_Result)">
-          <Parameter Name="id_usuario" Mode="In" Type="Int32" />
+          <FunctionImport Name="sp_modulospermitidos" ReturnType="Collection(bulonera2Model2.sp_modulospermitidos_Result)">
+            <Parameter Name="id_usuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_renamediagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="Sp_SubMenus" ReturnType="Collection(bulonera2Model.Sp_SubMenus_Result)">
-          <Parameter Name="Nombre" Mode="In" Type="String" />
+          <FunctionImport Name="Sp_SubMenus" ReturnType="Collection(bulonera2Model2.Sp_SubMenus_Result)">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="Sp_Submodulos" ReturnType="Collection(bulonera2Model.Sp_Submodulos_Result)">
-          <Parameter Name="Nombre" Mode="In" Type="String" />
+          <FunctionImport Name="Sp_Submodulos" ReturnType="Collection(bulonera2Model2.Sp_Submodulos_Result)">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="Cotas" EntityType="bulonera2Model.Cotas" />
-          <EntitySet Name="DiccionarioDeFabricacion" EntityType="bulonera2Model.DiccionarioDeFabricacion" />
-          <EntitySet Name="Imagenes" EntityType="bulonera2Model.Imagenes" />
-          <EntitySet Name="Lineas" EntityType="bulonera2Model.Lineas" />
-          <EntitySet Name="Lote" EntityType="bulonera2Model.Lote" />
-          <EntitySet Name="ODF" EntityType="bulonera2Model.ODF" />
-          <EntitySet Name="Producto" EntityType="bulonera2Model.Producto" />
-          <EntitySet Name="Productos" EntityType="bulonera2Model.Productos" />
-          <EntitySet Name="UnidadesOdf" EntityType="bulonera2Model.UnidadesOdf" />
-          <AssociationSet Name="FK_Cotas_DiccionarioDeFabricacion" Association="bulonera2Model.FK_Cotas_DiccionarioDeFabricacion">
-            <End Role="DiccionarioDeFabricacion" EntitySet="DiccionarioDeFabricacion" />
-            <End Role="Cotas" EntitySet="Cotas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cotas_Producto" Association="bulonera2Model.FK_Cotas_Producto">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="Cotas" EntitySet="Cotas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lineas_DiccionarioDeFabricacion" Association="bulonera2Model.FK_Lineas_DiccionarioDeFabricacion">
-            <End Role="DiccionarioDeFabricacion" EntitySet="DiccionarioDeFabricacion" />
-            <End Role="Lineas" EntitySet="Lineas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lineas_Imagenes" Association="bulonera2Model.FK_Lineas_Imagenes">
-            <End Role="Imagenes" EntitySet="Imagenes" />
-            <End Role="Lineas" EntitySet="Lineas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Producto_Lineas" Association="bulonera2Model.FK_Producto_Lineas">
-            <End Role="Lineas" EntitySet="Lineas" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lote_ODF" Association="bulonera2Model.FK_Lote_ODF">
-            <End Role="ODF" EntitySet="ODF" />
-            <End Role="Lote" EntitySet="Lote" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lote_Producto" Association="bulonera2Model.FK_Lote_Producto">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="Lote" EntitySet="Lote" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lote_Productos" Association="bulonera2Model.FK_Lote_Productos">
-            <End Role="Productos" EntitySet="Productos" />
-            <End Role="Lote" EntitySet="Lote" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lote_UnidadesOdf" Association="bulonera2Model.FK_Lote_UnidadesOdf">
-            <End Role="UnidadesOdf" EntitySet="UnidadesOdf" />
-            <End Role="Lote" EntitySet="Lote" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ODF_USUARIOS" Association="bulonera2Model.FK_ODF_USUARIOS">
-            <End Role="USUARIOS" EntitySet="USUARIOS" />
-            <End Role="ODF" EntitySet="ODF" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UnidadesOdf_Producto" Association="bulonera2Model.FK_UnidadesOdf_Producto">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="UnidadesOdf" EntitySet="UnidadesOdf" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UnidadesOdf_Productos" Association="bulonera2Model.FK_UnidadesOdf_Productos">
-            <End Role="Productos" EntitySet="Productos" />
-            <End Role="UnidadesOdf" EntitySet="UnidadesOdf" />
-          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -754,273 +1014,27 @@
           <Property Type="String" Name="NOMBRE_SUBMOD" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="SYS_NOM" Nullable="true" MaxLength="50" />
         </ComplexType>
-        <EntityType Name="Cotas">
-          <Key>
-            <PropertyRef Name="id_cot" />
-          </Key>
-          <Property Name="id_cot" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="fk_Nombre_Cot" Type="Int32" Nullable="false" />
-          <Property Name="id_prod" Type="Int32" Nullable="false" />
-          <Property Name="max_cot" Type="Double" />
-          <Property Name="min_cot" Type="Double" />
-          <Property Name="x_pos" Type="Int32" Nullable="false" />
-          <Property Name="y_pos" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DiccionarioDeFabricacion" Relationship="bulonera2Model.FK_Cotas_DiccionarioDeFabricacion" FromRole="Cotas" ToRole="DiccionarioDeFabricacion" />
-          <NavigationProperty Name="Producto" Relationship="bulonera2Model.FK_Cotas_Producto" FromRole="Cotas" ToRole="Producto" />
-        </EntityType>
-        <EntityType Name="DiccionarioDeFabricacion">
-          <Key>
-            <PropertyRef Name="id_dic" />
-          </Key>
-          <Property Name="id_dic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dic_cab" Type="Int32" Nullable="false" />
-          <Property Name="dic_cod" Type="Int32" Nullable="false" />
-          <Property Name="dic_abr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cotas" Relationship="bulonera2Model.FK_Cotas_DiccionarioDeFabricacion" FromRole="DiccionarioDeFabricacion" ToRole="Cotas" />
-          <NavigationProperty Name="Lineas" Relationship="bulonera2Model.FK_Lineas_DiccionarioDeFabricacion" FromRole="DiccionarioDeFabricacion" ToRole="Lineas" />
-        </EntityType>
-        <EntityType Name="Imagenes">
-          <Key>
-            <PropertyRef Name="id_imagen" />
-          </Key>
-          <Property Name="id_imagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="Int32" Nullable="false" />
-          <Property Name="patch" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="imag" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Lineas" Relationship="bulonera2Model.FK_Lineas_Imagenes" FromRole="Imagenes" ToRole="Lineas" />
-        </EntityType>
-        <EntityType Name="Lineas">
-          <Key>
-            <PropertyRef Name="id_linea" />
-          </Key>
-          <Property Name="id_linea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodigoLinea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="fk_Norma" Type="Int32" />
-          <Property Name="fk_Imagen" Type="Int32" />
-          <NavigationProperty Name="DiccionarioDeFabricacion" Relationship="bulonera2Model.FK_Lineas_DiccionarioDeFabricacion" FromRole="Lineas" ToRole="DiccionarioDeFabricacion" />
-          <NavigationProperty Name="Imagenes" Relationship="bulonera2Model.FK_Lineas_Imagenes" FromRole="Lineas" ToRole="Imagenes" />
-          <NavigationProperty Name="Producto" Relationship="bulonera2Model.FK_Producto_Lineas" FromRole="Lineas" ToRole="Producto" />
-        </EntityType>
-        <EntityType Name="Lote">
-          <Key>
-            <PropertyRef Name="id_lote" />
-          </Key>
-          <Property Name="id_lote" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_odf" Type="Int32" Nullable="false" />
-          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Producto" Type="Int32" Nullable="false" />
-          <Property Name="Cantidad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Unidad" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ODF" Relationship="bulonera2Model.FK_Lote_ODF" FromRole="Lote" ToRole="ODF" />
-          <NavigationProperty Name="Producto1" Relationship="bulonera2Model.FK_Lote_Producto" FromRole="Lote" ToRole="Producto" />
-          <NavigationProperty Name="Productos" Relationship="bulonera2Model.FK_Lote_Productos" FromRole="Lote" ToRole="Productos" />
-          <NavigationProperty Name="UnidadesOdf" Relationship="bulonera2Model.FK_Lote_UnidadesOdf" FromRole="Lote" ToRole="UnidadesOdf" />
-        </EntityType>
-        <EntityType Name="ODF">
-          <Key>
-            <PropertyRef Name="id_odf" />
-          </Key>
-          <Property Name="id_odf" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Usuario" Type="Int32" Nullable="false" />
-          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FechaFinalizacion" Type="DateTime" Precision="0" />
-          <Property Name="Estado" Type="Int32" />
-          <Property Name="Observaciones" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
-          <Property Name="Sector" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Lote" Relationship="bulonera2Model.FK_Lote_ODF" FromRole="ODF" ToRole="Lote" />
-          <NavigationProperty Name="USUARIOS" Relationship="bulonera2Model.FK_ODF_USUARIOS" FromRole="ODF" ToRole="USUARIOS" />
-        </EntityType>
-        <EntityType Name="Producto">
-          <Key>
-            <PropertyRef Name="id_producto" />
-          </Key>
-          <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="fk_linea" Type="Int32" />
-          <NavigationProperty Name="Cotas" Relationship="bulonera2Model.FK_Cotas_Producto" FromRole="Producto" ToRole="Cotas" />
-          <NavigationProperty Name="Lineas" Relationship="bulonera2Model.FK_Producto_Lineas" FromRole="Producto" ToRole="Lineas" />
-          <NavigationProperty Name="Lote" Relationship="bulonera2Model.FK_Lote_Producto" FromRole="Producto" ToRole="Lote" />
-          <NavigationProperty Name="UnidadesOdf" Relationship="bulonera2Model.FK_UnidadesOdf_Producto" FromRole="Producto" ToRole="UnidadesOdf" />
-        </EntityType>
-        <EntityType Name="Productos">
-          <Key>
-            <PropertyRef Name="Id_productos" />
-          </Key>
-          <Property Name="Id_productos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="norma" Type="Int32" Nullable="false" />
-          <Property Name="PesoUnidad" Type="Double" />
-          <Property Name="PesoLote" Type="Double" />
-          <NavigationProperty Name="Lote" Relationship="bulonera2Model.FK_Lote_Productos" FromRole="Productos" ToRole="Lote" />
-          <NavigationProperty Name="UnidadesOdf" Relationship="bulonera2Model.FK_UnidadesOdf_Productos" FromRole="Productos" ToRole="UnidadesOdf" />
-        </EntityType>
-        <EntityType Name="UnidadesOdf">
-          <Key>
-            <PropertyRef Name="Id_unidad" />
-          </Key>
-          <Property Name="Id_unidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_lote" Type="Int32" />
-          <Property Name="Nombre" Type="Int32" />
-          <Property Name="Producto" Type="Int32" />
-          <Property Name="PesoUnidad" Type="Double" />
-          <NavigationProperty Name="Lote" Relationship="bulonera2Model.FK_Lote_UnidadesOdf" FromRole="UnidadesOdf" ToRole="Lote" />
-          <NavigationProperty Name="Producto1" Relationship="bulonera2Model.FK_UnidadesOdf_Producto" FromRole="UnidadesOdf" ToRole="Producto" />
-          <NavigationProperty Name="Productos" Relationship="bulonera2Model.FK_UnidadesOdf_Productos" FromRole="UnidadesOdf" ToRole="Productos" />
-        </EntityType>
-        <Association Name="FK_Cotas_DiccionarioDeFabricacion">
-          <End Type="bulonera2Model.DiccionarioDeFabricacion" Role="DiccionarioDeFabricacion" Multiplicity="1" />
-          <End Type="bulonera2Model.Cotas" Role="Cotas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DiccionarioDeFabricacion">
-              <PropertyRef Name="id_dic" />
-            </Principal>
-            <Dependent Role="Cotas">
-              <PropertyRef Name="fk_Nombre_Cot" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cotas_Producto">
-          <End Type="bulonera2Model.Producto" Role="Producto" Multiplicity="1" />
-          <End Type="bulonera2Model.Cotas" Role="Cotas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Producto">
-              <PropertyRef Name="id_producto" />
-            </Principal>
-            <Dependent Role="Cotas">
-              <PropertyRef Name="id_prod" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Lineas_DiccionarioDeFabricacion">
-          <End Type="bulonera2Model.DiccionarioDeFabricacion" Role="DiccionarioDeFabricacion" Multiplicity="0..1" />
-          <End Type="bulonera2Model.Lineas" Role="Lineas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DiccionarioDeFabricacion">
-              <PropertyRef Name="id_dic" />
-            </Principal>
-            <Dependent Role="Lineas">
-              <PropertyRef Name="fk_Norma" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Lineas_Imagenes">
-          <End Type="bulonera2Model.Imagenes" Role="Imagenes" Multiplicity="0..1" />
-          <End Type="bulonera2Model.Lineas" Role="Lineas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Imagenes">
-              <PropertyRef Name="id_imagen" />
-            </Principal>
-            <Dependent Role="Lineas">
-              <PropertyRef Name="fk_Imagen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Producto_Lineas">
-          <End Type="bulonera2Model.Lineas" Role="Lineas" Multiplicity="0..1" />
-          <End Type="bulonera2Model.Producto" Role="Producto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lineas">
-              <PropertyRef Name="id_linea" />
-            </Principal>
-            <Dependent Role="Producto">
-              <PropertyRef Name="fk_linea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Lote_ODF">
-          <End Type="bulonera2Model.ODF" Role="ODF" Multiplicity="1" />
-          <End Type="bulonera2Model.Lote" Role="Lote" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ODF">
-              <PropertyRef Name="id_odf" />
-            </Principal>
-            <Dependent Role="Lote">
-              <PropertyRef Name="id_odf" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Lote_Producto">
-          <End Type="bulonera2Model.Producto" Role="Producto" Multiplicity="1" />
-          <End Type="bulonera2Model.Lote" Role="Lote" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Producto">
-              <PropertyRef Name="id_producto" />
-            </Principal>
-            <Dependent Role="Lote">
-              <PropertyRef Name="Producto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Lote_Productos">
-          <End Type="bulonera2Model.Productos" Role="Productos" Multiplicity="1" />
-          <End Type="bulonera2Model.Lote" Role="Lote" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="Id_productos" />
-            </Principal>
-            <Dependent Role="Lote">
-              <PropertyRef Name="Producto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Lote_UnidadesOdf">
-          <End Type="bulonera2Model.UnidadesOdf" Role="UnidadesOdf" Multiplicity="1" />
-          <End Type="bulonera2Model.Lote" Role="Lote" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UnidadesOdf">
-              <PropertyRef Name="Id_unidad" />
-            </Principal>
-            <Dependent Role="Lote">
-              <PropertyRef Name="Unidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ODF_USUARIOS">
-          <End Type="bulonera2Model.USUARIOS" Role="USUARIOS" Multiplicity="1" />
-          <End Type="bulonera2Model.ODF" Role="ODF" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USUARIOS">
-              <PropertyRef Name="id_usuario" />
-            </Principal>
-            <Dependent Role="ODF">
-              <PropertyRef Name="Usuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UnidadesOdf_Producto">
-          <End Type="bulonera2Model.Producto" Role="Producto" Multiplicity="0..1" />
-          <End Type="bulonera2Model.UnidadesOdf" Role="UnidadesOdf" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Producto">
-              <PropertyRef Name="id_producto" />
-            </Principal>
-            <Dependent Role="UnidadesOdf">
-              <PropertyRef Name="Producto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UnidadesOdf_Productos">
-          <End Type="bulonera2Model.Productos" Role="Productos" Multiplicity="0..1" />
-          <End Type="bulonera2Model.UnidadesOdf" Role="UnidadesOdf" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="Id_productos" />
-            </Principal>
-            <Dependent Role="UnidadesOdf">
-              <PropertyRef Name="Producto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="bulonera2ModelStoreContainer" CdmEntityContainer="bulonera2Entities22">
+        <EntityContainerMapping StorageEntityContainer="bulonera2Model2StoreContainer" CdmEntityContainer="bulonera2Entities2">
+          <EntitySetMapping Name="Cotas">
+            <EntityTypeMapping TypeName="bulonera2Model2.Cotas">
+              <MappingFragment StoreEntitySet="Cotas">
+                <ScalarProperty Name="id_cot" ColumnName="id_cot" />
+                <ScalarProperty Name="fk_Nombre_Cot" ColumnName="fk_Nombre_Cot" />
+                <ScalarProperty Name="id_prod" ColumnName="id_prod" />
+                <ScalarProperty Name="max_cot" ColumnName="max_cot" />
+                <ScalarProperty Name="min_cot" ColumnName="min_cot" />
+                <ScalarProperty Name="x_pos" ColumnName="x_pos" />
+                <ScalarProperty Name="y_pos" ColumnName="y_pos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DICCIONARIO_FAB">
-            <EntityTypeMapping TypeName="bulonera2Model.DICCIONARIO_FAB">
+            <EntityTypeMapping TypeName="bulonera2Model2.DICCIONARIO_FAB">
               <MappingFragment StoreEntitySet="DICCIONARIO_FAB">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="dic_cab" ColumnName="dic_cab" />
@@ -1030,8 +1044,50 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DiccionarioDeFabricacion">
+            <EntityTypeMapping TypeName="bulonera2Model2.DiccionarioDeFabricacion">
+              <MappingFragment StoreEntitySet="DiccionarioDeFabricacion">
+                <ScalarProperty Name="id_dic" ColumnName="id_dic" />
+                <ScalarProperty Name="dic_cab" ColumnName="dic_cab" />
+                <ScalarProperty Name="dic_cod" ColumnName="dic_cod" />
+                <ScalarProperty Name="dic_abr" ColumnName="dic_abr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imagenes">
+            <EntityTypeMapping TypeName="bulonera2Model2.Imagenes">
+              <MappingFragment StoreEntitySet="Imagenes">
+                <ScalarProperty Name="id_imagen" ColumnName="id_imagen" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="patch" ColumnName="patch" />
+                <ScalarProperty Name="imag" ColumnName="imag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lineas">
+            <EntityTypeMapping TypeName="bulonera2Model2.Lineas">
+              <MappingFragment StoreEntitySet="Lineas">
+                <ScalarProperty Name="id_linea" ColumnName="id_linea" />
+                <ScalarProperty Name="CodigoLinea" ColumnName="CodigoLinea" />
+                <ScalarProperty Name="fk_Norma" ColumnName="fk_Norma" />
+                <ScalarProperty Name="fk_Imagen" ColumnName="fk_Imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lote">
+            <EntityTypeMapping TypeName="bulonera2Model2.Lote">
+              <MappingFragment StoreEntitySet="Lote">
+                <ScalarProperty Name="id_lote" ColumnName="id_lote" />
+                <ScalarProperty Name="id_odf" ColumnName="id_odf" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Unidad" ColumnName="Unidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MODULO_USUARIO">
-            <EntityTypeMapping TypeName="bulonera2Model.MODULO_USUARIO">
+            <EntityTypeMapping TypeName="bulonera2Model2.MODULO_USUARIO">
               <MappingFragment StoreEntitySet="MODULO/USUARIO">
                 <ScalarProperty Name="ID_PERMISO" ColumnName="ID_PERMISO" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
@@ -1040,7 +1096,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MODULOS">
-            <EntityTypeMapping TypeName="bulonera2Model.MODULOS">
+            <EntityTypeMapping TypeName="bulonera2Model2.MODULOS">
               <MappingFragment StoreEntitySet="MODULOS">
                 <ScalarProperty Name="ID_MODULO" ColumnName="ID_MODULO" />
                 <ScalarProperty Name="NOMBRE_MOD" ColumnName="NOMBRE_MOD" />
@@ -1049,8 +1105,43 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ODF">
+            <EntityTypeMapping TypeName="bulonera2Model2.ODF">
+              <MappingFragment StoreEntitySet="ODF">
+                <ScalarProperty Name="id_odf" ColumnName="id_odf" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaFinalizacion" ColumnName="FechaFinalizacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="bulonera2Model2.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="fk_linea" ColumnName="fk_linea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="bulonera2Model2.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="Id_productos" ColumnName="Id_productos" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="norma" ColumnName="norma" />
+                <ScalarProperty Name="PesoUnidad" ColumnName="PesoUnidad" />
+                <ScalarProperty Name="PesoLote" ColumnName="PesoLote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SUBMENU">
-            <EntityTypeMapping TypeName="bulonera2Model.SUBMENU">
+            <EntityTypeMapping TypeName="bulonera2Model2.SUBMENU">
               <MappingFragment StoreEntitySet="SUBMENU">
                 <ScalarProperty Name="id_SubMenu" ColumnName="id_SubMenu" />
                 <ScalarProperty Name="subMenu_nombre" ColumnName="subMenu_nombre" />
@@ -1060,7 +1151,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SUBMODULOS">
-            <EntityTypeMapping TypeName="bulonera2Model.SUBMODULOS">
+            <EntityTypeMapping TypeName="bulonera2Model2.SUBMODULOS">
               <MappingFragment StoreEntitySet="SUBMODULOS">
                 <ScalarProperty Name="ID_SUBMODULO" ColumnName="ID_SUBMODULO" />
                 <ScalarProperty Name="NOMBRE_SUBMOD" ColumnName="NOMBRE_SUBMOD" />
@@ -1070,7 +1161,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="bulonera2Model.sysdiagrams">
+            <EntityTypeMapping TypeName="bulonera2Model2.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1080,8 +1171,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UnidadesOdf">
+            <EntityTypeMapping TypeName="bulonera2Model2.UnidadesOdf">
+              <MappingFragment StoreEntitySet="UnidadesOdf">
+                <ScalarProperty Name="Id_unidad" ColumnName="Id_unidad" />
+                <ScalarProperty Name="id_lote" ColumnName="id_lote" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="PesoUnidad" ColumnName="PesoUnidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="USUARIOS">
-            <EntityTypeMapping TypeName="bulonera2Model.USUARIOS">
+            <EntityTypeMapping TypeName="bulonera2Model2.USUARIOS">
               <MappingFragment StoreEntitySet="USUARIOS">
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
@@ -1093,20 +1195,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="bulonera2Model.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="bulonera2Model.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="bulonera2Model.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="bulonera2Model.Store.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="bulonera2Model2.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="bulonera2Model2.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="bulonera2Model2.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="bulonera2Model2.Store.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="bulonera2Model.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="bulonera2Model2.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="bulonera2Model.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="bulonera2Model2.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="bulonera2Model.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="bulonera2Model2.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1115,133 +1217,32 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_modulospermitidos" FunctionName="bulonera2Model.Store.sp_modulospermitidos">
+          <FunctionImportMapping FunctionImportName="sp_modulospermitidos" FunctionName="bulonera2Model2.Store.sp_modulospermitidos">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="bulonera2Model.sp_modulospermitidos_Result">
+              <ComplexTypeMapping TypeName="bulonera2Model2.sp_modulospermitidos_Result">
                 <ScalarProperty Name="NOMBRE_MOD" ColumnName="NOMBRE_MOD" />
                 <ScalarProperty Name="COD_MOD" ColumnName="COD_MOD" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="bulonera2Model.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="Sp_SubMenus" FunctionName="bulonera2Model.Store.Sp_SubMenus">
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="bulonera2Model2.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="Sp_SubMenus" FunctionName="bulonera2Model2.Store.Sp_SubMenus">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="bulonera2Model.Sp_SubMenus_Result">
+              <ComplexTypeMapping TypeName="bulonera2Model2.Sp_SubMenus_Result">
                 <ScalarProperty Name="subMenu_nombre" ColumnName="subMenu_nombre" />
                 <ScalarProperty Name="subMenu_Sys" ColumnName="subMenu_Sys" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Sp_Submodulos" FunctionName="bulonera2Model.Store.Sp_Submodulos">
+          <FunctionImportMapping FunctionImportName="Sp_Submodulos" FunctionName="bulonera2Model2.Store.Sp_Submodulos">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="bulonera2Model.Sp_Submodulos_Result">
+              <ComplexTypeMapping TypeName="bulonera2Model2.Sp_Submodulos_Result">
                 <ScalarProperty Name="NOMBRE_SUBMOD" ColumnName="NOMBRE_SUBMOD" />
                 <ScalarProperty Name="SYS_NOM" ColumnName="SYS_NOM" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="bulonera2Model.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="Cotas">
-            <EntityTypeMapping TypeName="bulonera2Model.Cotas">
-              <MappingFragment StoreEntitySet="Cotas">
-                <ScalarProperty Name="y_pos" ColumnName="y_pos" />
-                <ScalarProperty Name="x_pos" ColumnName="x_pos" />
-                <ScalarProperty Name="min_cot" ColumnName="min_cot" />
-                <ScalarProperty Name="max_cot" ColumnName="max_cot" />
-                <ScalarProperty Name="id_prod" ColumnName="id_prod" />
-                <ScalarProperty Name="fk_Nombre_Cot" ColumnName="fk_Nombre_Cot" />
-                <ScalarProperty Name="id_cot" ColumnName="id_cot" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DiccionarioDeFabricacion">
-            <EntityTypeMapping TypeName="bulonera2Model.DiccionarioDeFabricacion">
-              <MappingFragment StoreEntitySet="DiccionarioDeFabricacion">
-                <ScalarProperty Name="dic_abr" ColumnName="dic_abr" />
-                <ScalarProperty Name="dic_cod" ColumnName="dic_cod" />
-                <ScalarProperty Name="dic_cab" ColumnName="dic_cab" />
-                <ScalarProperty Name="id_dic" ColumnName="id_dic" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Imagenes">
-            <EntityTypeMapping TypeName="bulonera2Model.Imagenes">
-              <MappingFragment StoreEntitySet="Imagenes">
-                <ScalarProperty Name="imag" ColumnName="imag" />
-                <ScalarProperty Name="patch" ColumnName="patch" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="id_imagen" ColumnName="id_imagen" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Lineas">
-            <EntityTypeMapping TypeName="bulonera2Model.Lineas">
-              <MappingFragment StoreEntitySet="Lineas">
-                <ScalarProperty Name="fk_Imagen" ColumnName="fk_Imagen" />
-                <ScalarProperty Name="fk_Norma" ColumnName="fk_Norma" />
-                <ScalarProperty Name="CodigoLinea" ColumnName="CodigoLinea" />
-                <ScalarProperty Name="id_linea" ColumnName="id_linea" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Lote">
-            <EntityTypeMapping TypeName="bulonera2Model.Lote">
-              <MappingFragment StoreEntitySet="Lote">
-                <ScalarProperty Name="Unidad" ColumnName="Unidad" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="Producto" ColumnName="Producto" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="id_odf" ColumnName="id_odf" />
-                <ScalarProperty Name="id_lote" ColumnName="id_lote" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ODF">
-            <EntityTypeMapping TypeName="bulonera2Model.ODF">
-              <MappingFragment StoreEntitySet="ODF">
-                <ScalarProperty Name="Sector" ColumnName="Sector" />
-                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="FechaFinalizacion" ColumnName="FechaFinalizacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="id_odf" ColumnName="id_odf" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Producto">
-            <EntityTypeMapping TypeName="bulonera2Model.Producto">
-              <MappingFragment StoreEntitySet="Producto">
-                <ScalarProperty Name="fk_linea" ColumnName="fk_linea" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Productos">
-            <EntityTypeMapping TypeName="bulonera2Model.Productos">
-              <MappingFragment StoreEntitySet="Productos">
-                <ScalarProperty Name="PesoLote" ColumnName="PesoLote" />
-                <ScalarProperty Name="PesoUnidad" ColumnName="PesoUnidad" />
-                <ScalarProperty Name="norma" ColumnName="norma" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Id_productos" ColumnName="Id_productos" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UnidadesOdf">
-            <EntityTypeMapping TypeName="bulonera2Model.UnidadesOdf">
-              <MappingFragment StoreEntitySet="UnidadesOdf">
-                <ScalarProperty Name="PesoUnidad" ColumnName="PesoUnidad" />
-                <ScalarProperty Name="Producto" ColumnName="Producto" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="id_lote" ColumnName="id_lote" />
-                <ScalarProperty Name="Id_unidad" ColumnName="Id_unidad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="bulonera2Model2.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

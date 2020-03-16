@@ -11,6 +11,17 @@ namespace CNegocio
     public class ClsUsuario
 
     {
+
+        /// ////////////ejemplo de join en tres tablas
+        /// var resultado =(from kar in db.Kardexs
+        //join art in db.Articulos on kar.ArticuloID equals art.ArticuloID
+        //join bod in db.Bodegas on art.BodegaID equals bod.BodegaID
+
+        //where bod.BodegaID == busqueda
+        //select kar
+        //       );
+        /// 
+        /// 
         /// <summary>
         /// Variables globales del la propiedad
         /// </summary>
@@ -24,9 +35,20 @@ namespace CNegocio
         /// <param name="Contraceña"></param>
         /// <returns></returns>
         /// 
+        public List<MODULOS> TraerAccesosActuales(int id)
+        {
+            using (bulonera2Entities2 db = new bulonera2Entities2())
+            {
+                var _Modulos = (from x in db.USUARIOS
+                               join modUs in db.MODULO_USUARIO on x.id_usuario equals modUs.ID_USUARIO
+                               join mod in db.MODULOS on modUs.ID_MODULO equals mod.ID_MODULO
+                               where x.id_usuario==id select mod).ToList();
+                return _Modulos;
+            }
+        }
         public List<USUARIOS> TraerUsuarios()
         {
-            using(bulonera2Entities1 db = new bulonera2Entities1())
+            using(bulonera2Entities2 db = new bulonera2Entities2())
             {
                 var usuarios = (from x in db.USUARIOS select x).ToList();
                 return usuarios;
@@ -34,16 +56,17 @@ namespace CNegocio
         }
          public int OptenerUsuario(string nombre)
         {
-            using (bulonera2Entities1 db = new bulonera2Entities1())
+            using (bulonera2Entities2 db = new bulonera2Entities2())
             {
                 var usuarios = (from x in db.USUARIOS where x.nombre == nombre select x).FirstOrDefault();
                 return usuarios.id_usuario;
             }
         }
 
+
         public bool EliminarUsuario(object ob)
         {
-            using (bulonera2Entities1 db = new bulonera2Entities1())
+            using (bulonera2Entities2 db = new bulonera2Entities2())
             {
 
                 using (var Transaction = db.Database.BeginTransaction())
@@ -98,7 +121,7 @@ namespace CNegocio
         }
         public static bool agragar(object ob)
         {
-            using (bulonera2Entities1 db = new bulonera2Entities1())
+            using (bulonera2Entities2 db = new bulonera2Entities2())
             {
                 using (var Transaction = db.Database.BeginTransaction())
                 {
@@ -127,7 +150,7 @@ namespace CNegocio
     {
         public  bool agragar(object ob)
         {
-            using (bulonera2Entities1 db = new bulonera2Entities1())
+            using (bulonera2Entities2 db = new bulonera2Entities2())
             {
                 using (var Transaction = db.Database.BeginTransaction())
                 {

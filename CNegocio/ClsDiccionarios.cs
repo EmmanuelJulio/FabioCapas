@@ -12,7 +12,7 @@ namespace CNegocio
     {
         public List<DICCIONARIO_FAB> TraerDicFab(int cab)
         {
-            using(bulonera2Entities1 db = new bulonera2Entities1())
+            using(bulonera2Entities2 db = new bulonera2Entities2())
             {
                 var DicFab = (from x in db.DICCIONARIO_FAB where x.dic_cab == cab select x).ToList();
                 return DicFab;
@@ -20,7 +20,7 @@ namespace CNegocio
         }
         //public List<> TraerDicFab(int cab)
         //{
-        //    using (bulonera2Entities1 db = new bulonera2Entities1())
+        //    using (bulonera2Entities22 db = new bulonera2Entities22())
         //    {
         //        var DicFab = (from x in db.DICCIONARIO_FAB where x.dic_cab == cab select x).ToList();
         //        return DicFab;

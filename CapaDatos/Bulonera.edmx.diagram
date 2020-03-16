@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b13d127b394f4208a4b756abfddf0c68" Name="Diagram1">
+        <EntityTypeShape EntityType="bulonera2Model2.Cotas" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.DICCIONARIO_FAB" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.DiccionarioDeFabricacion" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.Imagenes" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.Lineas" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.Lote" Width="1.5" PointX="10.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.MODULO_USUARIO" Width="1.5" PointX="13" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.MODULOS" Width="1.5" PointX="10.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.ODF" Width="1.5" PointX="8.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.Producto" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.Productos" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.SUBMENU" Width="1.5" PointX="15.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.SUBMODULOS" Width="1.5" PointX="13" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.UnidadesOdf" Width="1.5" PointX="13.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bulonera2Model2.USUARIOS" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="bulonera2Model2.FK_Cotas_DiccionarioDeFabricacion" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_Cotas_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_Lineas_DiccionarioDeFabricacion" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_Lineas_Imagenes" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_Producto_Lineas" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_Lote_ODF" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_Lote_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_Lote_Productos" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_Lote_UnidadesOdf" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_MODULO_USUARIO_MODULOS" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_MODULO_USUARIO_USUARIOS" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_SUBMODULOS_MODULOS" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_ODF_USUARIOS" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_UnidadesOdf_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_UnidadesOdf_Productos" ManuallyRouted="false" />
+        <AssociationConnector Association="bulonera2Model2.FK_SUBMENU_SUBMODULOS" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

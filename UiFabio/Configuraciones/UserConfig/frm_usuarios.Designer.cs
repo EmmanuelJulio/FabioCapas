@@ -41,8 +41,8 @@
             this.Btn_EliminarMod = new System.Windows.Forms.Button();
             this.listUsu = new System.Windows.Forms.ListBox();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
-            this.listusuarios2 = new System.Windows.Forms.ListBox();
             this.CHK_Modulos = new System.Windows.Forms.CheckedListBox();
+            this.listusuarios2 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnNormal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximize)).BeginInit();
@@ -346,6 +346,7 @@
             // 
             this.metroTabPage3.Controls.Add(this.CHK_Modulos);
             this.metroTabPage3.Controls.Add(this.listusuarios2);
+            this.metroTabPage3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.HorizontalScrollbarSize = 10;
@@ -360,34 +361,37 @@
             this.metroTabPage3.VerticalScrollbarSize = 10;
             this.metroTabPage3.Click += new System.EventHandler(this.metroTabPage3_Click);
             // 
+            // CHK_Modulos
+            // 
+            this.CHK_Modulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.CHK_Modulos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CHK_Modulos.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CHK_Modulos.ForeColor = System.Drawing.Color.LightGray;
+            this.CHK_Modulos.FormattingEnabled = true;
+            this.CHK_Modulos.Location = new System.Drawing.Point(172, 0);
+            this.CHK_Modulos.Name = "CHK_Modulos";
+            this.CHK_Modulos.Size = new System.Drawing.Size(172, 505);
+            this.CHK_Modulos.TabIndex = 8;
+            // 
             // listusuarios2
             // 
-            this.listusuarios2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.listusuarios2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.listusuarios2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listusuarios2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listusuarios2.ForeColor = System.Drawing.Color.LightGray;
             this.listusuarios2.FormattingEnabled = true;
             this.listusuarios2.ItemHeight = 17;
             this.listusuarios2.Location = new System.Drawing.Point(0, 0);
             this.listusuarios2.Name = "listusuarios2";
             this.listusuarios2.Size = new System.Drawing.Size(172, 505);
             this.listusuarios2.TabIndex = 7;
-            // 
-            // CHK_Modulos
-            // 
-            this.CHK_Modulos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(205)))), ((int)(((byte)(219)))));
-            this.CHK_Modulos.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CHK_Modulos.FormattingEnabled = true;
-            this.CHK_Modulos.Location = new System.Drawing.Point(178, 4);
-            this.CHK_Modulos.Name = "CHK_Modulos";
-            this.CHK_Modulos.Size = new System.Drawing.Size(172, 504);
-            this.CHK_Modulos.TabIndex = 8;
+            this.listusuarios2.SelectedIndexChanged += new System.EventHandler(this.Listusuarios2_SelectedIndexChanged);
             // 
             // frm_usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.ClientSize = new System.Drawing.Size(1067, 588);
             this.Name = "frm_usuarios";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm_usuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnNormal)).EndInit();

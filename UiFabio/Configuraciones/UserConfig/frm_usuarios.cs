@@ -121,5 +121,29 @@ namespace UiFabio.Configuraciones.UserConfig
         {
             
         }
+
+        private void Listusuarios2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i=0; i == CHK_Modulos.Items.Count; i++)
+            {
+                if (listusuarios2.GetSelected(i))
+                {
+                    listusuarios2.Items[i] = false;                                                                                           
+                }
+            }
+            ClsUsuario cmod = new ClsUsuario();
+
+            foreach(CapaDatos.MODULOS mod in cmod.TraerAccesosActuales(cmod.OptenerUsuario(listusuarios2.SelectedItem.ToString())))
+            {
+                
+                for (int i = 0; i < CHK_Modulos.Items.Count; i++)
+                {
+                    if (CHK_Modulos.Items[i].ToString() == mod.NOMBRE_MOD)
+                    {
+                        CHK_Modulos.Items[i] = true;
+                    }
+                }
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace CNegocio
     {
         public List<MODULOS> OptenerTodosLosModulos()
         {
-            using (CapaDatos.bulonera2Entities1 db = new bulonera2Entities1())
+            using (CapaDatos.bulonera2Entities2 db = new bulonera2Entities2())
             {
                 var mod = (from x in db.MODULOS select x).ToList();
                 return mod;
