@@ -17,6 +17,18 @@
           <Property Name="x_pos" Type="int" Nullable="false" />
           <Property Name="y_pos" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Cotas_planos">
+          <Key>
+            <PropertyRef Name="id_cota_plano" />
+          </Key>
+          <Property Name="id_cota_plano" Type="int" Nullable="false" />
+          <Property Name="id_tipo" Type="int" />
+          <Property Name="Toleracia_max" Type="float" />
+          <Property Name="Toleracia_min" Type="float" />
+          <Property Name="id_maquina" Type="int" />
+          <Property Name="Valor_Cota" Type="float" />
+          <Property Name="id_operacion" Type="int" />
+        </EntityType>
         <EntityType Name="DICCIONARIO_FAB">
           <Key>
             <PropertyRef Name="id" />
@@ -26,6 +38,15 @@
           <Property Name="dic_cod" Type="int" Nullable="false" />
           <Property Name="dic_des" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="dic_abr" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Diccionario_odfm">
+          <Key>
+            <PropertyRef Name="id_dic_odfm" />
+          </Key>
+          <Property Name="id_dic_odfm" Type="int" Nullable="false" />
+          <Property Name="dic_cab" Type="int" />
+          <Property Name="dic_cod" Type="int" />
+          <Property Name="dic_abr" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DiccionarioDeFabricacion">
           <Key>
@@ -93,6 +114,61 @@
           <Property Name="Estado" Type="int" />
           <Property Name="Observaciones" Type="varchar" MaxLength="400" />
           <Property Name="Sector" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ODF_MATRICERIA">
+          <Key>
+            <PropertyRef Name="id_odfmat" />
+          </Key>
+          <Property Name="id_odfmat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="odfm_codigo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha_creacion" Type="date" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="id_usuarioOrden" Type="int" Nullable="false" />
+          <Property Name="id_pano" Type="int" />
+          <Property Name="obs" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="odfm_insumos">
+          <Key>
+            <PropertyRef Name="id_insumo" />
+          </Key>
+          <Property Name="id_insumo" Type="int" Nullable="false" />
+          <Property Name="id_operacion" Type="int" />
+          <Property Name="AceroCalidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Of_tecnica_Cod_planos">
+          <Key>
+            <PropertyRef Name="id_codplanos" />
+          </Key>
+          <Property Name="id_codplanos" Type="int" Nullable="false" />
+          <Property Name="id_seccion" Type="int" />
+          <Property Name="Num_mac" Type="int" />
+          <Property Name="Num_rev_plan" Type="int" />
+          <Property Name="fecha_creacion" Type="date" />
+          <Property Name="UsuarioCreador" Type="int" />
+        </EntityType>
+        <EntityType Name="Plano">
+          <Key>
+            <PropertyRef Name="ID_PLANO" />
+          </Key>
+          <Property Name="ID_PLANO" Type="int" Nullable="false" />
+          <Property Name="Img" Type="image" />
+          <Property Name="id_codplanos" Type="int" />
+          <Property Name="id_cotas" Type="int" />
+        </EntityType>
+        <EntityType Name="Plano_operaciones">
+          <Key>
+            <PropertyRef Name="id_op" />
+          </Key>
+          <Property Name="id_op" Type="int" Nullable="false" />
+          <Property Name="id_plano" Type="int" Nullable="false" />
+          <Property Name="tipo_op" Type="int" Nullable="false" />
+          <Property Name="img" Type="image" />
+          <Property Name="id_Insumosnec" Type="int" />
+          <Property Name="Fecha_fin" Type="date" />
+          <Property Name="Obs" Type="varchar" MaxLength="200" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="is_usuarioAprobo" Type="int" />
+          <Property Name="op_finished" Type="bit" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -174,6 +250,30 @@
             </Principal>
             <Dependent Role="Cotas">
               <PropertyRef Name="fk_Nombre_Cot" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cotas_planos_Diccionario_odfm">
+          <End Role="Diccionario_odfm" Type="Self.Diccionario_odfm" Multiplicity="0..1" />
+          <End Role="Cotas_planos" Type="Self.Cotas_planos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diccionario_odfm">
+              <PropertyRef Name="id_dic_odfm" />
+            </Principal>
+            <Dependent Role="Cotas_planos">
+              <PropertyRef Name="id_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cotas_planos_Plano_operaciones">
+          <End Role="Plano_operaciones" Type="Self.Plano_operaciones" Multiplicity="0..1" />
+          <End Role="Cotas_planos" Type="Self.Cotas_planos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plano_operaciones">
+              <PropertyRef Name="id_op" />
+            </Principal>
+            <Dependent Role="Cotas_planos">
+              <PropertyRef Name="id_operacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -262,7 +362,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MODULO/USUARIO_MODULOS">
-          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1" />
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="MODULO/USUARIO" Type="Self.MODULO/USUARIO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODULOS">
@@ -285,6 +387,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ODF_MATRICERIA_Plano">
+          <End Role="Plano" Type="Self.Plano" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ODF_MATRICERIA" Type="Self.ODF_MATRICERIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plano">
+              <PropertyRef Name="ID_PLANO" />
+            </Principal>
+            <Dependent Role="ODF_MATRICERIA">
+              <PropertyRef Name="id_pano" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ODF_MATRICERIA_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="ODF_MATRICERIA" Type="Self.ODF_MATRICERIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="ODF_MATRICERIA">
+              <PropertyRef Name="id_usuarioOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ODF_USUARIOS">
           <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
           <End Role="ODF" Type="Self.ODF" Multiplicity="*" />
@@ -294,6 +422,126 @@
             </Principal>
             <Dependent Role="ODF">
               <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_odfm_insumos_Diccionario_odfm">
+          <End Role="Diccionario_odfm" Type="Self.Diccionario_odfm" Multiplicity="0..1" />
+          <End Role="odfm_insumos" Type="Self.odfm_insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diccionario_odfm">
+              <PropertyRef Name="id_dic_odfm" />
+            </Principal>
+            <Dependent Role="odfm_insumos">
+              <PropertyRef Name="AceroCalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Of_tecnica_Cod_planos_Diccionario_odfm">
+          <End Role="Diccionario_odfm" Type="Self.Diccionario_odfm" Multiplicity="0..1" />
+          <End Role="Of_tecnica_Cod_planos" Type="Self.Of_tecnica_Cod_planos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diccionario_odfm">
+              <PropertyRef Name="id_dic_odfm" />
+            </Principal>
+            <Dependent Role="Of_tecnica_Cod_planos">
+              <PropertyRef Name="id_seccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Of_tecnica_Cod_planos_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+          <End Role="Of_tecnica_Cod_planos" Type="Self.Of_tecnica_Cod_planos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Of_tecnica_Cod_planos">
+              <PropertyRef Name="UsuarioCreador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_Cotas_planos">
+          <End Role="Cotas_planos" Type="Self.Cotas_planos" Multiplicity="0..1" />
+          <End Role="Plano" Type="Self.Plano" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cotas_planos">
+              <PropertyRef Name="id_cota_plano" />
+            </Principal>
+            <Dependent Role="Plano">
+              <PropertyRef Name="id_cotas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_Of_tecnica_Cod_planos">
+          <End Role="Of_tecnica_Cod_planos" Type="Self.Of_tecnica_Cod_planos" Multiplicity="0..1" />
+          <End Role="Plano" Type="Self.Plano" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Of_tecnica_Cod_planos">
+              <PropertyRef Name="id_codplanos" />
+            </Principal>
+            <Dependent Role="Plano">
+              <PropertyRef Name="id_codplanos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_operaciones_Diccionario_odfm">
+          <End Role="Diccionario_odfm" Type="Self.Diccionario_odfm" Multiplicity="1" />
+          <End Role="Plano_operaciones" Type="Self.Plano_operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diccionario_odfm">
+              <PropertyRef Name="id_dic_odfm" />
+            </Principal>
+            <Dependent Role="Plano_operaciones">
+              <PropertyRef Name="tipo_op" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_operaciones_odfm_insumos">
+          <End Role="odfm_insumos" Type="Self.odfm_insumos" Multiplicity="0..1" />
+          <End Role="Plano_operaciones" Type="Self.Plano_operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="odfm_insumos">
+              <PropertyRef Name="id_insumo" />
+            </Principal>
+            <Dependent Role="Plano_operaciones">
+              <PropertyRef Name="id_Insumosnec" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_operaciones_Plano">
+          <End Role="Plano" Type="Self.Plano" Multiplicity="1" />
+          <End Role="Plano_operaciones" Type="Self.Plano_operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plano">
+              <PropertyRef Name="ID_PLANO" />
+            </Principal>
+            <Dependent Role="Plano_operaciones">
+              <PropertyRef Name="id_plano" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_operaciones_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+          <End Role="Plano_operaciones" Type="Self.Plano_operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Plano_operaciones">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_operaciones_USUARIOS1">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+          <End Role="Plano_operaciones" Type="Self.Plano_operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Plano_operaciones">
+              <PropertyRef Name="is_usuarioAprobo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -324,7 +572,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SUBMODULOS_MODULOS">
-          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="0..1" />
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SUBMODULOS" Type="Self.SUBMODULOS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MODULOS">
@@ -401,7 +651,9 @@
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="bulonera2ModelStoreContainer">
           <EntitySet Name="Cotas" EntityType="Self.Cotas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cotas_planos" EntityType="Self.Cotas_planos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DICCIONARIO_FAB" EntityType="Self.DICCIONARIO_FAB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diccionario_odfm" EntityType="Self.Diccionario_odfm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiccionarioDeFabricacion" EntityType="Self.DiccionarioDeFabricacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Imagenes" EntityType="Self.Imagenes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lineas" EntityType="Self.Lineas" Schema="dbo" store:Type="Tables" />
@@ -409,6 +661,11 @@
           <EntitySet Name="MODULO/USUARIO" EntityType="Self.MODULO/USUARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MODULOS" EntityType="Self.MODULOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ODF" EntityType="Self.ODF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ODF_MATRICERIA" EntityType="Self.ODF_MATRICERIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="odfm_insumos" EntityType="Self.odfm_insumos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Of_tecnica_Cod_planos" EntityType="Self.Of_tecnica_Cod_planos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plano" EntityType="Self.Plano" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plano_operaciones" EntityType="Self.Plano_operaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUBMENU" EntityType="Self.SUBMENU" Schema="dbo" store:Type="Tables" />
@@ -419,6 +676,14 @@
           <AssociationSet Name="FK_Cotas_DiccionarioDeFabricacion" Association="Self.FK_Cotas_DiccionarioDeFabricacion">
             <End Role="DiccionarioDeFabricacion" EntitySet="DiccionarioDeFabricacion" />
             <End Role="Cotas" EntitySet="Cotas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cotas_planos_Diccionario_odfm" Association="Self.FK_Cotas_planos_Diccionario_odfm">
+            <End Role="Diccionario_odfm" EntitySet="Diccionario_odfm" />
+            <End Role="Cotas_planos" EntitySet="Cotas_planos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cotas_planos_Plano_operaciones" Association="Self.FK_Cotas_planos_Plano_operaciones">
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
+            <End Role="Cotas_planos" EntitySet="Cotas_planos" />
           </AssociationSet>
           <AssociationSet Name="FK_Cotas_Producto" Association="Self.FK_Cotas_Producto">
             <End Role="Producto" EntitySet="Producto" />
@@ -456,9 +721,57 @@
             <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="MODULO/USUARIO" EntitySet="MODULO/USUARIO" />
           </AssociationSet>
+          <AssociationSet Name="FK_ODF_MATRICERIA_Plano" Association="Self.FK_ODF_MATRICERIA_Plano">
+            <End Role="Plano" EntitySet="Plano" />
+            <End Role="ODF_MATRICERIA" EntitySet="ODF_MATRICERIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ODF_MATRICERIA_USUARIOS" Association="Self.FK_ODF_MATRICERIA_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="ODF_MATRICERIA" EntitySet="ODF_MATRICERIA" />
+          </AssociationSet>
           <AssociationSet Name="FK_ODF_USUARIOS" Association="Self.FK_ODF_USUARIOS">
             <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="ODF" EntitySet="ODF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_odfm_insumos_Diccionario_odfm" Association="Self.FK_odfm_insumos_Diccionario_odfm">
+            <End Role="Diccionario_odfm" EntitySet="Diccionario_odfm" />
+            <End Role="odfm_insumos" EntitySet="odfm_insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Of_tecnica_Cod_planos_Diccionario_odfm" Association="Self.FK_Of_tecnica_Cod_planos_Diccionario_odfm">
+            <End Role="Diccionario_odfm" EntitySet="Diccionario_odfm" />
+            <End Role="Of_tecnica_Cod_planos" EntitySet="Of_tecnica_Cod_planos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Of_tecnica_Cod_planos_USUARIOS" Association="Self.FK_Of_tecnica_Cod_planos_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="Of_tecnica_Cod_planos" EntitySet="Of_tecnica_Cod_planos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_Cotas_planos" Association="Self.FK_Plano_Cotas_planos">
+            <End Role="Cotas_planos" EntitySet="Cotas_planos" />
+            <End Role="Plano" EntitySet="Plano" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_Of_tecnica_Cod_planos" Association="Self.FK_Plano_Of_tecnica_Cod_planos">
+            <End Role="Of_tecnica_Cod_planos" EntitySet="Of_tecnica_Cod_planos" />
+            <End Role="Plano" EntitySet="Plano" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_operaciones_Diccionario_odfm" Association="Self.FK_Plano_operaciones_Diccionario_odfm">
+            <End Role="Diccionario_odfm" EntitySet="Diccionario_odfm" />
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_operaciones_odfm_insumos" Association="Self.FK_Plano_operaciones_odfm_insumos">
+            <End Role="odfm_insumos" EntitySet="odfm_insumos" />
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_operaciones_Plano" Association="Self.FK_Plano_operaciones_Plano">
+            <End Role="Plano" EntitySet="Plano" />
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_operaciones_USUARIOS" Association="Self.FK_Plano_operaciones_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_operaciones_USUARIOS1" Association="Self.FK_Plano_operaciones_USUARIOS1">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
           </AssociationSet>
           <AssociationSet Name="FK_Producto_Lineas" Association="Self.FK_Producto_Lineas">
             <End Role="Lineas" EntitySet="Lineas" />
@@ -561,6 +874,10 @@
           <NavigationProperty Name="MODULO_USUARIO" Relationship="Self.FK_MODULO_USUARIO_USUARIOS" FromRole="USUARIOS" ToRole="MODULO_USUARIO" />
           <NavigationProperty Name="ODF" Relationship="bulonera2Model.FK_ODF_USUARIOS" FromRole="USUARIOS" ToRole="ODF" />
           <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="ODF_MATRICERIA" Relationship="bulonera2Model.FK_ODF_MATRICERIA_USUARIOS" FromRole="USUARIOS" ToRole="ODF_MATRICERIA" />
+          <NavigationProperty Name="Of_tecnica_Cod_planos" Relationship="bulonera2Model.FK_Of_tecnica_Cod_planos_USUARIOS" FromRole="USUARIOS" ToRole="Of_tecnica_Cod_planos" />
+          <NavigationProperty Name="Plano_operaciones" Relationship="bulonera2Model.FK_Plano_operaciones_USUARIOS" FromRole="USUARIOS" ToRole="Plano_operaciones" />
+          <NavigationProperty Name="Plano_operaciones1" Relationship="bulonera2Model.FK_Plano_operaciones_USUARIOS1" FromRole="USUARIOS" ToRole="Plano_operaciones" />
         </EntityType>
         <Association Name="FK_MODULO_USUARIO_MODULOS">
           <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1" />
@@ -731,6 +1048,69 @@
           <AssociationSet Name="FK_UnidadesOdf_Productos" Association="bulonera2Model.FK_UnidadesOdf_Productos">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="UnidadesOdf" EntitySet="UnidadesOdf" />
+          </AssociationSet>
+          <EntitySet Name="Cotas_planos" EntityType="bulonera2Model.Cotas_planos" />
+          <EntitySet Name="Diccionario_odfm" EntityType="bulonera2Model.Diccionario_odfm" />
+          <EntitySet Name="ODF_MATRICERIA" EntityType="bulonera2Model.ODF_MATRICERIA" />
+          <EntitySet Name="odfm_insumos" EntityType="bulonera2Model.odfm_insumos" />
+          <EntitySet Name="Of_tecnica_Cod_planos" EntityType="bulonera2Model.Of_tecnica_Cod_planos" />
+          <EntitySet Name="Plano" EntityType="bulonera2Model.Plano" />
+          <EntitySet Name="Plano_operaciones" EntityType="bulonera2Model.Plano_operaciones" />
+          <AssociationSet Name="FK_Cotas_planos_Diccionario_odfm" Association="bulonera2Model.FK_Cotas_planos_Diccionario_odfm">
+            <End Role="Diccionario_odfm" EntitySet="Diccionario_odfm" />
+            <End Role="Cotas_planos" EntitySet="Cotas_planos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cotas_planos_Plano_operaciones" Association="bulonera2Model.FK_Cotas_planos_Plano_operaciones">
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
+            <End Role="Cotas_planos" EntitySet="Cotas_planos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_Cotas_planos" Association="bulonera2Model.FK_Plano_Cotas_planos">
+            <End Role="Cotas_planos" EntitySet="Cotas_planos" />
+            <End Role="Plano" EntitySet="Plano" />
+          </AssociationSet>
+          <AssociationSet Name="FK_odfm_insumos_Diccionario_odfm" Association="bulonera2Model.FK_odfm_insumos_Diccionario_odfm">
+            <End Role="Diccionario_odfm" EntitySet="Diccionario_odfm" />
+            <End Role="odfm_insumos" EntitySet="odfm_insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Of_tecnica_Cod_planos_Diccionario_odfm" Association="bulonera2Model.FK_Of_tecnica_Cod_planos_Diccionario_odfm">
+            <End Role="Diccionario_odfm" EntitySet="Diccionario_odfm" />
+            <End Role="Of_tecnica_Cod_planos" EntitySet="Of_tecnica_Cod_planos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_operaciones_Diccionario_odfm" Association="bulonera2Model.FK_Plano_operaciones_Diccionario_odfm">
+            <End Role="Diccionario_odfm" EntitySet="Diccionario_odfm" />
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ODF_MATRICERIA_Plano" Association="bulonera2Model.FK_ODF_MATRICERIA_Plano">
+            <End Role="Plano" EntitySet="Plano" />
+            <End Role="ODF_MATRICERIA" EntitySet="ODF_MATRICERIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ODF_MATRICERIA_USUARIOS" Association="bulonera2Model.FK_ODF_MATRICERIA_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="ODF_MATRICERIA" EntitySet="ODF_MATRICERIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_operaciones_odfm_insumos" Association="bulonera2Model.FK_Plano_operaciones_odfm_insumos">
+            <End Role="odfm_insumos" EntitySet="odfm_insumos" />
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Of_tecnica_Cod_planos_USUARIOS" Association="bulonera2Model.FK_Of_tecnica_Cod_planos_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="Of_tecnica_Cod_planos" EntitySet="Of_tecnica_Cod_planos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_Of_tecnica_Cod_planos" Association="bulonera2Model.FK_Plano_Of_tecnica_Cod_planos">
+            <End Role="Of_tecnica_Cod_planos" EntitySet="Of_tecnica_Cod_planos" />
+            <End Role="Plano" EntitySet="Plano" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_operaciones_Plano" Association="bulonera2Model.FK_Plano_operaciones_Plano">
+            <End Role="Plano" EntitySet="Plano" />
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_operaciones_USUARIOS" Association="bulonera2Model.FK_Plano_operaciones_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plano_operaciones_USUARIOS1" Association="bulonera2Model.FK_Plano_operaciones_USUARIOS1">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="Plano_operaciones" EntitySet="Plano_operaciones" />
           </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -1015,6 +1395,276 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Cotas_planos">
+          <Key>
+            <PropertyRef Name="id_cota_plano" />
+          </Key>
+          <Property Name="id_cota_plano" Type="Int32" Nullable="false" />
+          <Property Name="id_tipo" Type="Int32" />
+          <Property Name="Toleracia_max" Type="Double" />
+          <Property Name="Toleracia_min" Type="Double" />
+          <Property Name="id_maquina" Type="Int32" />
+          <Property Name="Valor_Cota" Type="Double" />
+          <Property Name="id_operacion" Type="Int32" />
+          <NavigationProperty Name="Diccionario_odfm" Relationship="bulonera2Model.FK_Cotas_planos_Diccionario_odfm" FromRole="Cotas_planos" ToRole="Diccionario_odfm" />
+          <NavigationProperty Name="Plano_operaciones" Relationship="bulonera2Model.FK_Cotas_planos_Plano_operaciones" FromRole="Cotas_planos" ToRole="Plano_operaciones" />
+          <NavigationProperty Name="Plano" Relationship="bulonera2Model.FK_Plano_Cotas_planos" FromRole="Cotas_planos" ToRole="Plano" />
+        </EntityType>
+        <EntityType Name="Diccionario_odfm">
+          <Key>
+            <PropertyRef Name="id_dic_odfm" />
+          </Key>
+          <Property Name="id_dic_odfm" Type="Int32" Nullable="false" />
+          <Property Name="dic_cab" Type="Int32" />
+          <Property Name="dic_cod" Type="Int32" />
+          <Property Name="dic_abr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cotas_planos" Relationship="bulonera2Model.FK_Cotas_planos_Diccionario_odfm" FromRole="Diccionario_odfm" ToRole="Cotas_planos" />
+          <NavigationProperty Name="odfm_insumos" Relationship="bulonera2Model.FK_odfm_insumos_Diccionario_odfm" FromRole="Diccionario_odfm" ToRole="odfm_insumos" />
+          <NavigationProperty Name="Of_tecnica_Cod_planos" Relationship="bulonera2Model.FK_Of_tecnica_Cod_planos_Diccionario_odfm" FromRole="Diccionario_odfm" ToRole="Of_tecnica_Cod_planos" />
+          <NavigationProperty Name="Plano_operaciones" Relationship="bulonera2Model.FK_Plano_operaciones_Diccionario_odfm" FromRole="Diccionario_odfm" ToRole="Plano_operaciones" />
+        </EntityType>
+        <EntityType Name="ODF_MATRICERIA">
+          <Key>
+            <PropertyRef Name="id_odfmat" />
+          </Key>
+          <Property Name="id_odfmat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="odfm_codigo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_creacion" Type="DateTime" Precision="0" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="id_usuarioOrden" Type="Int32" Nullable="false" />
+          <Property Name="id_pano" Type="Int32" />
+          <Property Name="obs" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Plano" Relationship="bulonera2Model.FK_ODF_MATRICERIA_Plano" FromRole="ODF_MATRICERIA" ToRole="Plano" />
+          <NavigationProperty Name="USUARIOS" Relationship="bulonera2Model.FK_ODF_MATRICERIA_USUARIOS" FromRole="ODF_MATRICERIA" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="odfm_insumos">
+          <Key>
+            <PropertyRef Name="id_insumo" />
+          </Key>
+          <Property Name="id_insumo" Type="Int32" Nullable="false" />
+          <Property Name="id_operacion" Type="Int32" />
+          <Property Name="AceroCalidad" Type="Int32" />
+          <NavigationProperty Name="Diccionario_odfm" Relationship="bulonera2Model.FK_odfm_insumos_Diccionario_odfm" FromRole="odfm_insumos" ToRole="Diccionario_odfm" />
+          <NavigationProperty Name="Plano_operaciones" Relationship="bulonera2Model.FK_Plano_operaciones_odfm_insumos" FromRole="odfm_insumos" ToRole="Plano_operaciones" />
+        </EntityType>
+        <EntityType Name="Of_tecnica_Cod_planos">
+          <Key>
+            <PropertyRef Name="id_codplanos" />
+          </Key>
+          <Property Name="id_codplanos" Type="Int32" Nullable="false" />
+          <Property Name="id_seccion" Type="Int32" />
+          <Property Name="Num_mac" Type="Int32" />
+          <Property Name="Num_rev_plan" Type="Int32" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="0" />
+          <Property Name="UsuarioCreador" Type="Int32" />
+          <NavigationProperty Name="Diccionario_odfm" Relationship="bulonera2Model.FK_Of_tecnica_Cod_planos_Diccionario_odfm" FromRole="Of_tecnica_Cod_planos" ToRole="Diccionario_odfm" />
+          <NavigationProperty Name="USUARIOS" Relationship="bulonera2Model.FK_Of_tecnica_Cod_planos_USUARIOS" FromRole="Of_tecnica_Cod_planos" ToRole="USUARIOS" />
+          <NavigationProperty Name="Plano" Relationship="bulonera2Model.FK_Plano_Of_tecnica_Cod_planos" FromRole="Of_tecnica_Cod_planos" ToRole="Plano" />
+        </EntityType>
+        <EntityType Name="Plano">
+          <Key>
+            <PropertyRef Name="ID_PLANO" />
+          </Key>
+          <Property Name="ID_PLANO" Type="Int32" Nullable="false" />
+          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="id_codplanos" Type="Int32" />
+          <Property Name="id_cotas" Type="Int32" />
+          <NavigationProperty Name="Cotas_planos" Relationship="bulonera2Model.FK_Plano_Cotas_planos" FromRole="Plano" ToRole="Cotas_planos" />
+          <NavigationProperty Name="ODF_MATRICERIA" Relationship="bulonera2Model.FK_ODF_MATRICERIA_Plano" FromRole="Plano" ToRole="ODF_MATRICERIA" />
+          <NavigationProperty Name="Of_tecnica_Cod_planos" Relationship="bulonera2Model.FK_Plano_Of_tecnica_Cod_planos" FromRole="Plano" ToRole="Of_tecnica_Cod_planos" />
+          <NavigationProperty Name="Plano_operaciones" Relationship="bulonera2Model.FK_Plano_operaciones_Plano" FromRole="Plano" ToRole="Plano_operaciones" />
+        </EntityType>
+        <EntityType Name="Plano_operaciones">
+          <Key>
+            <PropertyRef Name="id_op" />
+          </Key>
+          <Property Name="id_op" Type="Int32" Nullable="false" />
+          <Property Name="id_plano" Type="Int32" Nullable="false" />
+          <Property Name="tipo_op" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="id_Insumosnec" Type="Int32" />
+          <Property Name="Fecha_fin" Type="DateTime" Precision="0" />
+          <Property Name="Obs" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario" Type="Int32" />
+          <Property Name="is_usuarioAprobo" Type="Int32" />
+          <Property Name="op_finished" Type="Boolean" />
+          <NavigationProperty Name="Cotas_planos" Relationship="bulonera2Model.FK_Cotas_planos_Plano_operaciones" FromRole="Plano_operaciones" ToRole="Cotas_planos" />
+          <NavigationProperty Name="Diccionario_odfm" Relationship="bulonera2Model.FK_Plano_operaciones_Diccionario_odfm" FromRole="Plano_operaciones" ToRole="Diccionario_odfm" />
+          <NavigationProperty Name="odfm_insumos" Relationship="bulonera2Model.FK_Plano_operaciones_odfm_insumos" FromRole="Plano_operaciones" ToRole="odfm_insumos" />
+          <NavigationProperty Name="Plano" Relationship="bulonera2Model.FK_Plano_operaciones_Plano" FromRole="Plano_operaciones" ToRole="Plano" />
+          <NavigationProperty Name="USUARIOS" Relationship="bulonera2Model.FK_Plano_operaciones_USUARIOS" FromRole="Plano_operaciones" ToRole="USUARIOS" />
+          <NavigationProperty Name="USUARIOS1" Relationship="bulonera2Model.FK_Plano_operaciones_USUARIOS1" FromRole="Plano_operaciones" ToRole="USUARIOS" />
+        </EntityType>
+        <Association Name="FK_Cotas_planos_Diccionario_odfm">
+          <End Type="bulonera2Model.Diccionario_odfm" Role="Diccionario_odfm" Multiplicity="0..1" />
+          <End Type="bulonera2Model.Cotas_planos" Role="Cotas_planos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diccionario_odfm">
+              <PropertyRef Name="id_dic_odfm" />
+            </Principal>
+            <Dependent Role="Cotas_planos">
+              <PropertyRef Name="id_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cotas_planos_Plano_operaciones">
+          <End Type="bulonera2Model.Plano_operaciones" Role="Plano_operaciones" Multiplicity="0..1" />
+          <End Type="bulonera2Model.Cotas_planos" Role="Cotas_planos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plano_operaciones">
+              <PropertyRef Name="id_op" />
+            </Principal>
+            <Dependent Role="Cotas_planos">
+              <PropertyRef Name="id_operacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_Cotas_planos">
+          <End Type="bulonera2Model.Cotas_planos" Role="Cotas_planos" Multiplicity="0..1" />
+          <End Type="bulonera2Model.Plano" Role="Plano" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cotas_planos">
+              <PropertyRef Name="id_cota_plano" />
+            </Principal>
+            <Dependent Role="Plano">
+              <PropertyRef Name="id_cotas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_odfm_insumos_Diccionario_odfm">
+          <End Type="bulonera2Model.Diccionario_odfm" Role="Diccionario_odfm" Multiplicity="0..1" />
+          <End Type="bulonera2Model.odfm_insumos" Role="odfm_insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diccionario_odfm">
+              <PropertyRef Name="id_dic_odfm" />
+            </Principal>
+            <Dependent Role="odfm_insumos">
+              <PropertyRef Name="AceroCalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Of_tecnica_Cod_planos_Diccionario_odfm">
+          <End Type="bulonera2Model.Diccionario_odfm" Role="Diccionario_odfm" Multiplicity="0..1" />
+          <End Type="bulonera2Model.Of_tecnica_Cod_planos" Role="Of_tecnica_Cod_planos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diccionario_odfm">
+              <PropertyRef Name="id_dic_odfm" />
+            </Principal>
+            <Dependent Role="Of_tecnica_Cod_planos">
+              <PropertyRef Name="id_seccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_operaciones_Diccionario_odfm">
+          <End Type="bulonera2Model.Diccionario_odfm" Role="Diccionario_odfm" Multiplicity="1" />
+          <End Type="bulonera2Model.Plano_operaciones" Role="Plano_operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diccionario_odfm">
+              <PropertyRef Name="id_dic_odfm" />
+            </Principal>
+            <Dependent Role="Plano_operaciones">
+              <PropertyRef Name="tipo_op" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ODF_MATRICERIA_Plano">
+          <End Type="bulonera2Model.Plano" Role="Plano" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="bulonera2Model.ODF_MATRICERIA" Role="ODF_MATRICERIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plano">
+              <PropertyRef Name="ID_PLANO" />
+            </Principal>
+            <Dependent Role="ODF_MATRICERIA">
+              <PropertyRef Name="id_pano" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ODF_MATRICERIA_USUARIOS">
+          <End Type="bulonera2Model.USUARIOS" Role="USUARIOS" Multiplicity="1" />
+          <End Type="bulonera2Model.ODF_MATRICERIA" Role="ODF_MATRICERIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="ODF_MATRICERIA">
+              <PropertyRef Name="id_usuarioOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_operaciones_odfm_insumos">
+          <End Type="bulonera2Model.odfm_insumos" Role="odfm_insumos" Multiplicity="0..1" />
+          <End Type="bulonera2Model.Plano_operaciones" Role="Plano_operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="odfm_insumos">
+              <PropertyRef Name="id_insumo" />
+            </Principal>
+            <Dependent Role="Plano_operaciones">
+              <PropertyRef Name="id_Insumosnec" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Of_tecnica_Cod_planos_USUARIOS">
+          <End Type="bulonera2Model.USUARIOS" Role="USUARIOS" Multiplicity="0..1" />
+          <End Type="bulonera2Model.Of_tecnica_Cod_planos" Role="Of_tecnica_Cod_planos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Of_tecnica_Cod_planos">
+              <PropertyRef Name="UsuarioCreador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_Of_tecnica_Cod_planos">
+          <End Type="bulonera2Model.Of_tecnica_Cod_planos" Role="Of_tecnica_Cod_planos" Multiplicity="0..1" />
+          <End Type="bulonera2Model.Plano" Role="Plano" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Of_tecnica_Cod_planos">
+              <PropertyRef Name="id_codplanos" />
+            </Principal>
+            <Dependent Role="Plano">
+              <PropertyRef Name="id_codplanos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_operaciones_Plano">
+          <End Type="bulonera2Model.Plano" Role="Plano" Multiplicity="1" />
+          <End Type="bulonera2Model.Plano_operaciones" Role="Plano_operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plano">
+              <PropertyRef Name="ID_PLANO" />
+            </Principal>
+            <Dependent Role="Plano_operaciones">
+              <PropertyRef Name="id_plano" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_operaciones_USUARIOS">
+          <End Type="bulonera2Model.USUARIOS" Role="USUARIOS" Multiplicity="0..1" />
+          <End Type="bulonera2Model.Plano_operaciones" Role="Plano_operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Plano_operaciones">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plano_operaciones_USUARIOS1">
+          <End Type="bulonera2Model.USUARIOS" Role="USUARIOS" Multiplicity="0..1" />
+          <End Type="bulonera2Model.Plano_operaciones" Role="Plano_operaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Plano_operaciones">
+              <PropertyRef Name="is_usuarioAprobo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1242,6 +1892,89 @@
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="id_lote" ColumnName="id_lote" />
                 <ScalarProperty Name="Id_unidad" ColumnName="Id_unidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cotas_planos">
+            <EntityTypeMapping TypeName="bulonera2Model.Cotas_planos">
+              <MappingFragment StoreEntitySet="Cotas_planos">
+                <ScalarProperty Name="id_operacion" ColumnName="id_operacion" />
+                <ScalarProperty Name="Valor_Cota" ColumnName="Valor_Cota" />
+                <ScalarProperty Name="id_maquina" ColumnName="id_maquina" />
+                <ScalarProperty Name="Toleracia_min" ColumnName="Toleracia_min" />
+                <ScalarProperty Name="Toleracia_max" ColumnName="Toleracia_max" />
+                <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+                <ScalarProperty Name="id_cota_plano" ColumnName="id_cota_plano" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diccionario_odfm">
+            <EntityTypeMapping TypeName="bulonera2Model.Diccionario_odfm">
+              <MappingFragment StoreEntitySet="Diccionario_odfm">
+                <ScalarProperty Name="dic_abr" ColumnName="dic_abr" />
+                <ScalarProperty Name="dic_cod" ColumnName="dic_cod" />
+                <ScalarProperty Name="dic_cab" ColumnName="dic_cab" />
+                <ScalarProperty Name="id_dic_odfm" ColumnName="id_dic_odfm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ODF_MATRICERIA">
+            <EntityTypeMapping TypeName="bulonera2Model.ODF_MATRICERIA">
+              <MappingFragment StoreEntitySet="ODF_MATRICERIA">
+                <ScalarProperty Name="obs" ColumnName="obs" />
+                <ScalarProperty Name="id_pano" ColumnName="id_pano" />
+                <ScalarProperty Name="id_usuarioOrden" ColumnName="id_usuarioOrden" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Fecha_creacion" ColumnName="Fecha_creacion" />
+                <ScalarProperty Name="odfm_codigo" ColumnName="odfm_codigo" />
+                <ScalarProperty Name="id_odfmat" ColumnName="id_odfmat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="odfm_insumos">
+            <EntityTypeMapping TypeName="bulonera2Model.odfm_insumos">
+              <MappingFragment StoreEntitySet="odfm_insumos">
+                <ScalarProperty Name="AceroCalidad" ColumnName="AceroCalidad" />
+                <ScalarProperty Name="id_operacion" ColumnName="id_operacion" />
+                <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Of_tecnica_Cod_planos">
+            <EntityTypeMapping TypeName="bulonera2Model.Of_tecnica_Cod_planos">
+              <MappingFragment StoreEntitySet="Of_tecnica_Cod_planos">
+                <ScalarProperty Name="UsuarioCreador" ColumnName="UsuarioCreador" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="Num_rev_plan" ColumnName="Num_rev_plan" />
+                <ScalarProperty Name="Num_mac" ColumnName="Num_mac" />
+                <ScalarProperty Name="id_seccion" ColumnName="id_seccion" />
+                <ScalarProperty Name="id_codplanos" ColumnName="id_codplanos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plano">
+            <EntityTypeMapping TypeName="bulonera2Model.Plano">
+              <MappingFragment StoreEntitySet="Plano">
+                <ScalarProperty Name="id_cotas" ColumnName="id_cotas" />
+                <ScalarProperty Name="id_codplanos" ColumnName="id_codplanos" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+                <ScalarProperty Name="ID_PLANO" ColumnName="ID_PLANO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plano_operaciones">
+            <EntityTypeMapping TypeName="bulonera2Model.Plano_operaciones">
+              <MappingFragment StoreEntitySet="Plano_operaciones">
+                <ScalarProperty Name="op_finished" ColumnName="op_finished" />
+                <ScalarProperty Name="is_usuarioAprobo" ColumnName="is_usuarioAprobo" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+                <ScalarProperty Name="Fecha_fin" ColumnName="Fecha_fin" />
+                <ScalarProperty Name="id_Insumosnec" ColumnName="id_Insumosnec" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="tipo_op" ColumnName="tipo_op" />
+                <ScalarProperty Name="id_plano" ColumnName="id_plano" />
+                <ScalarProperty Name="id_op" ColumnName="id_op" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

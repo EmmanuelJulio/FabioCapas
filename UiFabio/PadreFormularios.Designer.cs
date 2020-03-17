@@ -91,7 +91,6 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "PadreFormularios";
             this.Text = "PadreFormularios";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PadreFormularios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnNormal)).EndInit();

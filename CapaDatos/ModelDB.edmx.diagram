@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="86753656201f4d609c0acbacd9433be9" Name="Diagram1" ZoomLevel="108">
+      <Diagram DiagramId="86753656201f4d609c0acbacd9433be9" Name="Diagram1" ZoomLevel="60">
         <EntityTypeShape EntityType="bulonera2Model.DICCIONARIO_FAB" Width="1.75" PointX="6.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="bulonera2Model.MODULO_USUARIO" Width="1.5" PointX="3.125" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="bulonera2Model.MODULOS" Width="1.5" PointX="1.25" PointY="3.5" IsExpanded="true" />
@@ -37,6 +37,27 @@
         <AssociationConnector Association="bulonera2Model.FK_ODF_USUARIOS" />
         <AssociationConnector Association="bulonera2Model.FK_UnidadesOdf_Producto" />
         <AssociationConnector Association="bulonera2Model.FK_UnidadesOdf_Productos" />
+        <EntityTypeShape EntityType="bulonera2Model.Cotas_planos" Width="1.5" PointX="18.875" PointY="6" />
+        <EntityTypeShape EntityType="bulonera2Model.Diccionario_odfm" Width="1.5" PointX="16.625" PointY="1.875" />
+        <EntityTypeShape EntityType="bulonera2Model.ODF_MATRICERIA" Width="1.5" PointX="9.125" PointY="6.125" />
+        <EntityTypeShape EntityType="bulonera2Model.odfm_insumos" Width="1.5" PointX="14.375" PointY="2.5" />
+        <EntityTypeShape EntityType="bulonera2Model.Of_tecnica_Cod_planos" Width="1.5" PointX="12.125" PointY="6.125" />
+        <EntityTypeShape EntityType="bulonera2Model.Plano" Width="1.5" PointX="14.375" PointY="6.25" />
+        <EntityTypeShape EntityType="bulonera2Model.Plano_operaciones" Width="1.5" PointX="16.625" PointY="5.375" />
+        <AssociationConnector Association="bulonera2Model.FK_Cotas_planos_Diccionario_odfm" />
+        <AssociationConnector Association="bulonera2Model.FK_Cotas_planos_Plano_operaciones" />
+        <AssociationConnector Association="bulonera2Model.FK_Plano_Cotas_planos" />
+        <AssociationConnector Association="bulonera2Model.FK_odfm_insumos_Diccionario_odfm" />
+        <AssociationConnector Association="bulonera2Model.FK_Of_tecnica_Cod_planos_Diccionario_odfm" />
+        <AssociationConnector Association="bulonera2Model.FK_Plano_operaciones_Diccionario_odfm" />
+        <AssociationConnector Association="bulonera2Model.FK_ODF_MATRICERIA_Plano" />
+        <AssociationConnector Association="bulonera2Model.FK_ODF_MATRICERIA_USUARIOS" />
+        <AssociationConnector Association="bulonera2Model.FK_Plano_operaciones_odfm_insumos" />
+        <AssociationConnector Association="bulonera2Model.FK_Of_tecnica_Cod_planos_USUARIOS" />
+        <AssociationConnector Association="bulonera2Model.FK_Plano_Of_tecnica_Cod_planos" />
+        <AssociationConnector Association="bulonera2Model.FK_Plano_operaciones_Plano" />
+        <AssociationConnector Association="bulonera2Model.FK_Plano_operaciones_USUARIOS" />
+        <AssociationConnector Association="bulonera2Model.FK_Plano_operaciones_USUARIOS1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

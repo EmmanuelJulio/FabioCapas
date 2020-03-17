@@ -15,10 +15,10 @@ namespace CapaDatos
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class bulonera2Entities2 : DbContext
+    public partial class bulonera2Entities22 : DbContext
     {
-        public bulonera2Entities2()
-            : base("name=bulonera2Entities2")
+        public bulonera2Entities22()
+            : base("name=bulonera2Entities22")
         {
         }
     
@@ -43,6 +43,13 @@ namespace CapaDatos
         public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<UnidadesOdf> UnidadesOdf { get; set; }
+        public virtual DbSet<Cotas_planos> Cotas_planos { get; set; }
+        public virtual DbSet<Diccionario_odfm> Diccionario_odfm { get; set; }
+        public virtual DbSet<ODF_MATRICERIA> ODF_MATRICERIA { get; set; }
+        public virtual DbSet<odfm_insumos> odfm_insumos { get; set; }
+        public virtual DbSet<Of_tecnica_Cod_planos> Of_tecnica_Cod_planos { get; set; }
+        public virtual DbSet<Plano> Plano { get; set; }
+        public virtual DbSet<Plano_operaciones> Plano_operaciones { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

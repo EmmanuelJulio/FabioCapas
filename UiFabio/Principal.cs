@@ -223,5 +223,10 @@ namespace UiFabio
         {
 
         }
+
+        private void lbl_informacion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

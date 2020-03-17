@@ -37,7 +37,7 @@ namespace CNegocio
         /// 
         public static bool Activo (string usuario)
         {
-            using (bulonera2Entities2 db = new bulonera2Entities2())
+            using (bulonera2Entities22 db = new bulonera2Entities22())
             {
                 var acceso = (from x in db.USUARIOS where x.nombre_usuario == usuario select x.Activo);
 
@@ -46,7 +46,7 @@ namespace CNegocio
         }
         public List<MODULOS> TraerAccesosActuales(int id)
         {
-            using (bulonera2Entities2 db = new bulonera2Entities2())
+            using (bulonera2Entities22 db = new bulonera2Entities22())
             {
                 var _Modulos = (from x in db.USUARIOS
                                join modUs in db.MODULO_USUARIO on x.id_usuario equals modUs.ID_USUARIO
@@ -57,7 +57,7 @@ namespace CNegocio
         }
         public List<USUARIOS> TraerUsuarios()
         {
-            using(bulonera2Entities2 db = new bulonera2Entities2())
+            using(bulonera2Entities22 db = new bulonera2Entities22())
             {
                 var usuarios = (from x in db.USUARIOS select x).ToList();
                 return usuarios;
@@ -65,7 +65,7 @@ namespace CNegocio
         }
          public int OptenerUsuario(string nombre)
         {
-            using (bulonera2Entities2 db = new bulonera2Entities2())
+            using (bulonera2Entities22 db = new bulonera2Entities22())
             {
                 var usuarios = (from x in db.USUARIOS where x.nombre == nombre select x).FirstOrDefault();
                 return usuarios.id_usuario;
@@ -75,7 +75,7 @@ namespace CNegocio
 
         public bool EliminarUsuario(object ob)
         {
-            using (bulonera2Entities2 db = new bulonera2Entities2())
+            using (bulonera2Entities22 db = new bulonera2Entities22())
             {
 
                 using (var Transaction = db.Database.BeginTransaction())
@@ -108,7 +108,7 @@ namespace CNegocio
         {
             try
             {
-                using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
+                using (CapaDatos.bulonera2Entities22 db = new CapaDatos.bulonera2Entities22())
                 {
                     UsuarioActual = (from x in db.USUARIOS where x.nombre_usuario == Usuario && x.contraseña == Contraceña select x).FirstOrDefault();
                     if (UsuarioActual != null)
@@ -131,7 +131,7 @@ namespace CNegocio
         }
         public static bool agragar(object ob)
         {
-            using (bulonera2Entities2 db = new bulonera2Entities2())
+            using (bulonera2Entities22 db = new bulonera2Entities22())
             {
                 using (var Transaction = db.Database.BeginTransaction())
                 {
@@ -160,7 +160,7 @@ namespace CNegocio
     {
         public  bool agragar(object ob)
         {
-            using (bulonera2Entities2 db = new bulonera2Entities2())
+            using (bulonera2Entities22 db = new bulonera2Entities22())
             {
                 using (var Transaction = db.Database.BeginTransaction())
                 {

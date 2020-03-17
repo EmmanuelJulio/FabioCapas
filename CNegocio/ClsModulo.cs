@@ -12,7 +12,7 @@ namespace CNegocio
     {
         public List<MODULOS> OptenerTodosLosModulos()
         {
-            using (CapaDatos.bulonera2Entities2 db = new bulonera2Entities2())
+            using (CapaDatos.bulonera2Entities22 db = new bulonera2Entities22())
             {
                 var mod = (from x in db.MODULOS select x).ToList();
                 return mod;
@@ -25,7 +25,7 @@ namespace CNegocio
             MODULO_USUARIO accesoNew = new MODULO_USUARIO();
             accesoNew.ID_USUARIO = id_usu;
             accesoNew.ID_MODULO = id_modu;
-            using (bulonera2Entities2 db = new bulonera2Entities2())
+            using (bulonera2Entities22 db = new bulonera2Entities22())
             {
                 using (var Transaction = db.Database.BeginTransaction())
                 {
@@ -61,7 +61,7 @@ namespace CNegocio
         public bool QuitarPermiso(int Idpermiso)
         {
 
-            using (bulonera2Entities2 db = new bulonera2Entities2())
+            using (bulonera2Entities22 db = new bulonera2Entities22())
             {
                
                 using (var Transaction = db.Database.BeginTransaction())
@@ -96,7 +96,7 @@ namespace CNegocio
         }
         public int Idpermiso(int usuario, int modulo)
         {
-            using (bulonera2Entities2 db = new bulonera2Entities2())
+            using (bulonera2Entities22 db = new bulonera2Entities22())
             {
                 var Permiso = (from x in db.MODULO_USUARIO where x.ID_USUARIO == usuario & x.ID_MODULO == modulo select x).ToList();
                 if (Permiso.Any())
@@ -112,7 +112,7 @@ namespace CNegocio
 
         public int opteneridmodulo(string nombre)
         {
-            using (bulonera2Entities2 db = new bulonera2Entities2())
+            using (bulonera2Entities22 db = new bulonera2Entities22())
             {
                 var idmod = (from x in db.MODULOS where x.NOMBRE_MOD == nombre select x).FirstOrDefault();
                 return idmod.ID_MODULO;
@@ -123,7 +123,7 @@ namespace CNegocio
         {
             try
             {
-                using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
+                using (CapaDatos.bulonera2Entities22 db = new CapaDatos.bulonera2Entities22())
                 {
                     List<CapaDatos.MODULOS> mod = (from x in db.MODULOS where x.NOMBRE_MOD.Contains(Text) select x).ToList();
                     return mod;
@@ -138,7 +138,7 @@ namespace CNegocio
 
         public override bool agragar(object ob)
         {
-            using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
+            using (CapaDatos.bulonera2Entities22 db = new CapaDatos.bulonera2Entities22())
             {
                 using (var Transaction = db.Database.BeginTransaction())
                 {
@@ -166,7 +166,7 @@ namespace CNegocio
 
         public override bool eliminar(int Id)
         {
-            using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
+            using (CapaDatos.bulonera2Entities22 db = new CapaDatos.bulonera2Entities22())
             {
                 using (var Transaction = db.Database.BeginTransaction())
                 {
@@ -179,7 +179,7 @@ namespace CNegocio
                         Transaction.Dispose();
                         return true;
                     }
-                    catch (Exception err)
+                    catch (Exception )
                     {
                         
                         Transaction.Rollback();
@@ -196,7 +196,7 @@ namespace CNegocio
 
         public override int OptenerId(string Text)
         {
-            using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
+            using (CapaDatos.bulonera2Entities22 db = new CapaDatos.bulonera2Entities22())
             {
                 int _id = Convert.ToInt32((from x in db.MODULOS where x.NOMBRE_MOD == Text select x.ID_MODULO).FirstOrDefault());
                 return _id;
@@ -212,7 +212,7 @@ namespace CNegocio
     {
         public override bool agragar(object ob)
         {
-            using(bulonera2Entities2 db = new bulonera2Entities2())
+            using(bulonera2Entities22 db = new bulonera2Entities22())
             {
                 using(var Transaction = db.Database.BeginTransaction())
                 {
@@ -248,7 +248,7 @@ namespace CNegocio
 
         public override int OptenerId(string Text)
         {
-            using(bulonera2Entities2 db = new bulonera2Entities2())
+            using(bulonera2Entities22 db = new bulonera2Entities22())
             {
                 int id = Convert.ToInt32(from x in db.SUBMENU where x.subMenu_nombre == Text select x.id_SubMenu);
                 return id;
@@ -256,7 +256,7 @@ namespace CNegocio
         }
         public  int OptenerIdSubmod(string Text)
         {
-            using (bulonera2Entities2 db = new bulonera2Entities2())
+            using (bulonera2Entities22 db = new bulonera2Entities22())
             {
                 int id = Convert.ToInt32(from x in db.SUBMENU where x.subMenu_nombre == Text select x.ID_SUBMODULO);
                 return id;
@@ -269,7 +269,7 @@ namespace CNegocio
         }
         public  List<SUBMENU> TraerSubmenus(int id_subMod)
         {
-            using(bulonera2Entities2 db = new bulonera2Entities2())
+            using(bulonera2Entities22 db = new bulonera2Entities22())
             {
                   List < SUBMENU > ListaMenus= (from x in db.SUBMENU where x.ID_SUBMODULO == id_subMod select x).ToList();
                 return ListaMenus;
@@ -280,7 +280,7 @@ namespace CNegocio
     {
         public override bool agragar(object ob)
         {
-            using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
+            using (CapaDatos.bulonera2Entities22 db = new CapaDatos.bulonera2Entities22())
             {
                 using (var transaccion = db.Database.BeginTransaction())
                 {
@@ -305,7 +305,7 @@ namespace CNegocio
 
         public override bool eliminar(int id)
         {
-            using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
+            using (CapaDatos.bulonera2Entities22 db = new CapaDatos.bulonera2Entities22())
             {
                 try
                 {
@@ -329,7 +329,7 @@ namespace CNegocio
 
         public override int OptenerId(string Text)
         {
-            using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
+            using (CapaDatos.bulonera2Entities22 db = new CapaDatos.bulonera2Entities22())
             {
                 int _id = Convert.ToInt32((from x in db.SUBMODULOS where x.NOMBRE_SUBMOD == Text select  x.ID_SUBMODULO ).FirstOrDefault());
                 return _id;
@@ -342,7 +342,7 @@ namespace CNegocio
         /// <returns></returns>
         public int OptenerIdModulo(string Text)
         {
-            using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
+            using (CapaDatos.bulonera2Entities22 db = new CapaDatos.bulonera2Entities22())
             {
                 int _id = Convert.ToInt32((from x in db.SUBMODULOS where x.NOMBRE_SUBMOD == Text select x.ID_MODULO).FirstOrDefault());
                 return _id;
@@ -355,7 +355,7 @@ namespace CNegocio
         }
         public  List<SUBMODULOS> TraerTodos(string Text)
         {
-            using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
+            using (CapaDatos.bulonera2Entities22 db = new CapaDatos.bulonera2Entities22())
             {
                 List<CapaDatos.SUBMODULOS> mod = (from x in db.SUBMODULOS where x.NOMBRE_SUBMOD.Contains(Text) select x).ToList();
                 return (mod);
@@ -370,7 +370,7 @@ namespace CNegocio
         {
             try
             {
-                using (CapaDatos.bulonera2Entities2 db = new CapaDatos.bulonera2Entities2())
+                using (CapaDatos.bulonera2Entities22 db = new CapaDatos.bulonera2Entities22())
                 {
                     List<CapaDatos.SUBMODULOS> mod = (from x in db.SUBMODULOS where x.ID_MODULO == ID_modulo select x).ToList();
                     return mod;

@@ -280,7 +280,7 @@
             this.txtmodulo.MaxLength = 32767;
             this.txtmodulo.Name = "txtmodulo";
             this.txtmodulo.PasswordChar = '\0';
-            this.txtmodulo.PromptText = "Nombre del modulo";
+            this.txtmodulo.WaterMark = "Nombre del modulo";
             this.txtmodulo.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtmodulo.SelectedText = "";
             this.txtmodulo.SelectionLength = 0;
@@ -401,7 +401,7 @@
             this.metroTextBox1.MaxLength = 32767;
             this.metroTextBox1.Name = "metroTextBox1";
             this.metroTextBox1.PasswordChar = '\0';
-            this.metroTextBox1.PromptText = "Nombre del modulo";
+            this.metroTextBox1.WaterMark = "Nombre del modulo";
             this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.metroTextBox1.SelectedText = "";
             this.metroTextBox1.SelectionLength = 0;
@@ -499,7 +499,7 @@
             this.TextNombreSysForm.MaxLength = 32767;
             this.TextNombreSysForm.Name = "TextNombreSysForm";
             this.TextNombreSysForm.PasswordChar = '\0';
-            this.TextNombreSysForm.PromptText = "Nombre del Formulario";
+            this.TextNombreSysForm.WaterMark = "Nombre del Formulario";
             this.TextNombreSysForm.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.TextNombreSysForm.SelectedText = "";
             this.TextNombreSysForm.SelectionLength = 0;
@@ -569,7 +569,7 @@
             this.TextNombreForm.MaxLength = 32767;
             this.TextNombreForm.Name = "TextNombreForm";
             this.TextNombreForm.PasswordChar = '\0';
-            this.TextNombreForm.PromptText = "Nombre del modulo";
+            this.TextNombreForm.WaterMark = "Nombre del modulo";
             this.TextNombreForm.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.TextNombreForm.SelectedText = "";
             this.TextNombreForm.SelectionLength = 0;
