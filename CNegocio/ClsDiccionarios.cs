@@ -41,7 +41,7 @@ namespace CNegocio
                 return DicFab;
             }
         }
-        public bool CargarNuevoTermino_ODFM(string Nombre_nueva_cabecera)
+        public bool CargarNuevoTermino_ODFM(string des, string abr)
         {
             
                 using (bulonera2Entities22 db = new bulonera2Entities22())
@@ -50,18 +50,33 @@ namespace CNegocio
                     {
                     try
                     {
+                        int _Cod;
                         Diccionario_odfm New_term = new Diccionario_odfm();
                         New_term.dic_cab = 0;
-                        New_term.dic_cod = 1 + ((from x in db.Diccionario_odfm where x.dic_cab == 0 select x.dic_cod).Max());
-                        New_term.dic_abr = Nombre_nueva_cabecera;
+                        if((from x in db.Diccionario_odfm where x.dic_cab == 0 select x.dic_cod).Any())
+                        {
+                            _Cod = (from x in db.Diccionario_odfm where x.dic_cab == 0 select x.dic_cod).Max();
+                            _Cod++;
+                            New_term.dic_cod = _Cod;
+                        }
+                        else
+                        {
+                            New_term.dic_cod = 0;
+                        }
+                        
+
+
+                        New_term.dic_abr = abr;
+                        New_term.dic_des = des;
                         db.Diccionario_odfm.Add(New_term);
                         db.SaveChanges();
                         Transaction.Commit();
                         Transaction.Dispose();
                         return true;
                     }
-                    catch (Exception)
+                    catch (Exception er)
                     {
+                        string error = er.ToString();
                         Transaction.Rollback();
                         return false;
                     }

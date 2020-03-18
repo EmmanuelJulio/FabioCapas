@@ -36,18 +36,18 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_nuevoTermino = new System.Windows.Forms.Button();
             this.Btn_agregarMod = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.gb_nuevoDato = new System.Windows.Forms.GroupBox();
             this.lbl_tipodato = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.btn_guardarDatoNuevo = new System.Windows.Forms.Button();
-            this.txb_Dato_AbrevNuevo = new MetroFramework.Controls.MetroTextBox();
             this.txb_Dato_nombreNuevo = new MetroFramework.Controls.MetroTextBox();
+            this.txb_Dato_AbrNuevo = new MetroFramework.Controls.MetroTextBox();
             this.listDatos = new System.Windows.Forms.ListBox();
             this.listTerminos = new System.Windows.Forms.ListBox();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.btn_nuevoTermino = new System.Windows.Forms.Button();
             this.bulonera2DataSet = new UiFabio.bulonera2DataSet();
             this.diccionarioodfmBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.diccionario_odfmTableAdapter = new UiFabio.bulonera2DataSetTableAdapters.Diccionario_odfmTableAdapter();
@@ -198,6 +198,26 @@
             this.button1.Text = "Guardar";
             this.button1.UseVisualStyleBackColor = false;
             // 
+            // btn_nuevoTermino
+            // 
+            this.btn_nuevoTermino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(112)))), ((int)(((byte)(183)))));
+            this.btn_nuevoTermino.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_nuevoTermino.Enabled = false;
+            this.btn_nuevoTermino.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(159)))), ((int)(((byte)(127)))));
+            this.btn_nuevoTermino.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_nuevoTermino.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(118)))), ((int)(((byte)(126)))));
+            this.btn_nuevoTermino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_nuevoTermino.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_nuevoTermino.Image = global::UiFabio.Properties.Resources.icons8_New_32px_1;
+            this.btn_nuevoTermino.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_nuevoTermino.Location = new System.Drawing.Point(0, 62);
+            this.btn_nuevoTermino.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_nuevoTermino.Name = "btn_nuevoTermino";
+            this.btn_nuevoTermino.Size = new System.Drawing.Size(225, 39);
+            this.btn_nuevoTermino.TabIndex = 18;
+            this.btn_nuevoTermino.Text = "Nuevo Termino";
+            this.btn_nuevoTermino.UseVisualStyleBackColor = false;
+            // 
             // Btn_agregarMod
             // 
             this.Btn_agregarMod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(112)))), ((int)(((byte)(183)))));
@@ -216,6 +236,7 @@
             this.Btn_agregarMod.TabIndex = 13;
             this.Btn_agregarMod.Text = "Nuevo Diccionario";
             this.Btn_agregarMod.UseVisualStyleBackColor = false;
+            this.Btn_agregarMod.Click += new System.EventHandler(this.Btn_agregarMod_Click);
             // 
             // panel3
             // 
@@ -230,8 +251,8 @@
             this.gb_nuevoDato.Controls.Add(this.lbl_tipodato);
             this.gb_nuevoDato.Controls.Add(this.bunifuCustomLabel2);
             this.gb_nuevoDato.Controls.Add(this.btn_guardarDatoNuevo);
-            this.gb_nuevoDato.Controls.Add(this.txb_Dato_AbrevNuevo);
             this.gb_nuevoDato.Controls.Add(this.txb_Dato_nombreNuevo);
+            this.gb_nuevoDato.Controls.Add(this.txb_Dato_AbrNuevo);
             this.gb_nuevoDato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gb_nuevoDato.ForeColor = System.Drawing.Color.Silver;
             this.gb_nuevoDato.Location = new System.Drawing.Point(7, 6);
@@ -288,40 +309,7 @@
             this.btn_guardarDatoNuevo.Text = "Agregar";
             this.btn_guardarDatoNuevo.UseVisualStyleBackColor = false;
             this.btn_guardarDatoNuevo.Visible = false;
-            // 
-            // txb_Dato_AbrevNuevo
-            // 
-            // 
-            // 
-            // 
-            this.txb_Dato_AbrevNuevo.CustomButton.Image = null;
-            this.txb_Dato_AbrevNuevo.CustomButton.Location = new System.Drawing.Point(174, 1);
-            this.txb_Dato_AbrevNuevo.CustomButton.Name = "";
-            this.txb_Dato_AbrevNuevo.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txb_Dato_AbrevNuevo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txb_Dato_AbrevNuevo.CustomButton.TabIndex = 1;
-            this.txb_Dato_AbrevNuevo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txb_Dato_AbrevNuevo.CustomButton.UseSelectable = true;
-            this.txb_Dato_AbrevNuevo.CustomButton.Visible = false;
-            this.txb_Dato_AbrevNuevo.Enabled = false;
-            this.txb_Dato_AbrevNuevo.FontSize = MetroFramework.MetroTextBoxSize.Medium;
-            this.txb_Dato_AbrevNuevo.Lines = new string[0];
-            this.txb_Dato_AbrevNuevo.Location = new System.Drawing.Point(290, 41);
-            this.txb_Dato_AbrevNuevo.MaxLength = 32767;
-            this.txb_Dato_AbrevNuevo.Name = "txb_Dato_AbrevNuevo";
-            this.txb_Dato_AbrevNuevo.PasswordChar = '\0';
-            this.txb_Dato_AbrevNuevo.PromptText = "Nombre del modulo";
-            this.txb_Dato_AbrevNuevo.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txb_Dato_AbrevNuevo.SelectedText = "";
-            this.txb_Dato_AbrevNuevo.SelectionLength = 0;
-            this.txb_Dato_AbrevNuevo.SelectionStart = 0;
-            this.txb_Dato_AbrevNuevo.ShortcutsEnabled = true;
-            this.txb_Dato_AbrevNuevo.Size = new System.Drawing.Size(196, 23);
-            this.txb_Dato_AbrevNuevo.TabIndex = 4;
-            this.txb_Dato_AbrevNuevo.UseSelectable = true;
-            this.txb_Dato_AbrevNuevo.WaterMark = "Nombre del modulo";
-            this.txb_Dato_AbrevNuevo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txb_Dato_AbrevNuevo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.btn_guardarDatoNuevo.Click += new System.EventHandler(this.Btn_guardarDatoNuevo_Click);
             // 
             // txb_Dato_nombreNuevo
             // 
@@ -340,8 +328,8 @@
             this.txb_Dato_nombreNuevo.Enabled = false;
             this.txb_Dato_nombreNuevo.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.txb_Dato_nombreNuevo.Lines = new string[0];
-            this.txb_Dato_nombreNuevo.Location = new System.Drawing.Point(10, 41);
-            this.txb_Dato_nombreNuevo.MaxLength = 3;
+            this.txb_Dato_nombreNuevo.Location = new System.Drawing.Point(290, 41);
+            this.txb_Dato_nombreNuevo.MaxLength = 32767;
             this.txb_Dato_nombreNuevo.Name = "txb_Dato_nombreNuevo";
             this.txb_Dato_nombreNuevo.PasswordChar = '\0';
             this.txb_Dato_nombreNuevo.PromptText = "Nombre del modulo";
@@ -351,11 +339,45 @@
             this.txb_Dato_nombreNuevo.SelectionStart = 0;
             this.txb_Dato_nombreNuevo.ShortcutsEnabled = true;
             this.txb_Dato_nombreNuevo.Size = new System.Drawing.Size(196, 23);
-            this.txb_Dato_nombreNuevo.TabIndex = 3;
+            this.txb_Dato_nombreNuevo.TabIndex = 4;
             this.txb_Dato_nombreNuevo.UseSelectable = true;
             this.txb_Dato_nombreNuevo.WaterMark = "Nombre del modulo";
             this.txb_Dato_nombreNuevo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txb_Dato_nombreNuevo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txb_Dato_AbrNuevo
+            // 
+            // 
+            // 
+            // 
+            this.txb_Dato_AbrNuevo.CustomButton.Image = null;
+            this.txb_Dato_AbrNuevo.CustomButton.Location = new System.Drawing.Point(174, 1);
+            this.txb_Dato_AbrNuevo.CustomButton.Name = "";
+            this.txb_Dato_AbrNuevo.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txb_Dato_AbrNuevo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txb_Dato_AbrNuevo.CustomButton.TabIndex = 1;
+            this.txb_Dato_AbrNuevo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txb_Dato_AbrNuevo.CustomButton.UseSelectable = true;
+            this.txb_Dato_AbrNuevo.CustomButton.Visible = false;
+            this.txb_Dato_AbrNuevo.Enabled = false;
+            this.txb_Dato_AbrNuevo.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.txb_Dato_AbrNuevo.Lines = new string[0];
+            this.txb_Dato_AbrNuevo.Location = new System.Drawing.Point(10, 41);
+            this.txb_Dato_AbrNuevo.MaxLength = 3;
+            this.txb_Dato_AbrNuevo.Name = "txb_Dato_AbrNuevo";
+            this.txb_Dato_AbrNuevo.PasswordChar = '\0';
+            this.txb_Dato_AbrNuevo.PromptText = "Nombre del modulo";
+            this.txb_Dato_AbrNuevo.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txb_Dato_AbrNuevo.SelectedText = "";
+            this.txb_Dato_AbrNuevo.SelectionLength = 0;
+            this.txb_Dato_AbrNuevo.SelectionStart = 0;
+            this.txb_Dato_AbrNuevo.ShortcutsEnabled = true;
+            this.txb_Dato_AbrNuevo.Size = new System.Drawing.Size(196, 23);
+            this.txb_Dato_AbrNuevo.TabIndex = 3;
+            this.txb_Dato_AbrNuevo.UseSelectable = true;
+            this.txb_Dato_AbrNuevo.WaterMark = "Nombre del modulo";
+            this.txb_Dato_AbrNuevo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txb_Dato_AbrNuevo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // listDatos
             // 
@@ -396,26 +418,6 @@
             this.bunifuCustomLabel1.Text = "Seleccione Diccionario";
             this.bunifuCustomLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bunifuCustomLabel1.Click += new System.EventHandler(this.bunifuCustomLabel1_Click);
-            // 
-            // btn_nuevoTermino
-            // 
-            this.btn_nuevoTermino.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(112)))), ((int)(((byte)(183)))));
-            this.btn_nuevoTermino.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_nuevoTermino.Enabled = false;
-            this.btn_nuevoTermino.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(159)))), ((int)(((byte)(127)))));
-            this.btn_nuevoTermino.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btn_nuevoTermino.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(118)))), ((int)(((byte)(126)))));
-            this.btn_nuevoTermino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_nuevoTermino.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_nuevoTermino.Image = global::UiFabio.Properties.Resources.icons8_New_32px_1;
-            this.btn_nuevoTermino.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_nuevoTermino.Location = new System.Drawing.Point(0, 62);
-            this.btn_nuevoTermino.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btn_nuevoTermino.Name = "btn_nuevoTermino";
-            this.btn_nuevoTermino.Size = new System.Drawing.Size(225, 39);
-            this.btn_nuevoTermino.TabIndex = 18;
-            this.btn_nuevoTermino.Text = "Nuevo Termino";
-            this.btn_nuevoTermino.UseVisualStyleBackColor = false;
             // 
             // bulonera2DataSet
             // 
@@ -465,8 +467,8 @@
         private System.Windows.Forms.GroupBox gb_nuevoDato;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btn_guardarDatoNuevo;
-        private MetroFramework.Controls.MetroTextBox txb_Dato_AbrevNuevo;
         private MetroFramework.Controls.MetroTextBox txb_Dato_nombreNuevo;
+        private MetroFramework.Controls.MetroTextBox txb_Dato_AbrNuevo;
         public Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
         private System.Windows.Forms.ListBox listTerminos;
         private System.Windows.Forms.ListBox listDatos;

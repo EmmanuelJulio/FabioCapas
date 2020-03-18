@@ -57,18 +57,33 @@ namespace UiFabio.Of_tecnica.Orden_de_Fabricacion
             abr = seleccion.Remove(3, largo);
             des = seleccion.Remove(0, 5);
             if(!CargarDatos(abr, des))
-               MetroFramework.MetroMessageBox.Show(this,"Si / No", "¿Desea agregar un nuevo elemento padre del cual dependen sus dependencias?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if(MetroFramework.MetroMessageBox.Show(this, "Decea cargar un nuevo termino ? ", "No se encuentran terminos en este diccionario de datos", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    
+                }
+            }
+               
 
 
+        }
+        private void Btn_agregarMod_Click(object sender, EventArgs e)
+        { 
+
+                txb_Dato_nombreNuevo.Enabled = true;
+                txb_Dato_AbrNuevo.Enabled = true;
+                btn_guardarDatoNuevo.Visible = true;
+                txb_Dato_AbrNuevo.Focus();
+            gb_nuevoDato.BackColor = Color.FromArgb(39, 57, 30);
         }
 
         /////////////////////////////////////////////////-----------funciones del formulario-------------------//////////////////////
         ///
         private void CargarCabeceras()
         {
-            List<CapaDatos.Diccionario_odfm> Dic_odfm = diccionarios.TraerDiccionario_ODFM(0);
+            List<CapaDatos.Diccionario_odfm> Dic_odfm =  diccionarios.TraerDiccionario_ODFM(0);
             ListaAcargar.Clear();
-            foreach (CapaDatos.Diccionario_odfm dic in (from x in Dic_odfm where x.dic_cab == 0 select x))
+             foreach (CapaDatos.Diccionario_odfm dic in (from x in Dic_odfm where x.dic_cab == 0 select x))
             {
                 ListaAcargar.Add(dic.dic_abr + " - " + dic.dic_des);
             }
@@ -93,6 +108,25 @@ namespace UiFabio.Of_tecnica.Orden_de_Fabricacion
             }
         }
 
-       
+        private void Btn_guardarDatoNuevo_Click(object sender, EventArgs e)
+        {
+        if (txb_Dato_AbrNuevo.Text.Length == 3)
+        {
+            if (diccionarios.CargarNuevoTermino_ODFM(txb_Dato_nombreNuevo.Text.ToUpper(), txb_Dato_AbrNuevo.Text.ToUpper()))
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Exito", "El diccionario " + txb_Dato_nombreNuevo + " Se cargo correctamente", MessageBoxButtons.OK, MessageBoxIcon.None);
+                txb_Dato_nombreNuevo.Clear();
+                txb_Dato_AbrNuevo.Clear();
+            }
+            else
+                MetroFramework.MetroMessageBox.Show(this, "Se produjo un error", "El Diccionario no se cargo correctamente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MetroFramework.MetroMessageBox.Show(this, "El campo 'Codigo abreviatura' debe contener 3 caracteres OBLIGATORIAMENTE", "Reescriba los datos correctamente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
     }
 }
