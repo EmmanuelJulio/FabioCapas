@@ -43,10 +43,11 @@
           <Key>
             <PropertyRef Name="id_dic_odfm" />
           </Key>
-          <Property Name="id_dic_odfm" Type="int" Nullable="false" />
-          <Property Name="dic_cab" Type="int" />
-          <Property Name="dic_cod" Type="int" />
-          <Property Name="dic_abr" Type="varchar" MaxLength="50" />
+          <Property Name="id_dic_odfm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dic_cab" Type="int" Nullable="false" />
+          <Property Name="dic_cod" Type="int" Nullable="false" />
+          <Property Name="dic_abr" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dic_des" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DiccionarioDeFabricacion">
           <Key>
@@ -1415,13 +1416,14 @@
             <PropertyRef Name="id_dic_odfm" />
           </Key>
           <Property Name="id_dic_odfm" Type="Int32" Nullable="false" />
-          <Property Name="dic_cab" Type="Int32" />
-          <Property Name="dic_cod" Type="Int32" />
-          <Property Name="dic_abr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dic_cab" Type="Int32" Nullable="false" />
+          <Property Name="dic_cod" Type="Int32" Nullable="false" />
+          <Property Name="dic_abr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cotas_planos" Relationship="bulonera2Model.FK_Cotas_planos_Diccionario_odfm" FromRole="Diccionario_odfm" ToRole="Cotas_planos" />
           <NavigationProperty Name="odfm_insumos" Relationship="bulonera2Model.FK_odfm_insumos_Diccionario_odfm" FromRole="Diccionario_odfm" ToRole="odfm_insumos" />
           <NavigationProperty Name="Of_tecnica_Cod_planos" Relationship="bulonera2Model.FK_Of_tecnica_Cod_planos_Diccionario_odfm" FromRole="Diccionario_odfm" ToRole="Of_tecnica_Cod_planos" />
           <NavigationProperty Name="Plano_operaciones" Relationship="bulonera2Model.FK_Plano_operaciones_Diccionario_odfm" FromRole="Diccionario_odfm" ToRole="Plano_operaciones" />
+          <Property Name="dic_des" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ODF_MATRICERIA">
           <Key>
@@ -1911,6 +1913,7 @@
           <EntitySetMapping Name="Diccionario_odfm">
             <EntityTypeMapping TypeName="bulonera2Model.Diccionario_odfm">
               <MappingFragment StoreEntitySet="Diccionario_odfm">
+                <ScalarProperty Name="dic_des" ColumnName="dic_des" />
                 <ScalarProperty Name="dic_abr" ColumnName="dic_abr" />
                 <ScalarProperty Name="dic_cod" ColumnName="dic_cod" />
                 <ScalarProperty Name="dic_cab" ColumnName="dic_cab" />

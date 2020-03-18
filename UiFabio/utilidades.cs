@@ -10,8 +10,30 @@ using System.Windows.Forms;
 
 namespace UiFabio
 {
-    public static class utilidades
+    public  class utilidades
     {
+        public static utilidades instans;
+
+        private utilidades()
+        {
+        }
+        public static utilidades GetUtilidades()
+        {
+            if(instans == null)
+            {
+                instans = new utilidades();
+            }
+            return instans;
+        }
+
+        public void CargarListBox (ListBox listBox, List<string> Lista)
+        {
+            foreach (string item in Lista)
+            {
+                listBox.Items.Add(item);
+            }
+        }
+
         public static string FirstCharToUpper(string input)
         {
             switch (input)
@@ -59,6 +81,7 @@ namespace UiFabio
             }
         }
     }
+     
     public class SubModulos
     {
         public static List<CapaDatos.SUBMODULOS> OptenerSubModulos(int id_modulo)

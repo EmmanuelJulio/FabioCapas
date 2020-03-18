@@ -24,9 +24,10 @@ namespace CapaDatos
         }
     
         public int id_dic_odfm { get; set; }
-        public Nullable<int> dic_cab { get; set; }
-        public Nullable<int> dic_cod { get; set; }
+        public int dic_cab { get; set; }
+        public int dic_cod { get; set; }
         public string dic_abr { get; set; }
+        public string dic_des { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cotas_planos> Cotas_planos { get; set; }

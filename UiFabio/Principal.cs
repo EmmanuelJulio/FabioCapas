@@ -39,10 +39,10 @@ namespace UiFabio
             Botones.Width = 200;
             foreach (CapaDatos.MODULOS Mod in UiFabio.Modulos.OptenerModulos() )
             { 
-                PnlModulos.Controls.Add(boton(Mod.NOMBRE_MOD,Mod.ID_MODULO, Modulos_Click));
+                PnlModulos.Controls.Add(Boton(Mod.NOMBRE_MOD,Mod.ID_MODULO, Modulos_Click));
             }
         }
-        public Button boton(string nombre ,int id_mod,EventHandler cosa)
+        public Button Boton(string nombre ,int id_mod,EventHandler cosa)
         {
             Button Boton = new Button();
             Boton.Text = nombre;
@@ -60,7 +60,7 @@ namespace UiFabio
             Boton.FlatAppearance.BorderSize = 0;
             return Boton;
         }
-        public Button boton2(string nombre, string FormNombre, EventHandler cosa)
+        public Button Boton2(string nombre, string FormNombre, EventHandler cosa)
         {
             Button Boton = new Button();
             Boton.Text = nombre;
@@ -102,7 +102,7 @@ namespace UiFabio
             int id = Convert.ToInt32(((Button)sender).AccessibleName);
             foreach (CapaDatos.SUBMODULOS SubMod in UiFabio.SubModulos.OptenerSubModulos(id))
             {
-                PnlSubMenus.Controls.Add(boton(SubMod.NOMBRE_SUBMOD, SubMod.ID_SUBMODULO, SubModulos_Click));
+                PnlSubMenus.Controls.Add(Boton(SubMod.NOMBRE_SUBMOD, SubMod.ID_SUBMODULO, SubModulos_Click));
 
             }
             lbl_texto.Text = ((Button)sender).Text;
@@ -118,7 +118,7 @@ namespace UiFabio
             int id = Convert.ToInt32(((Button)sender).AccessibleName);
             foreach (CapaDatos.SUBMENU SubMod in UiFabio.SubMenus.OptenerSubMenus(id))
             {
-                PanelForm.Controls.Add(boton2(SubMod.subMenu_nombre, SubMod.subMenu_Sys, SubMenu_Click));
+                PanelForm.Controls.Add(Boton2(SubMod.subMenu_nombre, SubMod.subMenu_Sys, SubMenu_Click));
 
             }
             opcionseleccionada = ((Button)sender).Text;
