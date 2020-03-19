@@ -42,7 +42,7 @@
             this.gb_nuevoDato = new System.Windows.Forms.GroupBox();
             this.lbl_tipodato = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.btn_guardarDatoNuevo = new System.Windows.Forms.Button();
+            this.btn_agregarNuevoDiccionario = new System.Windows.Forms.Button();
             this.txb_Dato_nombreNuevo = new MetroFramework.Controls.MetroTextBox();
             this.txb_Dato_AbrNuevo = new MetroFramework.Controls.MetroTextBox();
             this.listDatos = new System.Windows.Forms.ListBox();
@@ -51,6 +51,7 @@
             this.bulonera2DataSet = new UiFabio.bulonera2DataSet();
             this.diccionarioodfmBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.diccionario_odfmTableAdapter = new UiFabio.bulonera2DataSetTableAdapters.Diccionario_odfmTableAdapter();
+            this.btn_agregarNuevoDato = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.BtnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnNormal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximize)).BeginInit();
@@ -217,6 +218,7 @@
             this.btn_nuevoTermino.TabIndex = 18;
             this.btn_nuevoTermino.Text = "Nuevo Termino";
             this.btn_nuevoTermino.UseVisualStyleBackColor = false;
+            this.btn_nuevoTermino.Click += new System.EventHandler(this.btn_nuevoTermino_Click);
             // 
             // Btn_agregarMod
             // 
@@ -248,9 +250,10 @@
             // 
             // gb_nuevoDato
             // 
+            this.gb_nuevoDato.Controls.Add(this.btn_agregarNuevoDato);
             this.gb_nuevoDato.Controls.Add(this.lbl_tipodato);
             this.gb_nuevoDato.Controls.Add(this.bunifuCustomLabel2);
-            this.gb_nuevoDato.Controls.Add(this.btn_guardarDatoNuevo);
+            this.gb_nuevoDato.Controls.Add(this.btn_agregarNuevoDiccionario);
             this.gb_nuevoDato.Controls.Add(this.txb_Dato_nombreNuevo);
             this.gb_nuevoDato.Controls.Add(this.txb_Dato_AbrNuevo);
             this.gb_nuevoDato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -291,25 +294,25 @@
             this.bunifuCustomLabel2.Text = "Codigo/Abreviatura";
             this.bunifuCustomLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btn_guardarDatoNuevo
+            // btn_agregarNuevoDiccionario
             // 
-            this.btn_guardarDatoNuevo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(112)))), ((int)(((byte)(183)))));
-            this.btn_guardarDatoNuevo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(159)))), ((int)(((byte)(127)))));
-            this.btn_guardarDatoNuevo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btn_guardarDatoNuevo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(118)))), ((int)(((byte)(126)))));
-            this.btn_guardarDatoNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_guardarDatoNuevo.ForeColor = System.Drawing.Color.LightGray;
-            this.btn_guardarDatoNuevo.Image = global::UiFabio.Properties.Resources.icons8_Save_32px;
-            this.btn_guardarDatoNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_guardarDatoNuevo.Location = new System.Drawing.Point(601, 32);
-            this.btn_guardarDatoNuevo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btn_guardarDatoNuevo.Name = "btn_guardarDatoNuevo";
-            this.btn_guardarDatoNuevo.Size = new System.Drawing.Size(225, 39);
-            this.btn_guardarDatoNuevo.TabIndex = 14;
-            this.btn_guardarDatoNuevo.Text = "Agregar";
-            this.btn_guardarDatoNuevo.UseVisualStyleBackColor = false;
-            this.btn_guardarDatoNuevo.Visible = false;
-            this.btn_guardarDatoNuevo.Click += new System.EventHandler(this.Btn_guardarDatoNuevo_Click);
+            this.btn_agregarNuevoDiccionario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(112)))), ((int)(((byte)(183)))));
+            this.btn_agregarNuevoDiccionario.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(159)))), ((int)(((byte)(127)))));
+            this.btn_agregarNuevoDiccionario.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_agregarNuevoDiccionario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(118)))), ((int)(((byte)(126)))));
+            this.btn_agregarNuevoDiccionario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_agregarNuevoDiccionario.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_agregarNuevoDiccionario.Image = global::UiFabio.Properties.Resources.icons8_Save_32px;
+            this.btn_agregarNuevoDiccionario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_agregarNuevoDiccionario.Location = new System.Drawing.Point(601, 26);
+            this.btn_agregarNuevoDiccionario.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_agregarNuevoDiccionario.Name = "btn_agregarNuevoDiccionario";
+            this.btn_agregarNuevoDiccionario.Size = new System.Drawing.Size(225, 38);
+            this.btn_agregarNuevoDiccionario.TabIndex = 14;
+            this.btn_agregarNuevoDiccionario.Text = "Agregar Diccionario";
+            this.btn_agregarNuevoDiccionario.UseVisualStyleBackColor = false;
+            this.btn_agregarNuevoDiccionario.Visible = false;
+            this.btn_agregarNuevoDiccionario.Click += new System.EventHandler(this.Btn_guardarDatoNuevo_Click);
             // 
             // txb_Dato_nombreNuevo
             // 
@@ -433,6 +436,26 @@
             // 
             this.diccionario_odfmTableAdapter.ClearBeforeFill = true;
             // 
+            // btn_agregarNuevoDato
+            // 
+            this.btn_agregarNuevoDato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(112)))), ((int)(((byte)(183)))));
+            this.btn_agregarNuevoDato.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(159)))), ((int)(((byte)(127)))));
+            this.btn_agregarNuevoDato.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_agregarNuevoDato.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(118)))), ((int)(((byte)(126)))));
+            this.btn_agregarNuevoDato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_agregarNuevoDato.ForeColor = System.Drawing.Color.LightGray;
+            this.btn_agregarNuevoDato.Image = global::UiFabio.Properties.Resources.icons8_Save_32px;
+            this.btn_agregarNuevoDato.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_agregarNuevoDato.Location = new System.Drawing.Point(601, 26);
+            this.btn_agregarNuevoDato.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_agregarNuevoDato.Name = "btn_agregarNuevoDato";
+            this.btn_agregarNuevoDato.Size = new System.Drawing.Size(225, 38);
+            this.btn_agregarNuevoDato.TabIndex = 17;
+            this.btn_agregarNuevoDato.Text = "Agregar Dato";
+            this.btn_agregarNuevoDato.UseVisualStyleBackColor = false;
+            this.btn_agregarNuevoDato.Visible = false;
+            this.btn_agregarNuevoDato.Click += new System.EventHandler(this.btn_agregarNuevoDato_Click);
+            // 
             // Frm_Diccionario_tecnico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -466,7 +489,7 @@
         private System.Windows.Forms.Button Btn_agregarMod;
         private System.Windows.Forms.GroupBox gb_nuevoDato;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btn_guardarDatoNuevo;
+        private System.Windows.Forms.Button btn_agregarNuevoDiccionario;
         private MetroFramework.Controls.MetroTextBox txb_Dato_nombreNuevo;
         private MetroFramework.Controls.MetroTextBox txb_Dato_AbrNuevo;
         public Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
@@ -482,5 +505,6 @@
         private bulonera2DataSet bulonera2DataSet;
         private System.Windows.Forms.BindingSource diccionarioodfmBindingSource;
         private bulonera2DataSetTableAdapters.Diccionario_odfmTableAdapter diccionario_odfmTableAdapter;
+        private System.Windows.Forms.Button btn_agregarNuevoDato;
     }
 }
