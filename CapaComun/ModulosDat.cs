@@ -12,7 +12,7 @@ namespace CapaComun
     {
       
 
-        
+        //hola esto es un comentario//
 
     }
 }
