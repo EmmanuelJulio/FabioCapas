@@ -17,9 +17,9 @@ namespace UiFabio
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new Loggin());
+            Application.Run(new Loggin());
             //Application.Run(new Configuraciones.Modulos.frm_submenus());
-            Application.Run(new Of_tecnica.Orden_de_Fabricacion.Frm_Diccionario_tecnico());
+            //Application.Run(new Of_tecnica.Orden_de_Fabricacion.Frm_Diccionario_tecnico());
         }
     }
 }

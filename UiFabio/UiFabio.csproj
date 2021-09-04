@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.4">
-      <HintPath>D:\Bunifu_UI_v1.4.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\bonifu\Bunifu_UI_v1.4.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

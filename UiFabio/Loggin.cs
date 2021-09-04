@@ -98,7 +98,7 @@ namespace UiFabio
                 if (txtpass.Text == "Contraseña")
                 {
                     MensajeError.Visible = true;
-                    MensajeError.Text = "Debe ingresar una contraceña";
+                    MensajeError.Text = "Debe ingresar una contraseña";
                     
                 }
                 else
