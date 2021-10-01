@@ -63,6 +63,7 @@ namespace CNegocio
                         New_term.dic_cab = 0;
                         if((from x in db.Diccionario_odfm where x.dic_cab == 0 select x.dic_cod).Any())
                         {
+
                             _Cod = (from x in db.Diccionario_odfm where x.dic_cab == 0 select x.dic_cod).Max();
                             _Cod++;
                             New_term.dic_cod = _Cod;
